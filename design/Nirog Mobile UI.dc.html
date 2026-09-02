@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/industry-87c1ed11-9d46-4681-9046-85ce674606c0/styles.css">
+<script src="_ds/industry-87c1ed11-9d46-4681-9046-85ce674606c0/_ds_bundle.js"></script>
+<script src="image-slot.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800&family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--color-accent:#1d5b38;--color-text:#201d17;--color-divider:#5a5548;--color-bg:#e9e4d6}
+body{margin:0;background:#e9e4d6;color:#201d17;font-family:'Noto Sans Devanagari','Barlow',sans-serif}
+a{color:#1d5b38}a:hover{color:#123b24}
+.abwrap{display:flex;flex-direction:column;gap:10px;width:360px;flex:none}
+.abwrap.wide{width:784px}
+.abhead{display:flex;align-items:baseline;gap:10px;font:600 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.abnum{font:700 11px/1 'Barlow',sans-serif;background:#201d17;color:#f8f4ea;padding:4px 6px}
+.ab{position:relative;width:360px;height:800px;background:#f8f4ea;border:1px solid #201d17;overflow:hidden;flex:none}
+.abnote{margin:0;font:500 13px/1.5 'Barlow',sans-serif;color:#5a5548;max-width:360px}
+.wide .abnote{max-width:784px}
+.hide-notes .abnote{display:none}
+@keyframes vwave{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+@keyframes ticker{0%,100%{opacity:.35}50%{opacity:1}}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="padding:44px 48px 64px;display:flex;flex-direction:column;gap:36px">
+<div style="max-width:784px;display:flex;flex-direction:column;gap:10px">
+  <div style="font:700 34px/1 'Barlow Condensed',sans-serif;letter-spacing:.02em">NIROG <span style="font-family:'Noto Sans Devanagari',sans-serif;font-weight:800;color:#1d5b38">निरोग</span> — field diagnosis UI, first canvas</div>
+  <p style="margin:0;font:500 15px/1.6 'Barlow',sans-serif;color:#3f3b31">15 artboards at 360×800dp. Industry's blueprint grammar (square corners, hairline frames, registration marks, condensed Latin headings) recolored to the brief's field palette: deep green <b style="color:#1d5b38">#1d5b38</b> action · ochre <b style="color:#8a5305">#8a5305</b> caution/chemical · clay <b style="color:#a03024">#a03024</b> alert, on warm paper neutrals. Hindi (Noto Sans Devanagari) leads every screen; English rides along in Barlow Condensed. Body ≥16sp, key numbers ≥24sp tabular, targets ≥56dp, every color paired with an icon + label, a mic on every screen. Dashed frames are photo drop-slots — drop real leaf photos in and they persist.</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:52px;align-items:flex-start">
+
+<div class="abwrap">
+<div class="abhead"><span class="abnum">01</span><span>Home · होम</span></div>
+<div class="ab blueprint" data-screen-label="01 Home"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+  <div style="height:30px;display:flex;justify-content:space-between;align-items:center;padding:0 14px;font:600 14px 'Barlow',sans-serif;font-variant-numeric:tabular-nums">
+    <span>11:42</span>
+    <span style="display:flex;align-items:center;gap:8px"><svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="#201d17" stroke-width="1.5"><path d="M1 13h2V9H1zM6 13h2V6H6zM11 13h2V3h-2z"></path><path d="M16 13h1V1h-1z" stroke="#9a9484"></path></svg><span>46%</span></span>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 20px 0">
+    <div style="display:flex;align-items:baseline;gap:8px"><span style="font:800 24px/1 'Noto Sans Devanagari',sans-serif;color:#1d5b38">निरोग</span><span style="font:600 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.14em">NIROG</span></div>
+    <div style="display:flex;align-items:center;gap:6px;font:600 14px 'Barlow',sans-serif;color:#3f3b31"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a5305" stroke-width="1.5"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"></path></svg>34°</div>
+  </div>
+  <div style="padding:18px 20px 0">
+    <div style="font:700 26px/1.35 'Noto Sans Devanagari',sans-serif">राम किशोर जी, नमस्ते</div>
+    <div style="font:600 16px/1.6 'Noto Sans Devanagari',sans-serif;color:#3f3b31">रोहतक · गेहूं <span style="font-family:'Barlow Condensed',sans-serif;letter-spacing:.05em">WHEAT</span> · 2.5 एकड़ · बुआई का 62वां दिन</div>
+  </div>
+  <div class="blueprint" style="margin:18px 16px 0;background:#f6ddd4;border:1.5px solid #a03024;padding:14px 14px 12px;position:relative">
+    <i class="corner tl" style="color:#a03024"></i><i class="corner tr" style="color:#a03024"></i><i class="corner bl" style="color:#a03024"></i><i class="corner br" style="color:#a03024"></i>
+    <div style="display:flex;gap:12px">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#a03024" stroke-width="1.5" style="flex:none;margin-top:2px"><path d="M12 21C7 17 4 13 4 8.5 4 5 7 3 12 3s8 2 8 5.5C20 13 17 17 12 21z"></path><path d="M12 3v18"></path><circle cx="8.5" cy="9" r="1" fill="#a03024"></circle><circle cx="15.5" cy="11" r="1" fill="#a03024"></circle><circle cx="9.5" cy="13.5" r="1" fill="#a03024"></circle></svg>
+      <div style="flex:1">
+        <div style="font:700 14px/1 'Barlow Condensed',sans-serif;letter-spacing:.12em;color:#a03024">चेतावनी · OUTBREAK ALERT</div>
+        <div style="font:700 18px/1.45 'Noto Sans Devanagari',sans-serif;margin-top:4px">पीला रतुआ 3 किमी दूर पुष्ट हुआ</div>
+        <div style="font:500 16px/1.5 'Noto Sans Devanagari',sans-serif;color:#3f3b31">Yellow rust · शुक्रवार से पहले अपनी फसल जांचें</div>
+      </div>
+      <button style="flex:none;width:44px;height:44px;margin:-6px -6px 0 0;background:none;border:none;font:600 20px 'Barlow',sans-serif;color:#a03024;cursor:pointer">✕</button>
+    </div>
+  </div>
+  <div style="padding:18px 16px 0">
+    <button class="blueprint" style="width:100%;height:216px;background:#1d5b38;border:1px solid #123b24;box-shadow:0 4px 0 #123b24;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;position:relative" style-active="box-shadow:0 1px 0 #123b24;transform:translateY(3px)">
+      <i class="corner tl" style="color:rgba(255,255,255,.7)"></i><i class="corner tr" style="color:rgba(255,255,255,.7)"></i><i class="corner bl" style="color:rgba(255,255,255,.7)"></i><i class="corner br" style="color:rgba(255,255,255,.7)"></i>
+      <svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M3 8h3l2-3h8l2 3h3v12H3z"></path><circle cx="12" cy="13.5" r="4"></circle></svg>
+      <span style="font:800 27px/1.3 'Noto Sans Devanagari',sans-serif">फसल की जांच करें</span>
+      <span style="font:600 16px/1 'Barlow Condensed',sans-serif;letter-spacing:.14em;color:rgba(255,255,255,.85)">SCAN MY CROP · 3 फोटो · 1 मिनट</span>
+    </button>
+  </div>
+  <div style="padding:14px 16px 0">
+    <button style="width:100%;height:76px;background:#fffdf6;border:1.5px solid #201d17;display:flex;align-items:center;justify-content:center;gap:14px;cursor:pointer" style-hover="background:#efe9da">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v5M8 22h8"></path></svg>
+      <span style="font:700 20px 'Noto Sans Devanagari',sans-serif">सवाल पूछें</span>
+      <span style="font:600 14px 'Barlow Condensed',sans-serif;letter-spacing:.12em;color:#3f3b31">ASK A QUESTION</span>
+    </button>
+  </div>
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:12px 20px;display:flex;align-items:center;gap:8px;border-top:1px solid #cfc8b6;font:600 14px 'Noto Sans Devanagari',sans-serif;color:#3f3b31">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><path d="M4 12a8 8 0 0 1 16 0"></path><circle cx="12" cy="16" r="2"></circle></svg>
+    बिना सिग्नल भी काम करता है · डायरी और दवा की मात्रा
+  </div>
+</div>
+<p class="abnote">Three things only: alert, scan, ask. The scan button is the one raised, solid object on the screen — everything else is flat paper. Alert pairs clay red with a spotted-leaf icon and a written label.</p>
+</div>
+
+<div class="abwrap">
+<div class="abhead"><span class="abnum">02</span><span>Guided capture · चरण 2/3</span></div>
+<div class="ab" data-screen-label="02 Guided capture" style="background:#14130f">
+  <div style="position:relative;height:566px">
+    <image-slot id="cam-live" shape="rect" placeholder="पत्ती की फोटो यहां डालें — live camera view" style="width:100%;height:100%"></image-slot>
+    <div style="position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center">
+      <svg width="216" height="330" viewBox="0 0 200 320" fill="none"><path d="M100 12 C158 62 166 198 100 308 C34 198 42 62 100 12 Z" stroke="rgba(255,255,255,.9)" stroke-width="2.5" stroke-dasharray="10 8"></path><path d="M100 12 V308" stroke="rgba(255,255,255,.55)" stroke-width="1.5" stroke-dasharray="4 7"></path></svg>
+    </div>
+    <div style="position:absolute;top:0;left:0;right:0;background:rgba(20,19,15,.88);padding:34px 16px 14px;display:flex;align-items:center;gap:12px;pointer-events:none">
+      <div style="flex:1">
+        <div style="font:800 24px/1.35 'Noto Sans Devanagari',sans-serif;color:#fff">अब पत्ती को पलटिए</div>
+        <div style="font:600 15px/1.3 'Barlow Condensed',sans-serif;letter-spacing:.1em;color:rgba(255,255,255,.75)">TURN THE LEAF OVER</div>
+      </div>
+      <div style="flex:none;border:1.5px solid rgba(255,255,255,.8);color:#fff;font:700 16px 'Barlow',sans-serif;font-variant-numeric:tabular-nums;padding:8px 10px">चरण 2/3</div>
+    </div>
+    <div style="position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;pointer-events:none">
+      <div style="background:rgba(20,19,15,.8);color:#fff;font:600 16px 'Noto Sans Devanagari',sans-serif;padding:8px 14px;border:1px solid rgba(255,255,255,.35)">पत्ती को खाके के अंदर रखें</div>
+    </div>
+  </div>
+  <div style="background:#f8f4ea;border-top:1px solid #201d17;padding:12px 16px 10px;display:flex;flex-direction:column;gap:8px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="flex:none;width:26px;height:26px;background:#1d5b38;color:#fff;display:flex;align-items:center;justify-content:center;font:700 15px 'Barlow',sans-serif">✓</span>
+      <span style="font:600 16px 'Noto Sans Devanagari',sans-serif;color:#3f3b31;text-decoration:line-through">पूरी पत्ती की फोटो — ऊपर से</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="flex:none;width:26px;height:26px;border:2.5px solid #1d5b38;background:#fffdf6;color:#1d5b38;display:flex;align-items:center;justify-content:center;font:700 15px 'Barlow',sans-serif">2</span>
+      <span style="font:700 17px 'Noto Sans Devanagari',sans-serif">पत्ती का निचला भाग</span>
+      <span style="margin-left:auto;background:#1d5b38;color:#fff;font:700 14px 'Noto Sans Devanagari',sans-serif;padding:4px 8px">अभी</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="flex:none;width:26px;height:26px;border:1.5px solid #8f8a7c;color:#5a5548;display:flex;align-items:center;justify-content:center;font:700 15px 'Barlow',sans-serif">3</span>
+      <span style="font:600 16px 'Noto Sans Devanagari',sans-serif;color:#5a5548">पूरा पौधा दूर से</span>
+    </div>
+  </div>
+  <div style="position:absolute;left:0;right:0;bottom:0;background:#f8f4ea;padding:10px 24px 16px;display:flex;align-items:center;justify-content:space-between">
+    <button style="width:56px;height:56px;background:#fffdf6;border:1.5px solid #201d17;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#201d17" stroke-width="1.5"><rect x="3" y="3" width="18" height="18"></rect><path d="M3 16l5-5 4 4 3-3 6 6"></path><circle cx="9" cy="8" r="1.5"></circle></svg></button>
+    <button style="width:86px;height:86px;border-radius:50%;background:#fff;border:5px solid #1d5b38;box-shadow:0 3px 0 #123b24;cursor:pointer"></button>
+    <button style="width:56px;height:56px;background:#1d5b38;border:1px solid #123b24;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v5M8 22h8"></path></svg></button>
+  </div>
+</div>
+<p class="abnote">One instruction at a time, spoken-size type over the viewfinder. The checklist shows where the farmer is; the dashed leaf guide frames the shot. Shutter is oversized; mic sits beside it.</p>
+</div>
+<div class="abwrap">
+<div class="abhead"><span class="abnum">03</span><span>Bad photo · फिर से लें</span></div>
+<div class="ab" data-screen-label="03 Bad photo">
+  <div style="position:relative;height:340px;background:#2a2820;overflow:hidden">
+    <div style="position:absolute;inset:-20px;filter:blur(14px) brightness(.55);background:radial-gradient(circle at 40% 35%,#4a5238 0%,#2f3322 45%,#181710 100%)"></div>
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:rgba(255,255,255,.85)">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1.5"><path d="M3 8h3l2-3h8l2 3h3v12H3z"></path><circle cx="12" cy="13.5" r="4"></circle><path d="M2 2l20 20" stroke="#e3a63b"></path></svg>
+      <span style="font:600 16px 'Noto Sans Devanagari',sans-serif">आपकी ली हुई फोटो — धुंधली</span>
+    </div>
+  </div>
+  <div style="padding:20px 20px 0">
+    <div style="display:flex;align-items:flex-start;gap:14px">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8a5305" stroke-width="1.5" style="flex:none;margin-top:4px"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"></path></svg>
+      <div>
+        <div style="font:800 25px/1.4 'Noto Sans Devanagari',sans-serif">बहुत अंधेरा है</div>
+        <div style="font:600 15px/1.3 'Barlow Condensed',sans-serif;letter-spacing:.1em;color:#3f3b31">TOO DARK — MOVE INTO THE LIGHT</div>
+      </div>
+    </div>
+    <div style="font:500 18px/1.7 'Noto Sans Devanagari',sans-serif;margin-top:14px">कोई बात नहीं — धूप में ऐसा अक्सर होता है। पत्ती को छाया से निकालकर <b>खुली रोशनी</b> में रखें, और फोन को पत्ती से <b>एक बालिश्त</b> दूर रखें।</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:16px;border:1px solid #cfc8b6;background:#fffdf6;padding:10px 12px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v4l3 2"></path></svg>
+      <span style="font:600 16px 'Noto Sans Devanagari',sans-serif;color:#3f3b31">पहली 2 फोटो अच्छी हैं — बस यही एक फिर से</span>
+    </div>
+  </div>
+  <div style="position:absolute;left:16px;right:16px;bottom:18px;display:flex;flex-direction:column;gap:12px">
+    <button class="blueprint" style="width:100%;height:76px;background:#1d5b38;border:1px solid #123b24;box-shadow:0 4px 0 #123b24;color:#fff;display:flex;align-items:center;justify-content:center;gap:12px;cursor:pointer;position:relative">
+      <i class="corner tl" style="color:rgba(255,255,255,.7)"></i><i class="corner tr" style="color:rgba(255,255,255,.7)"></i><i class="corner bl" style="color:rgba(255,255,255,.7)"></i><i class="corner br" style="color:rgba(255,255,255,.7)"></i>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M3 12a9 9 0 1 1 3 6.7"></path><path d="M3 22v-6h6"></path></svg>
+      <span style="font:800 22px 'Noto Sans Devanagari',sans-serif">फिर से फोटो लें</span>
+      <span style="font:600 14px 'Barlow Condensed',sans-serif;letter-spacing:.12em;color:rgba(255,255,255,.85)">RETAKE</span>
+    </button>
+    <button style="width:100%;height:58px;background:none;border:1.5px solid #8f8a7c;color:#3f3b31;font:700 17px 'Noto Sans Devanagari',sans-serif;cursor:pointer">ऐसे ही भेज दें</button>
+  </div>
+  <button style="position:absolute;right:14px;top:296px;width:72px;height:56px;background:#fffdf6;border:1.5px solid #201d17;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v5M8 22h8"></path></svg><span style="font:700 14px 'Noto Sans Devanagari',sans-serif">बोलें</span></button>
+</div>
+<p class="abnote">Helpful, not punishing: names the problem in one line, explains the fix in field language ("एक बालिश्त दूर" — a hand-span away), and reassures that the other photos are fine.</p>
+</div>
+
+<div class="abwrap">
+<div class="abhead"><span class="abnum">04</span><span>Analysing · जांच जारी</span></div>
+<div class="ab" data-screen-label="04 Analysing">
+  <div style="padding:56px 24px 0">
+    <div style="display:flex;gap:10px">
+      <div style="width:88px;height:110px;border:1px solid #201d17;background:#3a4230;position:relative"><span style="position:absolute;inset:auto 0 0 0;background:#1d5b38;color:#fff;font:700 13px 'Barlow',sans-serif;text-align:center;padding:2px 0">1 ✓</span></div>
+      <div style="width:88px;height:110px;border:1px solid #201d17;background:#4a5238;position:relative"><span style="position:absolute;inset:auto 0 0 0;background:#1d5b38;color:#fff;font:700 13px 'Barlow',sans-serif;text-align:center;padding:2px 0">2 ✓</span></div>
+      <div style="width:88px;height:110px;border:1px solid #201d17;background:#5c6544;position:relative"><span style="position:absolute;inset:auto 0 0 0;background:#1d5b38;color:#fff;font:700 13px 'Barlow',sans-serif;text-align:center;padding:2px 0">3 ✓</span></div>
+    </div>
+    <div style="font:800 26px/1.4 'Noto Sans Devanagari',sans-serif;margin-top:28px">आपकी फसल की जांच हो रही है</div>
+    <div style="font:600 15px/1.3 'Barlow Condensed',sans-serif;letter-spacing:.1em;color:#3f3b31;margin-top:2px">CHECKING · ~20 SECONDS</div>
+  </div>
+  <div style="margin:30px 24px 0;display:flex;flex-direction:column">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="flex:none;display:flex;flex-direction:column;align-items:center"><span style="width:30px;height:30px;background:#1d5b38;color:#fff;display:flex;align-items:center;justify-content:center;font:700 16px 'Barlow',sans-serif">✓</span><span style="width:2px;flex:1;min-height:34px;background:#1d5b38"></span></div>
+      <div style="padding-bottom:26px"><div style="font:700 18px/1.4 'Noto Sans Devanagari',sans-serif;color:#3f3b31">आपकी तीनों फोटो देख लीं</div><div style="font:600 15px 'Noto Sans Devanagari',sans-serif;color:#5a5548">पत्ती की धारियां पहचानी गईं</div></div>
+    </div>
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="flex:none;display:flex;flex-direction:column;align-items:center"><span style="width:30px;height:30px;border:2.5px solid #1d5b38;background:#fffdf6;display:flex;align-items:center;justify-content:center"><span style="width:12px;height:12px;background:#1d5b38;animation:ticker 1.2s infinite"></span></span><span style="width:2px;flex:1;min-height:34px;background:#cfc8b6"></span></div>
+      <div style="padding-bottom:26px"><div style="font:800 19px/1.4 'Noto Sans Devanagari',sans-serif">रोहतक का मौसम जांच रहे हैं</div><div style="font:600 15px 'Noto Sans Devanagari',sans-serif;color:#5a5548">पिछले 10 दिन की नमी और ओस</div></div>
+    </div>
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="flex:none"><span style="width:30px;height:30px;border:1.5px solid #8f8a7c;display:flex;align-items:center;justify-content:center;font:700 15px 'Barlow',sans-serif;color:#5a5548">3</span></div>
+      <div><div style="font:700 18px/1.4 'Noto Sans Devanagari',sans-serif;color:#5a5548">आस-पास की रिपोर्ट मिला रहे हैं</div><div style="font:600 15px 'Noto Sans Devanagari',sans-serif;color:#5a5548">3 किमी के अंदर 4 और खेत</div></div>
+    </div>
+  </div>
+  <div style="position:absolute;left:16px;right:16px;bottom:18px;border:1px solid #cfc8b6;background:#fffdf6;padding:12px 14px;display:flex;gap:10px;align-items:center">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5" style="flex:none"><path d="M12 21C7 17 4 13 4 8.5 4 5 7 3 12 3s8 2 8 5.5C20 13 17 17 12 21z"></path><path d="M12 3v18"></path></svg>
+    <span style="font:600 16px/1.5 'Noto Sans Devanagari',sans-serif;color:#3f3b31">सिर्फ फोटो नहीं — मौसम और पड़ोस की रिपोर्ट भी देखी जाती है</span>
+  </div>
+</div>
+<p class="abnote">No spinner. A readable three-step ledger — photos → Rohtak's weather → nearby reports — that shows the work being done. The trust device is the visible reasoning.</p>
+</div>
+
+<div class="abwrap">
+<div class="abhead"><span class="abnum">05</span><span>Result — confident · पक्की पहचान</span></div>
+<div class="ab" data-screen-label="05 Result confident">
+  <div style="position:relative;height:330px;background:#3a4230">
+    <image-slot id="result-leaf-1" shape="rect" placeholder="प्रभावित पत्ती की फोटो — affected wheat leaf" style="width:100%;height:100%"></image-slot>
+    <svg style="position:absolute;left:54px;top:56px;pointer-events:none" width="180" height="200" viewBox="0 0 180 200" fill="none"><ellipse cx="90" cy="100" rx="74" ry="88" stroke="#a03024" stroke-width="3" stroke-dasharray="12 8"></ellipse><path d="M164 100 H198" stroke="#a03024" stroke-width="3"></path></svg>
+    <div style="position:absolute;right:10px;top:132px;background:#a03024;color:#fff;padding:8px 12px;pointer-events:none"><span style="font:800 26px 'Barlow',sans-serif;font-variant-numeric:tabular-nums">12%</span><span style="display:block;font:700 14px 'Noto Sans Devanagari',sans-serif">पत्ती प्रभावित</span></div>
+  </div>
+  <div style="padding:18px 20px 0">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:#dcead7;border:1.5px solid #1d5b38;padding:8px 12px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#123b24" stroke-width="2.5"><path d="M4 12l5 5L20 6"></path></svg>
+      <span style="font:700 16px 'Noto Sans Devanagari',sans-serif;color:#123b24">पक्की पहचान · CONFIDENT</span>
+    </div>
+    <div style="font:800 44px/1.25 'Noto Sans Devanagari',sans-serif;margin-top:12px">पीला रतुआ</div>
+    <div style="font:600 22px/1.2 'Barlow Condensed',sans-serif;letter-spacing:.04em;color:#3f3b31">YELLOW RUST · <i>Puccinia striiformis</i></div>
+    <div style="display:flex;gap:20px;margin-top:16px;padding-top:14px;border-top:1px solid #cfc8b6">
+      <div><div style="font:800 24px 'Barlow',sans-serif;font-variant-numeric:tabular-nums">12%</div><div style="font:600 15px 'Noto Sans Devanagari',sans-serif;color:#3f3b31">फैलाव अभी</div></div>
+      <div><div style="font:800 24px 'Barlow',sans-serif;font-variant-numeric:tabular-nums">5–7 <span style="font-size:16px">दिन</span></div><div style="font:600 15px 'Noto Sans Devanagari',sans-serif;color:#3f3b31">बिना इलाज दुगना</div></div>
+      <div><div style="font:800 24px 'Barlow',sans-serif;font-variant-numeric:tabular-nums">4</div><div style="font:600 15px 'Noto Sans Devanagari',sans-serif;color:#3f3b31">पड़ोसी खेत भी</div></div>
+    </div>
+  </div>
+  <div style="position:absolute;left:16px;right:16px;bottom:18px;display:flex;gap:12px;align-items:stretch">
+    <button class="blueprint" style="flex:1;height:76px;background:#1d5b38;border:1px solid #123b24;box-shadow:0 4px 0 #123b24;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;position:relative">
+      <i class="corner tl" style="color:rgba(255,255,255,.7)"></i><i class="corner tr" style="color:rgba(255,255,255,.7)"></i><i class="corner bl" style="color:rgba(255,255,255,.7)"></i><i class="corner br" style="color:rgba(255,255,255,.7)"></i>
+      <span style="font:800 22px 'Noto Sans Devanagari',sans-serif">अब क्या करूं?</span>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+    </button>
+    <button style="flex:none;width:72px;background:#fffdf6;border:1.5px solid #201d17;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v5M8 22h8"></path></svg><span style="font:700 14px 'Noto Sans Devanagari',sans-serif">सुनें</span></button>
+  </div>
+</div>
+<p class="abnote">The diagnosis is the headline — 44sp Devanagari, English and Latin name beneath. The photo carries the evidence: affected area outlined in clay with the severity figure pinned to it. One action.</p>
+</div>
+<div class="abwrap">
+<div class="abhead"><span class="abnum">06</span><span>Result — two possibilities · दो संभावनाएं</span></div>
+<div class="ab" data-screen-label="06 Result two possibilities">
+  <div style="position:relative;height:236px;background:#3a4230">
+    <image-slot id="result-leaf-2" shape="rect" placeholder="पत्ती की फोटो — leaf with rust stripes" style="width:100%;height:100%"></image-slot>
+  </div>
+  <div style="padding:16px 20px 0">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:#f3e2c0;border:1.5px solid #8a5305;padding:8px 12px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a5305" stroke-width="2"><path d="M12 3l10 18H2z"></path><path d="M12 10v5M12 18v.5"></path></svg>
+      <span style="font:700 16px 'Noto Sans Devanagari',sans-serif;color:#6b4004">दो संभावनाएं · TWO POSSIBILITIES</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+      <div style="border:1.5px solid #201d17;background:#fffdf6;padding:10px 14px;display:flex;align-items:center;gap:12px">
+        <span style="font:800 22px 'Barlow',sans-serif;font-variant-numeric:tabular-nums;color:#1d5b38;flex:none">70%</span>
+        <div style="flex:1"><div style="font:800 21px/1.3 'Noto Sans Devanagari',sans-serif">पीला रतुआ</div><div style="font:600 15px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#3f3b31">YELLOW RUST — धारियों में पीला चूर्ण</div></div>
+        <span style="flex:none;font:700 14px 'Noto Sans Devanagari',sans-serif;background:#dcead7;border:1px solid #1d5b38;color:#123b24;padding:4px 8px">अधिक संभावना</span>
+      </div>
+      <div style="border:1px solid #8f8a7c;background:#fffdf6;padding:10px 14px;display:flex;align-items:center;gap:12px">
+        <span style="font:800 22px 'Barlow',sans-serif;font-variant-numeric:tabular-nums;color:#5a5548;flex:none">30%</span>
+        <div style="flex:1"><div style="font:800 21px/1.3 'Noto Sans Devanagari',sans-serif;color:#3f3b31">भूरा रतुआ</div><div style="font:600 15px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#5a5548">BROWN RUST — बिखरे भूरे दाने</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="blueprint" style="margin:14px 16px 0;border:1.5px solid #8a5305;background:#f3e2c0;padding:14px;position:relative">
+    <i class="corner tl" style="color:#8a5305"></i><i class="corner tr" style="color:#8a5305"></i><i class="corner bl" style="color:#8a5305"></i><i class="corner br" style="color:#8a5305"></i>
+    <div style="display:flex;align-items:center;gap:10px">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#6b4004" stroke-width="1.5" style="flex:none"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0V12m0 0a1.5 1.5 0 0 1 3 0v3a7 7 0 0 1-7 7h-1c-3 0-4.5-1.5-6.5-5L4 14.5A1.6 1.6 0 0 1 6.5 13L8 15"></path></svg>
+      <div style="font:800 20px/1.3 'Noto Sans Devanagari',sans-serif;color:#4a2c02">10 सेकंड की जांच — खुद पता करें</div>
+    </div>
+    <div style="font:600 18px/1.65 'Noto Sans Devanagari',sans-serif;margin-top:10px">पत्ती की पीली धारी पर <b>उंगली रगड़ें</b>। उंगली पर <b>पीला पाउडर</b> लगे तो पीला रतुआ है; कुछ न लगे तो भूरा रतुआ।</div>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <button style="flex:1;height:60px;background:#1d5b38;border:1px solid #123b24;box-shadow:0 3px 0 #123b24;color:#fff;font:700 17px 'Noto Sans Devanagari',sans-serif;cursor:pointer">पीला पाउडर लगा</button>
+      <button style="flex:1;height:60px;background:#fffdf6;border:1.5px solid #201d17;font:700 17px 'Noto Sans Devanagari',sans-serif;cursor:pointer">कुछ नहीं लगा</button>
+    </div>
+  </div>
+  <div style="position:absolute;left:16px;right:16px;bottom:18px;display:flex;gap:12px">
+    <button style="flex:1;height:60px;background:none;border:1.5px solid #8f8a7c;color:#3f3b31;font:700 16px 'Noto Sans Devanagari',sans-serif;cursor:pointer">जांच छोड़ें — दोनों का इलाज देखें</button>
+    <button style="flex:none;width:64px;background:#fffdf6;border:1.5px solid #201d17;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v5M8 22h8"></path></svg></button>
+  </div>
+</div>
+<p class="abnote">The rub-the-leaf test is the hero of this screen — an ochre blueprint card with its own pair of answer buttons, not a body-text footnote. Candidates are ranked with plain percentages.</p>
+</div>
+
+<div class="abwrap">
+<div class="abhead"><span class="abnum">07</span><span>Escalated · डॉक्टर देख रहे हैं</span></div>
+<div class="ab" data-screen-label="07 Escalated to human">
+  <div style="padding:32px 20px 0">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:#e7e2d3;border:1.5px solid #5a5548;padding:8px 12px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3f3b31" stroke-width="1.5"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"></path></svg>
+      <span style="font:700 16px 'Noto Sans Devanagari',sans-serif;color:#3f3b31">जांच जारी · SENT TO A CROP DOCTOR</span>
+    </div>
+    <div style="font:800 30px/1.4 'Noto Sans Devanagari',sans-serif;margin-top:14px">हमें पूरा भरोसा नहीं हुआ</div>
+    <div style="font:500 18px/1.7 'Noto Sans Devanagari',sans-serif;color:#3f3b31;margin-top:8px">यह तस्वीर मुश्किल है, और गलत दवा बताना ठीक नहीं। इसलिए आपकी फोटो <b>फसल डॉक्टर</b> देख रहे हैं।</div>
+    <div class="blueprint" style="margin-top:18px;border:1.5px solid #1d5b38;background:#dcead7;padding:16px;position:relative">
+      <i class="corner tl" style="color:#1d5b38"></i><i class="corner tr" style="color:#1d5b38"></i><i class="corner bl" style="color:#1d5b38"></i><i class="corner br" style="color:#1d5b38"></i>
+      <div style="display:flex;align-items:center;gap:12px">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#123b24" stroke-width="1.5" style="flex:none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.5 2"></path></svg>
+        <div><div style="font:800 26px/1.3 'Noto Sans Devanagari',sans-serif;color:#123b24">आज शाम 4 बजे से पहले</div><div style="font:600 15px 'Barlow Condensed',sans-serif;letter-spacing:.08em;color:#1d5b38">ANSWER BEFORE 4 PM TODAY — फोन पर घंटी बजेगी</div></div>
+      </div>
+    </div>
+    <div style="margin-top:18px;font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.12em;color:#3f3b31">जो भेजा गया · WHAT WAS SENT</div>
+    <div style="display:flex;gap:10px;margin-top:8px">
+      <div style="width:84px;height:80px;border:1px solid #201d17;background:#3a4230"></div>
+      <div style="width:84px;height:80px;border:1px solid #201d17;background:#4a5238"></div>
+      <div style="width:84px;height:80px;border:1px solid #201d17;background:#5c6544"></div>
+      <div style="flex:1;font:600 15px/1.55 'Noto Sans Devanagari',sans-serif;color:#3f3b31">3 फोटो<br>गेहूं · रोहतक<br>मौसम रिकॉर्ड</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-top:14px;border-top:1px solid #cfc8b6;padding-top:12px">
+      <span style="flex:none;width:52px;height:52px;border:1.5px solid #201d17;background:#fffdf6;display:flex;align-items:center;justify-content:center;font:800 20px 'Noto Sans Devanagari',sans-serif;color:#1d5b38">सु</span>
+      <div><div style="font:700 18px 'Noto Sans Devanagari',sans-serif">डॉ. सुनीता वर्मा</div><div style="font:600 15px 'Noto Sans Devanagari',sans-serif;color:#3f3b31">कृषि विज्ञान केंद्र, रोहतक</div></div>
+    </div>
+  </div>
+  <div style="position:absolute;left:16px;right:16px;bottom:18px;display:flex;gap:12px">
+    <button style="flex:1;height:64px;background:#fffdf6;border:1.5px solid #201d17;display:flex;align-items:center;justify-content:center;gap:10px;font:700 18px 'Noto Sans Devanagari',sans-serif;cursor:pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg>जवाब फोन पर सुनाएं</button>
+    <button style="flex:none;width:64px;background:#fffdf6;border:1.5px solid #201d17;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v5M8 22h8"></path></svg></button>
+  </div>
+</div>
+<p class="abnote">Honesty as a feature: says plainly it isn't sure, shows exactly what was sent, names the human and the deadline. The green card is the promise, not an apology banner.</p>
+</div>
+
+<div class="abwrap">
+<div class="abhead"><span class="abnum">08</span><span>Treatment ladder · इलाज की सीढ़ी</span></div>
+<div class="ab" data-screen-label="08 Treatment ladder">
+  <div style="padding:16px 16px 0">
+    <div style="font:800 24px/1.35 'Noto Sans Devanagari',sans-serif">इलाज की सीढ़ी</div>
+    <div style="font:600 15px/1.4 'Noto Sans Devanagari',sans-serif;color:#3f3b31">पीला रतुआ · फैलाव <b style="font-family:'Barlow';font-variant-numeric:tabular-nums">12%</b> · सस्ते से शुरू करें</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:8px;padding:12px 16px 0">
+    <div style="border:1.5px solid #1d5b38;background:#fffdf6;padding:10px 12px;display:flex;align-items:center;gap:10px">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5" style="flex:none"><path d="M12 22V8"></path><path d="M12 8C12 5 9 3 5 3c0 4 3 6 7 5zM12 12c0-3 3-5 7-5 0 4-3 6-7 5z"></path><path d="M4 22h16"></path></svg>
+      <div style="flex:1"><div style="font:700 17px/1.3 'Noto Sans Devanagari',sans-serif">बीच के जंगली पौधे उखाड़ें</div><div style="font:600 14px 'Noto Sans Devanagari',sans-serif;color:#3f3b31">रोग का घर खत्म — आज ही करें</div></div>
+      <span style="flex:none;font:800 18px 'Barlow',sans-serif;font-variant-numeric:tabular-nums;color:#1d5b38">मुफ़्त</span>
+    </div>
+    <div style="border:1px solid #201d17;background:#fffdf6;padding:10px 12px;display:flex;align-items:center;gap:10px">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#201d17" stroke-width="1.5" style="flex:none"><rect x="7" y="2" width="10" height="20"></rect><circle cx="10.5" cy="7" r=".8" fill="#201d17"></circle><circle cx="14" cy="11" r=".8" fill="#201d17"></circle><circle cx="11" cy="15" r=".8" fill="#201d17"></circle><circle cx="13.5" cy="18.5" r=".8" fill="#201d17"></circle></svg>
+      <div style="flex:1"><div style="font:700 17px/1.3 'Noto Sans Devanagari',sans-serif">पीले चिपचिपे जाल <span style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.06em">STICKY TRAPS</span></div><div style="font:600 14px 'Noto Sans Devanagari',sans-serif;color:#3f3b31">10 जाल — कीट कम, नजर भी रहेगी</div></div>
+      <span style="flex:none;font:800 18px 'Barlow',sans-serif;font-variant-numeric:tabular-nums">₹120</span>
+    </div>
+    <div style="border:1px solid #201d17;background:#fffdf6;padding:10px 12px;display:flex;align-items:center;gap:10px">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5" style="flex:none"><path d="M7 3h7v4l3 3v10a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1z"></path><path d="M14 5h4M10 13c1.5 2 4 2 5 0"></path></svg>
+      <div style="flex:1"><div style="font:700 17px/1.3 'Noto Sans Devanagari',sans-serif">ट्राइकोडर्मा छिड़काव <span style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.06em">TRICHODERMA</span></div><div style="display:inline-flex;gap:6px;align-items:center;font:600 14px 'Noto Sans Devanagari',sans-serif;color:#123b24"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="2"><path d="M4 12l5 5L20 6"></path></svg>जैविक-सुरक्षित · मंडी में पूरा दाम</div></div>
+      <span style="flex:none;font:800 18px 'Barlow',sans-serif;font-variant-numeric:tabular-nums">₹340</span>
+    </div>
+    <div style="border:1px solid #201d17;background:#fffdf6;padding:10px 12px;display:flex;align-items:center;gap:10px">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5" style="flex:none"><path d="M12 21C7 17 4 13 4 8.5 4 5 7 3 12 3s8 2 8 5.5C20 13 17 17 12 21z"></path><path d="M12 3v18M8 9c1.3.8 2.6 1.2 4 1.2S14.7 9.8 16 9"></path></svg>
+      <div style="flex:1"><div style="font:700 17px/1.3 'Noto Sans Devanagari',sans-serif">नीम तेल छिड़काव <span style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.06em">NEEM</span></div><div style="font:600 14px 'Noto Sans Devanagari',sans-serif;color:#3f3b31">हल्के फैलाव को रोकता है</div></div>
+      <span style="flex:none;font:800 18px 'Barlow',sans-serif;font-variant-numeric:tabular-nums">₹250</span>
+    </div>
+    <div class="blueprint" style="border:1.5px solid #8a5305;background:#fffdf6;position:relative">
+      <i class="corner tl" style="color:#8a5305"></i><i class="corner tr" style="color:#8a5305"></i><i class="corner bl" style="color:#8a5305"></i><i class="corner br" style="color:#8a5305"></i>
+      <div style="background:#f3e2c0;border-bottom:1px solid #8a5305;padding:6px 12px;display:flex;align-items:center;gap:8px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b4004" stroke-width="2"><path d="M12 3l10 18H2z"></path><path d="M12 10v5M12 18v.5"></path></svg>
+        <span style="font:700 14px 'Noto Sans Devanagari',sans-serif;color:#6b4004">रासायनिक — दस्ताने पहनें, हवा के रुख में न छिड़कें</span>
+      </div>
+      <div style="padding:10px 12px;display:flex;align-items:center;gap:10px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8a5305" stroke-width="1.5" style="flex:none"><path d="M9 3h6M10 3v4L5 18a3 3 0 0 0 3 4h8a3 3 0 0 0 3-4L14 7V3"></path><path d="M7.5 14h9"></path></svg>
+        <div style="flex:1"><div style="font:700 17px/1.3 'Noto Sans Devanagari',sans-serif">प्रोपिकोनाज़ोल 25% EC <span style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.06em">PROPICONAZOLE</span></div><div style="display:inline-flex;gap:6px;align-items:center;font:600 14px 'Noto Sans Devanagari',sans-serif;color:#123b24"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="2"><path d="M12 15V8M12 8l-3 3M12 8l3 3"></path><rect x="4" y="15" width="16" height="6"></rect></svg>10% फैलाव पर खुलता है — आप 12% पर हैं</div></div>
+        <span style="flex:none;font:800 18px 'Barlow',sans-serif;font-variant-numeric:tabular-nums">₹610</span>
+      </div>
+      <button style="margin:0 12px 12px;width:calc(100% - 24px);height:56px;background:#8a5305;border:1px solid #6b4004;box-shadow:0 3px 0 #6b4004;color:#fff;font:700 17px 'Noto Sans Devanagari',sans-serif;cursor:pointer">मात्रा निकालें → </button>
+    </div>
+    <div style="border:1.5px dashed #8f8a7c;background:#efe9da;padding:10px 12px;display:flex;align-items:center;gap:10px">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5a5548" stroke-width="1.5" style="flex:none"><rect x="5" y="11" width="14" height="9"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      <div style="flex:1"><div style="font:700 16px/1.3 'Noto Sans Devanagari',sans-serif;color:#5a5548">दूसरा रासायनिक छिड़काव — बंद</div><div style="font:600 14px 'Noto Sans Devanagari',sans-serif;color:#5a5548">पहले छिड़काव के 21 दिन बाद खुलेगा</div></div>
+      <span style="flex:none;font:800 16px 'Barlow',sans-serif;color:#8f8a7c">₹610</span>
+    </div>
+  </div>
+  <button style="position:absolute;right:14px;bottom:14px;width:72px;height:56px;background:#fffdf6;border:1.5px solid #201d17;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v5M8 22h8"></path></svg><span style="font:700 14px 'Noto Sans Devanagari',sans-serif">बोलें</span></button>
+</div>
+<p class="abnote">Free-to-chemical, cost on every rung so ₹0 competes fairly. The chemical rung wears an ochre warning band and states its unlock rule (past 10% spread — you're at 12%); the locked repeat-spray rung shows the locked pattern with its reason.</p>
+</div>
+<div class="abwrap">
+<div class="abhead"><span class="abnum">09</span><span>Dose calculator · मात्रा</span></div>
+<div class="ab" data-screen-label="09 Dose calculator">
+  <div style="padding:16px 16px 0">
+    <div style="font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.12em;color:#6b4004">रासायनिक · CHEMICAL</div>
+    <div style="font:800 26px/1.35 'Noto Sans Devanagari',sans-serif;margin-top:2px">प्रोपिकोनाज़ोल 25% EC</div>
+    <div style="font:600 16px/1.4 'Noto Sans Devanagari',sans-serif;color:#3f3b31">पीला रतुआ के लिए · आपका खेत: गेहूं, 2.5 एकड़</div>
+  </div>
+  <div class="blueprint" style="margin:14px 16px 0;border:1.5px solid #201d17;background:#fffdf6;position:relative">
+    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    <div style="display:grid;grid-template-columns:1fr auto;font-variant-numeric:tabular-nums">
+      <div style="padding:12px 14px;border-bottom:1px solid #cfc8b6;font:600 17px 'Noto Sans Devanagari',sans-serif">आपका खेत</div><div style="padding:12px 14px;border-bottom:1px solid #cfc8b6;font:800 20px 'Barlow',sans-serif;text-align:right">2.5 <span style="font:600 15px 'Noto Sans Devanagari',sans-serif">एकड़</span></div>
+      <div style="padding:12px 14px;border-bottom:1px solid #cfc8b6;font:600 17px 'Noto Sans Devanagari',sans-serif">प्रति टंकी (15L नैपसैक)</div><div style="padding:12px 14px;border-bottom:1px solid #cfc8b6;font:800 20px 'Barlow',sans-serif;text-align:right">15 ml</div>
+      <div style="padding:12px 14px;border-bottom:1px solid #cfc8b6;font:600 17px 'Noto Sans Devanagari',sans-serif">कुल टंकियां</div><div style="padding:12px 14px;border-bottom:1px solid #cfc8b6;font:800 20px 'Barlow',sans-serif;text-align:right">13</div>
+      <div style="padding:12px 14px;border-bottom:1px solid #cfc8b6;font:600 17px 'Noto Sans Devanagari',sans-serif">कुल दवा</div><div style="padding:12px 14px;border-bottom:1px solid #cfc8b6;font:800 24px 'Barlow',sans-serif;text-align:right;color:#1d5b38">200 ml</div>
+      <div style="padding:12px 14px;border-bottom:1px solid #cfc8b6;font:600 17px 'Noto Sans Devanagari',sans-serif">कीमत</div><div style="padding:12px 14px;border-bottom:1px solid #cfc8b6;font:800 24px 'Barlow',sans-serif;text-align:right">₹610</div>
+      <div style="padding:12px 14px;font:600 17px 'Noto Sans Devanagari',sans-serif">कटाई सुरक्षित</div><div style="padding:12px 14px;font:800 20px 'Barlow',sans-serif;text-align:right">35 <span style="font:600 15px 'Noto Sans Devanagari',sans-serif">दिन बाद</span></div>
+    </div>
+  </div>
+  <div style="margin:14px 16px 0;border:1.5px solid #8a5305;background:#f3e2c0;padding:12px 14px;display:flex;gap:12px;align-items:flex-start">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6b4004" stroke-width="1.5" style="flex:none"><path d="M17 9a5 5 0 0 0-9.8-1.5A4 4 0 0 0 8 15.5h9a3.5 3.5 0 0 0 0-7z"></path><path d="M8 19l-1 2.5M12 19l-1 2.5M16 19l-1 2.5"></path></svg>
+    <div><div style="font:800 18px/1.4 'Noto Sans Devanagari',sans-serif;color:#4a2c02">कल छिड़काव न करें — 80% बारिश</div><div style="font:600 16px/1.5 'Noto Sans Devanagari',sans-serif;color:#4a2c02">सही समय: <b>गुरुवार सुबह</b>, ओस सूखने के बाद</div></div>
+  </div>
+  <div style="position:absolute;left:16px;right:16px;bottom:18px;display:flex;gap:12px">
+    <button class="blueprint" style="flex:1;height:72px;background:#1d5b38;border:1px solid #123b24;box-shadow:0 4px 0 #123b24;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;position:relative">
+      <i class="corner tl" style="color:rgba(255,255,255,.7)"></i><i class="corner tr" style="color:rgba(255,255,255,.7)"></i><i class="corner bl" style="color:rgba(255,255,255,.7)"></i><i class="corner br" style="color:rgba(255,255,255,.7)"></i>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M5 3h11l3 3v15H5z"></path><path d="M9 3v5h6V3M8 14h8M8 18h5"></path></svg>
+      <span style="font:800 20px 'Noto Sans Devanagari',sans-serif">डायरी में सहेजें</span>
+    </button>
+    <button style="flex:none;width:64px;background:#fffdf6;border:1.5px solid #201d17;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v5M8 22h8"></path></svg></button>
+  </div>
+</div>
+<p class="abnote">Doses in tank-fuls, not per-hectare maths — the unit the knapsack sprayer actually uses. The weather band can veto the plan; totals are the big tabular figures.</p>
+</div>
+
+<div class="abwrap">
+<div class="abhead"><span class="abnum">10</span><span>Fasal diary · फसल डायरी</span></div>
+<div class="ab" data-screen-label="10 Fasal diary">
+  <div style="padding:16px 16px 0">
+    <div style="font:800 26px/1.35 'Noto Sans Devanagari',sans-serif">फसल डायरी</div>
+    <div style="font:600 16px/1.4 'Noto Sans Devanagari',sans-serif;color:#3f3b31">गेहूं · रोहतक · रबी 2026–27</div>
+  </div>
+  <div class="blueprint" style="margin:14px 16px 0;border:1.5px solid #201d17;background:#fffdf6;position:relative">
+    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    <div style="padding:14px;display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #cfc8b6">
+      <span style="font:600 17px 'Noto Sans Devanagari',sans-serif">इस सीज़न का खर्च</span>
+      <span style="font:800 30px 'Barlow',sans-serif;font-variant-numeric:tabular-nums">₹1,200</span>
+    </div>
+    <div style="padding:12px 14px;display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #efe9da;font-variant-numeric:tabular-nums">
+      <span style="font:600 15px 'Barlow',sans-serif;color:#3f3b31;flex:none">08 जन</span>
+      <span style="flex:1;font:600 16px 'Noto Sans Devanagari',sans-serif">प्रोपिकोनाज़ोल 25% EC <span style="font:700 12px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#6b4004;border:1px solid #8a5305;padding:1px 5px">रासायनिक</span></span>
+      <span style="font:700 16px 'Barlow',sans-serif;flex:none">₹610</span>
+    </div>
+    <div style="padding:12px 14px;display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #efe9da;font-variant-numeric:tabular-nums">
+      <span style="font:600 15px 'Barlow',sans-serif;color:#3f3b31;flex:none">28 नव</span>
+      <span style="flex:1;font:600 16px 'Noto Sans Devanagari',sans-serif">नीम तेल छिड़काव</span>
+      <span style="font:700 16px 'Barlow',sans-serif;flex:none">₹250</span>
+    </div>
+    <div style="padding:12px 14px;display:flex;justify-content:space-between;gap:10px;font-variant-numeric:tabular-nums">
+      <span style="font:600 15px 'Barlow',sans-serif;color:#3f3b31;flex:none">12 नव</span>
+      <span style="flex:1;font:600 16px 'Noto Sans Devanagari',sans-serif">ट्राइकोडर्मा छिड़काव <span style="font:700 12px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#123b24;border:1px solid #1d5b38;padding:1px 5px">जैविक</span></span>
+      <span style="font:700 16px 'Barlow',sans-serif;flex:none">₹340</span>
+    </div>
+  </div>
+  <div style="margin:14px 16px 0;border:1px solid #cfc8b6;background:#fffdf6;padding:12px 14px;display:flex;gap:12px;align-items:center">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5" style="flex:none"><path d="M3 17l5-6 4 3 6-8"></path><path d="M18 6h3v3"></path></svg>
+    <div style="font:600 16px/1.55 'Noto Sans Devanagari',sans-serif">पिछले साल इस समय तक <b style="font-family:'Barlow'">5</b> छिड़काव — इस साल सिर्फ <b style="font-family:'Barlow';color:#1d5b38">3</b>। करीब <b style="font-family:'Barlow';color:#1d5b38">₹700</b> की बचत।</div>
+  </div>
+  <div class="blueprint" style="margin:14px 16px 0;border:1.5px solid #1d5b38;background:#dcead7;padding:12px 14px;display:flex;gap:12px;align-items:center;position:relative">
+    <i class="corner tl" style="color:#1d5b38"></i><i class="corner tr" style="color:#1d5b38"></i><i class="corner bl" style="color:#1d5b38"></i><i class="corner br" style="color:#1d5b38"></i>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#123b24" stroke-width="1.5" style="flex:none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"></path><path d="M8.5 12l2.5 2.5L16 9.5"></path></svg>
+    <div style="font:600 16px/1.55 'Noto Sans Devanagari',sans-serif;color:#123b24">रिकॉर्ड पूरा है — कटाई पर यह <b>अवशेष रिकॉर्ड</b> खरीदार को दिखा सकते हैं</div>
+  </div>
+  <div style="position:absolute;left:16px;right:16px;bottom:18px;display:flex;gap:12px">
+    <button style="flex:1;height:64px;background:#fffdf6;border:1.5px solid #201d17;font:700 18px 'Noto Sans Devanagari',sans-serif;cursor:pointer">+ खर्च जोड़ें</button>
+    <button style="flex:none;width:64px;background:#fffdf6;border:1.5px solid #201d17;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v5M8 22h8"></path></svg></button>
+  </div>
+</div>
+<p class="abnote">A season ledger, not a dashboard: three entries, one big total, one comparison that means money, and the residue record framed as something worth showing a buyer.</p>
+</div>
+
+<div class="abwrap">
+<div class="abhead"><span class="abnum">11</span><span>Outbreak radar · आस-पास</span></div>
+<div class="ab" data-screen-label="11 Outbreak radar">
+  <div style="padding:16px 16px 0">
+    <div style="font:800 26px/1.35 'Noto Sans Devanagari',sans-serif">आस-पास का हाल</div>
+    <div style="font:600 16px/1.4 'Noto Sans Devanagari',sans-serif;color:#3f3b31">रोहतक जिला · 10 किमी के अंदर</div>
+  </div>
+  <div class="blueprint" style="margin:14px 16px 0;border:1.5px solid #201d17;background:#eef0e4;position:relative;height:330px;overflow:hidden">
+    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    <svg width="326" height="330" viewBox="0 0 326 330" style="display:block">
+      <path d="M-10 60 C60 40 120 90 200 70 S320 90 340 70" stroke="#b8b09a" stroke-width="2" fill="none"></path>
+      <path d="M40 -10 C60 80 30 180 70 340" stroke="#b8b09a" stroke-width="2" fill="none"></path>
+      <path d="M-10 240 C90 220 180 260 340 230" stroke="#9fb3c8" stroke-width="4" fill="none" opacity=".7"></path>
+      <circle cx="163" cy="165" r="66" stroke="#5a5548" stroke-width="1" stroke-dasharray="5 6" fill="none"></circle>
+      <circle cx="163" cy="165" r="132" stroke="#5a5548" stroke-width="1" stroke-dasharray="5 6" fill="none"></circle>
+      <text x="216" y="160" font-family="Barlow" font-weight="700" font-size="13" fill="#5a5548">5 किमी</text>
+      <text x="280" y="160" font-family="Barlow" font-weight="700" font-size="13" fill="#5a5548">10</text>
+      <g transform="translate(163 165)"><path d="M0 10 L-9 -6 L9 -6 Z" fill="#1d5b38"></path><circle cx="0" cy="-14" r="7" fill="none" stroke="#1d5b38" stroke-width="2.5"></circle></g>
+      <text x="140" y="200" font-family="Noto Sans Devanagari" font-weight="700" font-size="14" fill="#123b24">आपका खेत</text>
+      <g transform="translate(214 105)"><rect x="-11" y="-11" width="22" height="22" fill="#a03024"></rect><text x="0" y="5" text-anchor="middle" font-size="13" font-weight="800" font-family="Barlow" fill="#fff">R</text></g>
+      <g transform="translate(96 224)"><rect x="-11" y="-11" width="22" height="22" fill="#a03024"></rect><text x="0" y="5" text-anchor="middle" font-size="13" font-weight="800" font-family="Barlow" fill="#fff">R</text></g>
+      <g transform="translate(255 235)"><rect x="-11" y="-11" width="22" height="22" fill="#8a5305" transform="rotate(45)"></rect><text x="0" y="5" text-anchor="middle" font-size="13" font-weight="800" font-family="Barlow" fill="#fff">M</text></g>
+      <text x="24" y="52" font-family="Noto Sans Devanagari" font-weight="700" font-size="14" fill="#3f3b31">बोहर गांव</text>
+      <text x="236" y="300" font-family="Noto Sans Devanagari" font-weight="700" font-size="14" fill="#3f3b31">खरावड़</text>
+    </svg>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:8px;padding:12px 16px 0">
+    <div style="border:1px solid #201d17;background:#fffdf6;padding:10px 12px;display:flex;align-items:center;gap:10px">
+      <span style="flex:none;width:24px;height:24px;background:#a03024;color:#fff;display:flex;align-items:center;justify-content:center;font:800 14px 'Barlow',sans-serif">R</span>
+      <div style="flex:1"><div style="font:700 16px 'Noto Sans Devanagari',sans-serif">पीला रतुआ — पुष्ट <span style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#a03024">CONFIRMED ×2</span></div><div style="font:600 14px 'Noto Sans Devanagari',sans-serif;color:#3f3b31">नज़दीकी: 3 किमी, बोहर की ओर · कल पुष्ट</div></div>
+    </div>
+    <div style="border:1px solid #201d17;background:#fffdf6;padding:10px 12px;display:flex;align-items:center;gap:10px">
+      <span style="flex:none;width:24px;height:24px;background:#8a5305;color:#fff;display:flex;align-items:center;justify-content:center;font:800 14px 'Barlow',sans-serif;transform:rotate(45deg)"><span style="transform:rotate(-45deg)">M</span></span>
+      <div style="flex:1"><div style="font:700 16px 'Noto Sans Devanagari',sans-serif">माहू (चेपा) — सूचना <span style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#8a5305">REPORTED</span></div><div style="font:600 14px 'Noto Sans Devanagari',sans-serif;color:#3f3b31">7 किमी, खरावड़ · अभी पुष्टि बाकी</div></div>
+    </div>
+  </div>
+  <button style="position:absolute;right:14px;bottom:14px;width:72px;height:56px;background:#fffdf6;border:1.5px solid #201d17;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v5M8 22h8"></path></svg><span style="font:700 14px 'Noto Sans Devanagari',sans-serif">बोलें</span></button>
+</div>
+<p class="abnote">A drawn district map in the blueprint idiom — distance rings from the farmer's plot, square clay markers for confirmed cases, rotated ochre for unconfirmed reports. Shape + letter + label, never color alone.</p>
+</div>
+<div class="abwrap">
+<div class="abhead"><span class="abnum">12</span><span>Onboarding · अपना खेत जोड़ें</span></div>
+<div class="ab" data-screen-label="12 Onboarding add plot">
+  <div style="padding:20px 16px 0">
+    <div style="font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.12em;color:#3f3b31">1/1 · ADD MY PLOT</div>
+    <div style="font:800 28px/1.35 'Noto Sans Devanagari',sans-serif;margin-top:2px">अपना खेत जोड़ें</div>
+  </div>
+  <div style="padding:14px 16px 0">
+    <div style="font:700 18px 'Noto Sans Devanagari',sans-serif">फसल कौन-सी है?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+      <div style="position:relative;border:3px solid #1d5b38;height:118px;overflow:hidden">
+        <image-slot id="crop-wheat" shape="rect" placeholder="गेहूं की फोटो" style="width:100%;height:100%"></image-slot>
+        <div style="position:absolute;left:0;right:0;bottom:0;background:#1d5b38;color:#fff;padding:5px 8px;display:flex;justify-content:space-between;align-items:center;pointer-events:none"><span style="font:700 16px 'Noto Sans Devanagari',sans-serif">गेहूं WHEAT</span><span style="font:800 15px 'Barlow',sans-serif">✓</span></div>
+      </div>
+      <div style="position:relative;border:1px solid #201d17;height:118px;overflow:hidden">
+        <image-slot id="crop-cotton" shape="rect" placeholder="कपास की फोटो" style="width:100%;height:100%"></image-slot>
+        <div style="position:absolute;left:0;right:0;bottom:0;background:rgba(32,29,23,.85);color:#fff;padding:5px 8px;pointer-events:none"><span style="font:700 16px 'Noto Sans Devanagari',sans-serif">कपास COTTON</span></div>
+      </div>
+      <div style="position:relative;border:1px solid #201d17;height:118px;overflow:hidden">
+        <image-slot id="crop-chilli" shape="rect" placeholder="मिर्च की फोटो" style="width:100%;height:100%"></image-slot>
+        <div style="position:absolute;left:0;right:0;bottom:0;background:rgba(32,29,23,.85);color:#fff;padding:5px 8px;pointer-events:none"><span style="font:700 16px 'Noto Sans Devanagari',sans-serif">मिर्च CHILLI</span></div>
+      </div>
+      <div style="position:relative;border:1px solid #201d17;height:118px;overflow:hidden">
+        <image-slot id="crop-mustard" shape="rect" placeholder="सरसों की फोटो" style="width:100%;height:100%"></image-slot>
+        <div style="position:absolute;left:0;right:0;bottom:0;background:rgba(32,29,23,.85);color:#fff;padding:5px 8px;pointer-events:none"><span style="font:700 16px 'Noto Sans Devanagari',sans-serif">सरसों MUSTARD</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:16px 16px 0">
+    <div style="font:700 18px 'Noto Sans Devanagari',sans-serif">कितनी ज़मीन?</div>
+    <div style="display:flex;gap:10px;margin-top:10px;align-items:stretch">
+      <div style="flex:none;width:110px;border:1.5px solid #201d17;background:#fffdf6;display:flex;align-items:center;justify-content:center;font:800 30px 'Barlow',sans-serif;font-variant-numeric:tabular-nums">2.5</div>
+      <div style="flex:1;display:flex;border:1.5px solid #201d17">
+        <span style="flex:1;display:flex;align-items:center;justify-content:center;background:#1d5b38;color:#fff;font:700 17px 'Noto Sans Devanagari',sans-serif;min-height:56px">एकड़</span>
+        <span style="flex:1;display:flex;align-items:center;justify-content:center;background:#fffdf6;border-left:1px solid #201d17;font:600 17px 'Noto Sans Devanagari',sans-serif">बीघा</span>
+        <span style="flex:1;display:flex;align-items:center;justify-content:center;background:#fffdf6;border-left:1px solid #201d17;font:600 17px 'Noto Sans Devanagari',sans-serif">गुंठा</span>
+      </div>
+    </div>
+  </div>
+  <div style="padding:16px 16px 0">
+    <div style="font:700 18px 'Noto Sans Devanagari',sans-serif">बुआई कब की थी?</div>
+    <div style="display:flex;gap:10px;margin-top:10px">
+      <span style="flex:1;display:flex;align-items:center;justify-content:center;min-height:56px;border:1.5px solid #201d17;background:#1d5b38;color:#fff;font:700 16px 'Noto Sans Devanagari',sans-serif">2 जुलाई</span>
+      <span style="flex:1;display:flex;align-items:center;justify-content:center;min-height:56px;border:1.5px solid #201d17;background:#fffdf6;font:600 16px 'Noto Sans Devanagari',sans-serif">पिछले हफ्ते</span>
+      <span style="flex:1;display:flex;align-items:center;justify-content:center;min-height:56px;border:1.5px solid #201d17;background:#fffdf6;font:600 16px 'Noto Sans Devanagari',sans-serif">याद नहीं</span>
+    </div>
+  </div>
+  <div style="position:absolute;left:16px;right:16px;bottom:18px;display:flex;gap:12px">
+    <button class="blueprint" style="flex:1;height:70px;background:#1d5b38;border:1px solid #123b24;box-shadow:0 4px 0 #123b24;color:#fff;font:800 21px 'Noto Sans Devanagari',sans-serif;cursor:pointer;position:relative">
+      <i class="corner tl" style="color:rgba(255,255,255,.7)"></i><i class="corner tr" style="color:rgba(255,255,255,.7)"></i><i class="corner bl" style="color:rgba(255,255,255,.7)"></i><i class="corner br" style="color:rgba(255,255,255,.7)"></i>
+      खेत जोड़ें →
+    </button>
+    <button style="flex:none;width:64px;background:#fffdf6;border:1.5px solid #201d17;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v5M8 22h8"></path></svg></button>
+  </div>
+</div>
+<p class="abnote">Crops are picked from photographs, not a dropdown; area in the farmer's own unit with acre/bigha/guntha side by side; sowing date offered as memory-shaped chips including "याद नहीं".</p>
+</div>
+
+<div class="abwrap">
+<div class="abhead"><span class="abnum">13</span><span>Offline · बिना सिग्नल</span></div>
+<div class="ab" data-screen-label="13 Offline state">
+  <div style="background:#201d17;color:#f8f4ea;padding:34px 20px 18px;display:flex;gap:14px;align-items:center">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#f8f4ea" stroke-width="1.5" style="flex:none"><path d="M1 13h2V9H1zM6 13h2V6H6z"></path><path d="M11 13h2V3h-2zM16 13h2V1h-2z" opacity=".3"></path><path d="M2 20l20-16" stroke="#e3a63b" stroke-width="2"></path></svg>
+    <div><div style="font:800 23px/1.35 'Noto Sans Devanagari',sans-serif">अभी सिग्नल नहीं है</div><div style="font:600 16px/1.4 'Noto Sans Devanagari',sans-serif;color:#cfc8b6">कोई बात नहीं — ज़रूरी काम चलते रहेंगे</div></div>
+  </div>
+  <div style="padding:18px 16px 0">
+    <div style="font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.12em;color:#123b24">अभी भी चलता है · STILL WORKS</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+      <div style="border:1.5px solid #1d5b38;background:#dcead7;padding:12px;display:flex;gap:12px;align-items:center">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#123b24" stroke-width="1.5" style="flex:none"><path d="M3 8h3l2-3h8l2 3h3v12H3z"></path><circle cx="12" cy="13.5" r="4"></circle></svg>
+        <div style="flex:1"><div style="font:700 17px 'Noto Sans Devanagari',sans-serif;color:#123b24">फोटो लेना</div><div style="font:600 15px 'Noto Sans Devanagari',sans-serif;color:#1d5b38">सिग्नल आते ही जांच अपने-आप होगी</div></div>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#123b24" stroke-width="2.5"><path d="M4 12l5 5L20 6"></path></svg>
+      </div>
+      <div style="border:1.5px solid #1d5b38;background:#dcead7;padding:12px;display:flex;gap:12px;align-items:center">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#123b24" stroke-width="1.5" style="flex:none"><path d="M5 3h11l3 3v15H5z"></path><path d="M9 3v5h6V3M8 14h8M8 18h5"></path></svg>
+        <div style="flex:1"><div style="font:700 17px 'Noto Sans Devanagari',sans-serif;color:#123b24">डायरी और दवा की मात्रा</div><div style="font:600 15px 'Noto Sans Devanagari',sans-serif;color:#1d5b38">सब फोन में सहेजा हुआ है</div></div>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#123b24" stroke-width="2.5"><path d="M4 12l5 5L20 6"></path></svg>
+      </div>
+      <div style="border:1.5px solid #1d5b38;background:#dcead7;padding:12px;display:flex;gap:12px;align-items:center">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#123b24" stroke-width="1.5" style="flex:none"><path d="M12 21C7 17 4 13 4 8.5 4 5 7 3 12 3s8 2 8 5.5C20 13 17 17 12 21z"></path><path d="M12 3v18"></path></svg>
+        <div style="flex:1"><div style="font:700 17px 'Noto Sans Devanagari',sans-serif;color:#123b24">आम रोगों की पहचान</div><div style="font:600 15px 'Noto Sans Devanagari',sans-serif;color:#1d5b38">गेहूं के 12 रोग फोन में ही हैं</div></div>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#123b24" stroke-width="2.5"><path d="M4 12l5 5L20 6"></path></svg>
+      </div>
+    </div>
+    <div style="font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.12em;color:#5a5548;margin-top:16px">सिग्नल आने पर · WHEN SIGNAL RETURNS</div>
+    <div style="border:1.5px dashed #8f8a7c;background:#efe9da;padding:12px;display:flex;gap:12px;align-items:center;margin-top:8px">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5a5548" stroke-width="1.5" style="flex:none"><path d="M12 15V8M12 8l-3 3M12 8l3 3"></path><path d="M17 9a5 5 0 0 0-9.8-1.5A4 4 0 0 0 8 15.5h9a3.5 3.5 0 0 0 0-7z"></path></svg>
+      <div style="font:600 16px/1.55 'Noto Sans Devanagari',sans-serif;color:#3f3b31"><b style="font-family:'Barlow'">2</b> फोटो कतार में हैं — अपने-आप भेज दी जाएंगी। पड़ोस की रिपोर्ट भी तभी आएगी।</div>
+    </div>
+  </div>
+  <div style="position:absolute;left:16px;right:16px;bottom:18px;display:flex;gap:12px">
+    <button class="blueprint" style="flex:1;height:70px;background:#1d5b38;border:1px solid #123b24;box-shadow:0 4px 0 #123b24;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font:800 20px 'Noto Sans Devanagari',sans-serif;cursor:pointer;position:relative">
+      <i class="corner tl" style="color:rgba(255,255,255,.7)"></i><i class="corner tr" style="color:rgba(255,255,255,.7)"></i><i class="corner bl" style="color:rgba(255,255,255,.7)"></i><i class="corner br" style="color:rgba(255,255,255,.7)"></i>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M3 8h3l2-3h8l2 3h3v12H3z"></path><circle cx="12" cy="13.5" r="4"></circle></svg>
+      फोटो अभी लें
+    </button>
+    <button style="flex:none;width:64px;background:#fffdf6;border:1.5px solid #201d17;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v5M8 22h8"></path></svg></button>
+  </div>
+</div>
+<p class="abnote">Leads with what still works, in green checked cards; the missing pieces sit in one dashed "later" card. Camera stays the primary action — capture never waits for signal.</p>
+</div>
+
+<div class="abwrap">
+<div class="abhead"><span class="abnum">14</span><span>Voice input · सुन रहे हैं</span></div>
+<div class="ab" data-screen-label="14 Voice input">
+  <div style="position:absolute;inset:0;background:#201d17"></div>
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:70px 24px 0">
+    <div style="font:600 16px 'Barlow Condensed',sans-serif;letter-spacing:.14em;color:#cfc8b6">NIROG · आवाज़</div>
+    <div style="font:800 28px/1.4 'Noto Sans Devanagari',sans-serif;color:#fff;margin-top:10px">सुन रहे हैं…</div>
+    <div style="display:flex;align-items:center;gap:5px;height:64px;margin-top:26px">
+      <span style="width:6px;height:44px;background:#7fb08f;animation:vwave 1s -0.2s infinite"></span>
+      <span style="width:6px;height:56px;background:#a8c9b2;animation:vwave 1s -0.5s infinite"></span>
+      <span style="width:6px;height:64px;background:#dcead7;animation:vwave 1s -0.1s infinite"></span>
+      <span style="width:6px;height:50px;background:#a8c9b2;animation:vwave 1s -0.7s infinite"></span>
+      <span style="width:6px;height:60px;background:#7fb08f;animation:vwave 1s -0.35s infinite"></span>
+      <span style="width:6px;height:40px;background:#dcead7;animation:vwave 1s -0.85s infinite"></span>
+      <span style="width:6px;height:52px;background:#a8c9b2;animation:vwave 1s -0.6s infinite"></span>
+    </div>
+    <div class="blueprint" style="margin-top:30px;border:1px solid rgba(248,244,234,.45);padding:18px;width:100%;position:relative">
+      <i class="corner tl" style="color:rgba(248,244,234,.6)"></i><i class="corner tr" style="color:rgba(248,244,234,.6)"></i><i class="corner bl" style="color:rgba(248,244,234,.6)"></i><i class="corner br" style="color:rgba(248,244,234,.6)"></i>
+      <div style="font:600 22px/1.65 'Noto Sans Devanagari',sans-serif;color:#fff">"गेहूं के पत्तों पर पीली धारियां हैं…"</div>
+    </div>
+    <div style="font:600 16px/1.5 'Noto Sans Devanagari',sans-serif;color:#cfc8b6;margin-top:14px;text-align:center">अपनी बोली में पूछें — हिंदी, हरियाणवी, मराठी</div>
+  </div>
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:0 24px 26px;display:flex;flex-direction:column;align-items:center;gap:18px">
+    <button style="width:112px;height:112px;border-radius:50%;background:#1d5b38;border:3px solid #dcead7;box-shadow:0 0 0 10px rgba(29,91,56,.35);display:flex;align-items:center;justify-content:center;cursor:pointer">
+      <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v5M8 22h8"></path></svg>
+    </button>
+    <div style="display:flex;gap:12px;width:100%">
+      <button style="flex:1;height:58px;background:none;border:1.5px solid rgba(248,244,234,.6);color:#f8f4ea;font:700 17px 'Noto Sans Devanagari',sans-serif;cursor:pointer">रद्द करें</button>
+      <button style="flex:1;height:58px;background:#f8f4ea;border:1.5px solid #f8f4ea;color:#201d17;font:700 17px 'Noto Sans Devanagari',sans-serif;cursor:pointer">हो गया — भेजें</button>
+    </div>
+  </div>
+</div>
+<p class="abnote">The one dark screen — a held-up ear, not a page. Live transcript in a blueprint frame confirms the app heard correctly; the mic is a 112dp target you can hit with a wet thumb.</p>
+</div>
+<div class="abwrap wide">
+<div class="abhead"><span class="abnum">15</span><span>Design system · टोकन</span></div>
+<div class="blueprint" data-screen-label="15 Design system" style="width:784px;background:#f8f4ea;border:1px solid #201d17;position:relative;padding:26px 28px 30px;display:flex;flex-direction:column;gap:26px">
+  <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+  <div>
+    <div style="font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.14em;color:#3f3b31">01 · COLOUR TOKENS · रंग</div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:10px">
+      <div style="border:1px solid #201d17"><div style="height:56px;background:#1d5b38"></div><div style="padding:6px 8px;background:#fffdf6"><div style="font:700 14px 'Noto Sans Devanagari',sans-serif">हरा · action</div><div style="font:600 13px 'Barlow',sans-serif;color:#3f3b31">#1D5B38</div></div></div>
+      <div style="border:1px solid #201d17"><div style="height:56px;background:#123b24"></div><div style="padding:6px 8px;background:#fffdf6"><div style="font:700 14px 'Noto Sans Devanagari',sans-serif">गहरा · pressed</div><div style="font:600 13px 'Barlow',sans-serif;color:#3f3b31">#123B24</div></div></div>
+      <div style="border:1px solid #201d17"><div style="height:56px;background:#8a5305"></div><div style="padding:6px 8px;background:#fffdf6"><div style="font:700 14px 'Noto Sans Devanagari',sans-serif">गेरू · caution</div><div style="font:600 13px 'Barlow',sans-serif;color:#3f3b31">#8A5305</div></div></div>
+      <div style="border:1px solid #201d17"><div style="height:56px;background:#a03024"></div><div style="padding:6px 8px;background:#fffdf6"><div style="font:700 14px 'Noto Sans Devanagari',sans-serif">मिट्टी · alert</div><div style="font:600 13px 'Barlow',sans-serif;color:#3f3b31">#A03024</div></div></div>
+      <div style="border:1px solid #201d17"><div style="height:56px;background:#201d17"></div><div style="padding:6px 8px;background:#fffdf6"><div style="font:700 14px 'Noto Sans Devanagari',sans-serif">स्याही · ink</div><div style="font:600 13px 'Barlow',sans-serif;color:#3f3b31">#201D17</div></div></div>
+      <div style="border:1px solid #201d17"><div style="height:56px;background:#f8f4ea;border-bottom:1px solid #cfc8b6"></div><div style="padding:6px 8px;background:#fffdf6"><div style="font:700 14px 'Noto Sans Devanagari',sans-serif">कागज़ · paper</div><div style="font:600 13px 'Barlow',sans-serif;color:#3f3b31">#F8F4EA</div></div></div>
+      <div style="border:1px solid #201d17"><div style="height:34px;background:#dcead7"></div><div style="padding:6px 8px;background:#fffdf6"><div style="font:600 13px 'Barlow',sans-serif;color:#3f3b31">tint green #DCEAD7</div></div></div>
+      <div style="border:1px solid #201d17"><div style="height:34px;background:#f3e2c0"></div><div style="padding:6px 8px;background:#fffdf6"><div style="font:600 13px 'Barlow',sans-serif;color:#3f3b31">tint ochre #F3E2C0</div></div></div>
+      <div style="border:1px solid #201d17"><div style="height:34px;background:#f6ddd4"></div><div style="padding:6px 8px;background:#fffdf6"><div style="font:600 13px 'Barlow',sans-serif;color:#3f3b31">tint clay #F6DDD4</div></div></div>
+      <div style="border:1px solid #201d17"><div style="height:34px;background:#fffdf6"></div><div style="padding:6px 8px;background:#fffdf6"><div style="font:600 13px 'Barlow',sans-serif;color:#3f3b31">card #FFFDF6</div></div></div>
+      <div style="border:1px solid #201d17"><div style="height:34px;background:#5a5548"></div><div style="padding:6px 8px;background:#fffdf6"><div style="font:600 13px 'Barlow',sans-serif;color:#3f3b31">stone #5A5548</div></div></div>
+      <div style="border:1px solid #201d17"><div style="height:34px;background:#cfc8b6"></div><div style="padding:6px 8px;background:#fffdf6"><div style="font:600 13px 'Barlow',sans-serif;color:#3f3b31">hairline #CFC8B6</div></div></div>
+    </div>
+    <div style="font:600 14px/1.5 'Barlow',sans-serif;color:#5a5548;margin-top:8px">Colour never travels alone: green/ochre/clay always pair with an icon and a written label.</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
+    <div>
+      <div style="font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.14em;color:#3f3b31">02 · TYPE SCALE · अक्षर</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;border:1px solid #cfc8b6;background:#fffdf6;padding:14px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px"><span style="font:800 40px/1.25 'Noto Sans Devanagari',sans-serif">पीला रतुआ</span><span style="font:600 13px 'Barlow',sans-serif;color:#5a5548">Diagnosis · Noto Dev 800 · 44sp</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px"><span style="font:800 26px/1.35 'Noto Sans Devanagari',sans-serif">खेत का शीर्षक</span><span style="font:600 13px 'Barlow',sans-serif;color:#5a5548">Screen title · 26–28sp</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px"><span style="font:600 22px/1.2 'Barlow Condensed',sans-serif;letter-spacing:.05em">YELLOW RUST · LATIN RIDES ALONG</span><span style="font:600 13px 'Barlow',sans-serif;color:#5a5548">Condensed · 16–22sp</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px"><span style="font:500 17px/1.6 'Noto Sans Devanagari',sans-serif">शरीर का पाठ — कभी 16sp से छोटा नहीं</span><span style="font:600 13px 'Barlow',sans-serif;color:#5a5548">Body · 16–18sp</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px"><span style="font:800 28px 'Barlow',sans-serif;font-variant-numeric:tabular-nums">₹610 · 13 · 12%</span><span style="font:600 13px 'Barlow',sans-serif;color:#5a5548">Numbers · Barlow tabular · 24sp+</span></div>
+      </div>
+    </div>
+    <div>
+      <div style="font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.14em;color:#3f3b31">03 · BUTTONS · बटन</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;border:1px solid #cfc8b6;background:#fffdf6;padding:14px">
+        <div style="display:flex;gap:10px;align-items:center">
+          <button class="blueprint" style="flex:1;height:58px;background:#1d5b38;border:1px solid #123b24;box-shadow:0 4px 0 #123b24;color:#fff;font:700 17px 'Noto Sans Devanagari',sans-serif;cursor:pointer;position:relative"><i class="corner tl" style="color:rgba(255,255,255,.7)"></i><i class="corner tr" style="color:rgba(255,255,255,.7)"></i><i class="corner bl" style="color:rgba(255,255,255,.7)"></i><i class="corner br" style="color:rgba(255,255,255,.7)"></i>प्राथमिक — उठा हुआ</button>
+          <button style="flex:1;height:58px;background:#123b24;border:1px solid #123b24;box-shadow:0 1px 0 #123b24;transform:translateY(3px);color:#fff;font:700 17px 'Noto Sans Devanagari',sans-serif">दबा हुआ</button>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button style="flex:1;height:58px;background:#fffdf6;border:1.5px solid #201d17;font:700 17px 'Noto Sans Devanagari',sans-serif;cursor:pointer">दूसरा — सपाट</button>
+          <button style="flex:1;height:58px;background:#efe9da;border:1.5px solid #8f8a7c;color:#8f8a7c;font:700 17px 'Noto Sans Devanagari',sans-serif">बंद <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8f8a7c" stroke-width="2" style="vertical-align:-2px"><rect x="5" y="11" width="14" height="9"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></button>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button style="flex:none;width:72px;height:56px;background:#fffdf6;border:1.5px solid #201d17;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 17v5M8 22h8"></path></svg><span style="font:700 14px 'Noto Sans Devanagari',sans-serif">बोलें</span></button>
+          <button style="flex:1;height:56px;background:#8a5305;border:1px solid #6b4004;box-shadow:0 3px 0 #6b4004;color:#fff;font:700 16px 'Noto Sans Devanagari',sans-serif;cursor:pointer">रासायनिक कदम — गेरू</button>
+          <span style="font:600 13px 'Barlow',sans-serif;color:#5a5548;flex:none">≥56dp</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
+    <div>
+      <div style="font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.14em;color:#3f3b31">04 · CONFIDENCE CHIPS · भरोसा</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;border:1px solid #cfc8b6;background:#fffdf6;padding:14px;align-items:flex-start">
+        <span style="display:inline-flex;align-items:center;gap:8px;background:#dcead7;border:1.5px solid #1d5b38;padding:7px 11px;font:700 15px 'Noto Sans Devanagari',sans-serif;color:#123b24"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#123b24" stroke-width="2.5"><path d="M4 12l5 5L20 6"></path></svg>पक्की पहचान · CONFIDENT</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;background:#f3e2c0;border:1.5px solid #8a5305;padding:7px 11px;font:700 15px 'Noto Sans Devanagari',sans-serif;color:#6b4004"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#6b4004" stroke-width="2"><path d="M12 3l10 18H2z"></path><path d="M12 10v5M12 18v.5"></path></svg>दो संभावनाएं · TWO POSSIBILITIES</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;background:#e7e2d3;border:1.5px solid #5a5548;padding:7px 11px;font:700 15px 'Noto Sans Devanagari',sans-serif;color:#3f3b31"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3f3b31" stroke-width="1.5"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"></path></svg>डॉक्टर देख रहे हैं · WITH A HUMAN</span>
+      </div>
+      <div style="font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.14em;color:#3f3b31;margin-top:18px">05 · WARNING BAND · चेतावनी पट्टी</div>
+      <div style="margin-top:10px;border:1.5px solid #8a5305;background:#f3e2c0;padding:11px 13px;display:flex;gap:11px;align-items:center">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6b4004" stroke-width="1.5" style="flex:none"><path d="M17 9a5 5 0 0 0-9.8-1.5A4 4 0 0 0 8 15.5h9a3.5 3.5 0 0 0 0-7z"></path><path d="M8 19l-1 2.5M12 19l-1 2.5M16 19l-1 2.5"></path></svg>
+        <span style="font:700 16px/1.4 'Noto Sans Devanagari',sans-serif;color:#4a2c02">कल छिड़काव न करें — 80% बारिश</span>
+      </div>
+      <div style="font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.14em;color:#3f3b31;margin-top:18px">06 · ALERT CARD · चेतावनी कार्ड</div>
+      <div class="blueprint" style="margin-top:10px;background:#f6ddd4;border:1.5px solid #a03024;padding:12px;position:relative;display:flex;gap:11px">
+        <i class="corner tl" style="color:#a03024"></i><i class="corner tr" style="color:#a03024"></i><i class="corner bl" style="color:#a03024"></i><i class="corner br" style="color:#a03024"></i>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a03024" stroke-width="1.5" style="flex:none"><path d="M12 21C7 17 4 13 4 8.5 4 5 7 3 12 3s8 2 8 5.5C20 13 17 17 12 21z"></path><path d="M12 3v18"></path><circle cx="8.5" cy="9" r="1" fill="#a03024"></circle><circle cx="15.5" cy="11" r="1" fill="#a03024"></circle></svg>
+        <div><div style="font:700 13px 'Barlow Condensed',sans-serif;letter-spacing:.12em;color:#a03024">चेतावनी · OUTBREAK ALERT</div><div style="font:700 16px/1.45 'Noto Sans Devanagari',sans-serif">पीला रतुआ 3 किमी दूर पुष्ट हुआ</div></div>
+      </div>
+    </div>
+    <div>
+      <div style="font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.14em;color:#3f3b31">07 · TREATMENT RUNG · सीढ़ी का डंडा</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+        <div style="border:1px solid #201d17;background:#fffdf6;padding:10px 12px;display:flex;align-items:center;gap:10px">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d5b38" stroke-width="1.5" style="flex:none"><path d="M7 3h7v4l3 3v10a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1z"></path><path d="M14 5h4M10 13c1.5 2 4 2 5 0"></path></svg>
+          <div style="flex:1"><div style="font:700 16px/1.3 'Noto Sans Devanagari',sans-serif">खुला डंडा — नाम, असर, टैग</div><div style="font:600 14px 'Noto Sans Devanagari',sans-serif;color:#123b24">✓ जैविक-सुरक्षित</div></div>
+          <span style="flex:none;font:800 17px 'Barlow',sans-serif;font-variant-numeric:tabular-nums">₹340</span>
+        </div>
+        <div class="blueprint" style="border:1.5px solid #8a5305;background:#fffdf6;position:relative">
+          <i class="corner tl" style="color:#8a5305"></i><i class="corner tr" style="color:#8a5305"></i><i class="corner bl" style="color:#8a5305"></i><i class="corner br" style="color:#8a5305"></i>
+          <div style="background:#f3e2c0;border-bottom:1px solid #8a5305;padding:5px 12px;font:700 13px 'Noto Sans Devanagari',sans-serif;color:#6b4004">रासायनिक — सुरक्षा पट्टी हमेशा ऊपर</div>
+          <div style="padding:9px 12px;display:flex;align-items:center;gap:10px"><div style="flex:1;font:700 16px 'Noto Sans Devanagari',sans-serif">रासायनिक डंडा</div><span style="font:800 17px 'Barlow',sans-serif">₹610</span></div>
+        </div>
+        <div style="border:1.5px dashed #8f8a7c;background:#efe9da;padding:10px 12px;display:flex;align-items:center;gap:10px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5a5548" stroke-width="1.5" style="flex:none"><rect x="5" y="11" width="14" height="9"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+          <div style="flex:1"><div style="font:700 15px/1.3 'Noto Sans Devanagari',sans-serif;color:#5a5548">बंद डंडा — कारण हमेशा लिखा</div><div style="font:600 14px 'Noto Sans Devanagari',sans-serif;color:#5a5548">10% फैलाव पर खुलेगा — आप 6% पर हैं</div></div>
+          <span style="flex:none;font:800 15px 'Barlow',sans-serif;color:#8f8a7c">₹610</span>
+        </div>
+      </div>
+      <div style="font:600 14px/1.6 'Barlow',sans-serif;color:#5a5548;margin-top:12px">Rung anatomy: drawn icon · Hindi name + Latin tag · one-line effect · price always visible. Locked = dashed border + lock icon + written reason, never grey-out alone.</div>
+    </div>
+  </div>
+</div>
+<p class="abnote">The kit: field palette with names and hex, the bilingual type scale, button states (primary raised, pressed sunk, disabled locked), the three confidence chips, warning band, alert card, and the treatment rung in open / chemical / locked states.</p>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">class Component extends DCLogic {
+  renderVals() {
+    return { rootClass: (this.props.showNotes ?? true) ? "" : "hide-notes" };
+  }
+}</script>
+</body>
+</html>

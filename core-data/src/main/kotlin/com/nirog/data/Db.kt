@@ -1,7 +1,9 @@
 package com.nirog.data
 
+import android.content.Context
 import androidx.room.Dao
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -63,4 +65,9 @@ abstract class NirogDb : RoomDatabase() {
     abstract fun diaryDao(): DiaryDao
     abstract fun plotDao(): PlotDao
     abstract fun scanDao(): ScanDao
+
+    companion object {
+        fun create(context: Context): NirogDb =
+            Room.databaseBuilder(context.applicationContext, NirogDb::class.java, "nirog.db").build()
+    }
 }
