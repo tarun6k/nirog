@@ -21,6 +21,18 @@ interface CatalogDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE) suspend fun insertLabelClaims(rows: List<LabelClaimEntity>)
     @Insert(onConflict = OnConflictStrategy.REPLACE) suspend fun insertBannedActives(rows: List<BannedActiveEntity>)
     @Insert(onConflict = OnConflictStrategy.REPLACE) suspend fun insertEtlThresholds(rows: List<EtlThresholdEntity>)
+
+    @Query("SELECT * FROM product WHERE id = :id") suspend fun product(id: String): ProductEntity?
+}
+
+@Dao
+interface OutbreakDao {
+    @Query(
+        "SELECT COUNT(*) FROM outbreak_report WHERE geohash5 = :geohash5 AND cropId = :cropId AND createdAt >= :sinceMillis",
+    )
+    suspend fun countSince(geohash5: String, cropId: String, sinceMillis: Long): Int
+
+    @Insert suspend fun insert(row: OutbreakReportEntity)
 }
 
 @Dao
@@ -65,6 +77,7 @@ abstract class NirogDb : RoomDatabase() {
     abstract fun diaryDao(): DiaryDao
     abstract fun plotDao(): PlotDao
     abstract fun scanDao(): ScanDao
+    abstract fun outbreakDao(): OutbreakDao
 
     companion object {
         fun create(context: Context): NirogDb =

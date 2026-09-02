@@ -70,6 +70,8 @@ data class DiagnosisEntity(
     val verdict: String,
     val modelVersion: String,
     val source: String,
+    /** Audit trail of context-fusion prior adjustments: "pest|metric|actual|rule|mult|source;…", null = none. */
+    val priorAdjustments: String?,
 )
 
 @Entity(tableName = "product")

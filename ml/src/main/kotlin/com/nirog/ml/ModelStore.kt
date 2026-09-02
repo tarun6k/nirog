@@ -37,4 +37,8 @@ class ModelStore(private val context: Context) {
 
     fun inferenceConfigText(): String =
         context.assets.open("config/inference.properties").use { it.readBytes().decodeToString() }
+
+    /** Agronomist-provided prior rules; headers-only until real rules are supplied. */
+    fun priorRulesText(): String =
+        context.assets.open("config/prior_rules.csv").use { it.readBytes().decodeToString() }
 }

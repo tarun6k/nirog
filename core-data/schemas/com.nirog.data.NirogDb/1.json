@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "da13d161a7b8a34dd75f947a61f5f2eb",
+    "identityHash": "23843323e8c10df3f8e36889000ae4df",
     "entities": [
       {
         "tableName": "farmer",
@@ -272,7 +272,7 @@
       },
       {
         "tableName": "diagnosis",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `scanId` TEXT NOT NULL, `candidates` TEXT NOT NULL, `calibratedConfidence` REAL NOT NULL, `oodScore` REAL NOT NULL, `severityPct` REAL NOT NULL, `verdict` TEXT NOT NULL, `modelVersion` TEXT NOT NULL, `source` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `scanId` TEXT NOT NULL, `candidates` TEXT NOT NULL, `calibratedConfidence` REAL NOT NULL, `oodScore` REAL NOT NULL, `severityPct` REAL NOT NULL, `verdict` TEXT NOT NULL, `modelVersion` TEXT NOT NULL, `source` TEXT NOT NULL, `priorAdjustments` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -327,6 +327,12 @@
             "columnName": "source",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "priorAdjustments",
+            "columnName": "priorAdjustments",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -760,7 +766,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'da13d161a7b8a34dd75f947a61f5f2eb')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '23843323e8c10df3f8e36889000ae4df')"
     ]
   }
 }

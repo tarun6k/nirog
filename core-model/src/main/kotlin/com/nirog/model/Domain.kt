@@ -153,6 +153,16 @@ data class EscalationTicket(
     val answeredAt: Instant?,
 )
 
+/** 14-day weather aggregate used for context fusion; serialized into ContextSnapshot.weather14d. */
+data class Weather14d(
+    val rainMmTotal: Double,
+    val avgRhPct: Double,
+    val avgTMaxC: Double,
+    val avgTMinC: Double,
+) {
+    fun serialize() = "rain=$rainMmTotal;rh=$avgRhPct;tmax=$avgTMaxC;tmin=$avgTMinC"
+}
+
 data class OutbreakReport(
     val geohash5: String,
     val cropId: String,

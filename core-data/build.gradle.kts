@@ -22,9 +22,11 @@ ksp {
 
 dependencies {
     api(project(":core-model"))
+    api(project(":engine"))
     api(libs.kotlinx.coroutines.core)
     api(libs.room.runtime) // NirogDb extends RoomDatabase, so the type is part of this module's API
     implementation(libs.room.ktx)
+    implementation(libs.okhttp)
     ksp(libs.room.compiler)
     coreLibraryDesugaring(libs.desugar.jdk)
     testImplementation(libs.kotlin.test)
