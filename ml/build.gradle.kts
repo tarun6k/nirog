@@ -1,4 +1,3 @@
-// Scaffolded in Phase 0; filled in later phases per the build order.
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -17,4 +16,9 @@ android {
 
 dependencies {
     api(project(":core-model"))
+    implementation(project(":engine"))
+    implementation(libs.kotlinx.coroutines.core)
+    // LiteRT via Play Services (NNAPI is deprecated in Android 15 and never used here)
+    implementation(libs.tflite.java)
+    implementation(libs.tflite.gpu)
 }
