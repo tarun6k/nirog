@@ -117,6 +117,11 @@
     <string name="sown_last_month">About a month ago</string>
     <string name="sown_dont_remember">Don\'t remember</string>
     <string name="onboarding_add">Add plot →</string>
+    <string name="onboarding_where">Where is the plot? (for weather and nearby alerts)</string>
+    <string name="location_add">I\'m at the plot — add location</string>
+    <string name="location_added">Area captured ✓</string>
+    <string name="location_failed">Couldn\'t get a location — you can add it later</string>
+    <string name="location_privacy">Exact location never leaves the phone — only a ~5 km area</string>
     <string name="unit_acre">acre</string>
     <string name="unit_bigha">bigha</string>
     <string name="unit_guntha">guntha</string>

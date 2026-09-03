@@ -128,6 +128,11 @@
     <string name="sown_last_month">करीब एक महीना</string>
     <string name="sown_dont_remember">याद नहीं</string>
     <string name="onboarding_add">खेत जोड़ें →</string>
+    <string name="onboarding_where">खेत कहां है? (मौसम और आस-पास की चेतावनी के लिए)</string>
+    <string name="location_add">मैं खेत पर हूं — जगह जोड़ें</string>
+    <string name="location_added">इलाका मिल गया ✓</string>
+    <string name="location_failed">जगह नहीं मिली — बाद में भी जोड़ सकते हैं</string>
+    <string name="location_privacy">सटीक जगह फोन से बाहर नहीं जाती — सिर्फ ~5 किमी का इलाका</string>
     <string name="unit_acre">एकड़</string>
     <string name="unit_bigha">बीघा</string>
     <string name="unit_guntha">गुंठा</string>
