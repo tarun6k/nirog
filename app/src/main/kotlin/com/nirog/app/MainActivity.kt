@@ -57,6 +57,7 @@ private sealed interface Screen {
     data object Diary : Screen
     data object Settings : Screen
     data object Radar : Screen
+    data object VoiceQa : Screen
 }
 
 @AndroidEntryPoint
@@ -145,7 +146,37 @@ class MainActivity : ComponentActivity() {
                 onDiary = { screen = Screen.Diary },
                 onSettings = { screen = Screen.Settings },
                 onNearby = { screen = Screen.Radar },
+                onAsk = { screen = Screen.VoiceQa },
             ) { screen = Screen.Capture }
+
+            Screen.VoiceQa -> {
+                val p = plot ?: return
+                var facts by remember { mutableStateOf<QaFacts?>(null) }
+                LaunchedEffect(Unit) {
+                    val logs = db.diaryDao().sprayLogsForPlot(p.id).firstOrNull() ?: emptyList()
+                    facts = QaFacts(
+                        spendInr = logs.sumOf { it.costInr ?: 0.0 }.toInt(),
+                        phiSafeAfter = logs.mapNotNull { it.phiExpiryDate }.maxOrNull()
+                            ?.let { LocalDate.ofEpochDay(it) }
+                            ?.takeIf { it.isAfter(LocalDate.now()) },
+                        nearbyReports = outbreaks,
+                    )
+                }
+                facts?.let { f ->
+                    VoiceQaScreen(
+                        voice = voice,
+                        facts = f,
+                        onTopicAction = { topic ->
+                            screen = when (topic) {
+                                QaTopic.SPEND, QaTopic.HARVEST -> Screen.Diary
+                                QaTopic.NEARBY -> Screen.Radar
+                                QaTopic.SCAN -> Screen.Capture
+                            }
+                        },
+                        onClose = { screen = Screen.Home },
+                    )
+                }
+            }
 
             Screen.Radar -> {
                 val p = plot ?: return

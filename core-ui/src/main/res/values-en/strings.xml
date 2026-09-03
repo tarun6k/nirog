@@ -126,6 +126,23 @@
     <string name="unit_bigha">bigha</string>
     <string name="unit_guntha">guntha</string>
 
+    <string name="qa_brand">NIROG · VOICE</string>
+    <string name="qa_listening">Listening…</string>
+    <string name="qa_hint">Ask in your own words — Hindi</string>
+    <string name="qa_cancel">Cancel</string>
+    <string name="qa_done">Done — send</string>
+    <string name="qa_unavailable">Voice recognition is not available on this phone</string>
+    <string name="qa_heard_nothing">Didn\'t catch that — try again</string>
+    <string name="qa_answer_spend">This season\'s spend is ₹%1$d</string>
+    <string name="qa_answer_harvest">Safe to harvest after %1$s</string>
+    <string name="qa_answer_harvest_clear">No spray restriction — safe to harvest</string>
+    <string name="qa_answer_nearby">%1$d reports within 10 km</string>
+    <string name="qa_answer_scan">A photo check is the surest answer — take three photos</string>
+    <string name="qa_open_diary">Open diary</string>
+    <string name="qa_open_radar">See nearby</string>
+    <string name="qa_start_scan">Start a scan</string>
+    <string name="qa_ask_again">Ask again</string>
+
     <string name="radar_title">What\'s nearby</string>
     <string name="radar_sub">Within 10 km · %1$s</string>
     <string name="radar_your_plot">Your plot</string>

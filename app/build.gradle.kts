@@ -45,4 +45,5 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     coreLibraryDesugaring(libs.desugar.jdk)
+    testImplementation(libs.kotlin.test)
 }

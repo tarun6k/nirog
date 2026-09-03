@@ -39,6 +39,7 @@ fun HomeScreen(
     onDiary: () -> Unit = {},
     onSettings: () -> Unit = {},
     onNearby: () -> Unit = {},
+    onAsk: () -> Unit = {},
     onScan: () -> Unit,
 ) {
     PaperScreen {
@@ -132,7 +133,7 @@ fun HomeScreen(
                 .height(76.dp)
                 .background(Palette.Card)
                 .border(1.5.dp, Palette.Ink)
-                .clickable { /* voice Q&A lands in Phase 8 */ },
+                .clickable(onClick = onAsk),
             horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically,
         ) {

@@ -137,6 +137,24 @@
     <string name="unit_bigha">बीघा</string>
     <string name="unit_guntha">गुंठा</string>
 
+    <!-- voice Q&A -->
+    <string name="qa_brand">NIROG · आवाज़</string>
+    <string name="qa_listening">सुन रहे हैं…</string>
+    <string name="qa_hint">अपनी बोली में पूछें — हिंदी</string>
+    <string name="qa_cancel">रद्द करें</string>
+    <string name="qa_done">हो गया — भेजें</string>
+    <string name="qa_unavailable">इस फोन पर आवाज़ पहचान उपलब्ध नहीं है</string>
+    <string name="qa_heard_nothing">कुछ सुनाई नहीं दिया — फिर से बोलें</string>
+    <string name="qa_answer_spend">इस सीज़न का खर्च ₹%1$d</string>
+    <string name="qa_answer_harvest">कटाई %1$s के बाद सुरक्षित है</string>
+    <string name="qa_answer_harvest_clear">कोई दवा-रोक नहीं — कटाई सुरक्षित है</string>
+    <string name="qa_answer_nearby">10 किमी के अंदर %1$d रिपोर्ट</string>
+    <string name="qa_answer_scan">फोटो से जांच सबसे पक्की है — तीन फोटो लें</string>
+    <string name="qa_open_diary">डायरी देखें</string>
+    <string name="qa_open_radar">आस-पास देखें</string>
+    <string name="qa_start_scan">जांच शुरू करें</string>
+    <string name="qa_ask_again">फिर पूछें</string>
+
     <!-- outbreak radar -->
     <string name="radar_title">आस-पास का हाल</string>
     <string name="radar_sub">10 किमी के अंदर · %1$s</string>
