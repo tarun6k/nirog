@@ -126,6 +126,24 @@
     <string name="unit_bigha">bigha</string>
     <string name="unit_guntha">guntha</string>
 
+    <string name="settings_title">Plot details</string>
+    <string name="settings_sowing">Sowing date</string>
+    <string name="settings_harvest">Expected harvest date</string>
+    <string name="settings_harvest_why">Pre-harvest safety (PHI) is checked against this date — the truer it is, the safer you are</string>
+    <string name="settings_organic">Organic certification</string>
+    <string name="organic_none">None</string>
+    <string name="organic_npop">NPOP certified</string>
+    <string name="organic_pgs">PGS registered</string>
+    <string name="organic_conversion">In conversion</string>
+    <string name="settings_organic_note">With an organic status set, chemical products are never shown — to protect the certificate</string>
+    <string name="settings_save">Save</string>
+    <string name="location_update">Capture location again</string>
+    <string name="settings_danger">Delete everything about me</string>
+    <string name="settings_danger_sub">All photos, diary, plots — forever</string>
+    <string name="settings_danger_confirm">Really delete? This cannot be undone</string>
+    <string name="settings_danger_yes">Yes, delete everything</string>
+    <string name="settings_danger_no">No, keep it</string>
+
     <string name="diary_title">Fasal diary</string>
     <string name="diary_season_cost">This season\'s spend</string>
     <string name="diary_empty">No sprays recorded yet — added automatically after a scan</string>

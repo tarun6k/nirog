@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
@@ -36,6 +37,7 @@ fun HomeScreen(
     plot: PlotEntity?,
     outbreakCount: Int,
     onDiary: () -> Unit = {},
+    onSettings: () -> Unit = {},
     onScan: () -> Unit,
 ) {
     PaperScreen {
@@ -49,6 +51,17 @@ fun HomeScreen(
                 fontSize = 15.sp, letterSpacing = 2.sp, fontWeight = FontWeight.SemiBold,
                 color = Palette.Ink, modifier = Modifier.padding(start = 8.dp),
             )
+            Spacer(Modifier.weight(1f))
+            Box(
+                Modifier
+                    .heightIn(min = 44.dp)
+                    .border(1.dp, Palette.Hairline)
+                    .clickable(onClick = onSettings)
+                    .padding(horizontal = 12.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text("⚙", fontSize = 20.sp, color = Palette.TextSecondary)
+            }
         }
         if (plot != null) {
             Column(Modifier.padding(horizontal = 20.dp)) {

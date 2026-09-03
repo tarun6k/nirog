@@ -58,6 +58,7 @@ private sealed interface Screen {
     ) : Screen
     data class Dose(val prep: RecommendationLoader.DosePrep, val pestId: String) : Screen
     data object Diary : Screen
+    data object Settings : Screen
 }
 
 @AndroidEntryPoint
@@ -146,7 +147,27 @@ class MainActivity : ComponentActivity() {
                 plot,
                 outbreaks,
                 onDiary = { screen = Screen.Diary },
+                onSettings = { screen = Screen.Settings },
             ) { screen = Screen.Capture }
+
+            Screen.Settings -> PlotSettingsScreen(
+                plot = plot ?: return,
+                onSave = { updated ->
+                    lifecycleScope.launch {
+                        db.plotDao().upsert(updated)
+                        plot = updated
+                        screen = Screen.Home
+                    }
+                },
+                onDeleteEverything = {
+                    lifecycleScope.launch {
+                        com.nirog.data.deleteEverything(applicationContext, db)
+                        plot = null
+                        consented = false
+                        screen = Screen.Home
+                    }
+                },
+            )
 
             Screen.Capture -> GuidedCaptureScreen(
                 plotId = plot?.id ?: return,

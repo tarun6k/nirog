@@ -137,6 +137,25 @@
     <string name="unit_bigha">बीघा</string>
     <string name="unit_guntha">गुंठा</string>
 
+    <!-- plot settings -->
+    <string name="settings_title">खेत की जानकारी</string>
+    <string name="settings_sowing">बुआई की तारीख</string>
+    <string name="settings_harvest">कटाई की अनुमानित तारीख</string>
+    <string name="settings_harvest_why">दवा की कटाई-सुरक्षा (PHI) इसी तारीख से जांची जाती है — जितनी सही, उतना सुरक्षित</string>
+    <string name="settings_organic">जैविक प्रमाणपत्र</string>
+    <string name="organic_none">कोई नहीं</string>
+    <string name="organic_npop">NPOP प्रमाणित</string>
+    <string name="organic_pgs">PGS पंजीकृत</string>
+    <string name="organic_conversion">जैविक में बदलाव जारी</string>
+    <string name="settings_organic_note">जैविक स्थिति चुनने पर रासायनिक दवाएं कभी नहीं दिखाई जाएंगी — प्रमाणपत्र की रक्षा के लिए</string>
+    <string name="settings_save">सहेजें</string>
+    <string name="location_update">जगह फिर से लें</string>
+    <string name="settings_danger">मेरा सब कुछ मिटाओ</string>
+    <string name="settings_danger_sub">सारी फोटो, डायरी, खेत — हमेशा के लिए</string>
+    <string name="settings_danger_confirm">पक्का मिटा दें? यह वापस नहीं होगा</string>
+    <string name="settings_danger_yes">हां, सब मिटाओ</string>
+    <string name="settings_danger_no">नहीं, रहने दो</string>
+
     <!-- diary -->
     <string name="diary_title">फसल डायरी</string>
     <string name="diary_season_cost">इस सीज़न का खर्च</string>
