@@ -19,14 +19,24 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.HiltAndroidApp
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.launch
 import javax.inject.Singleton
 
 @HiltAndroidApp
 class NirogApplication : Application() {
+
+    @javax.inject.Inject lateinit var lazyDb: dagger.Lazy<NirogDb>
+
     override fun onCreate() {
         super.onCreate()
         // Drain any queued escalations/outbreak reports from previous runs.
         com.nirog.data.Sync.enqueue(this)
+        if (BuildConfig.DEBUG) {
+            // Synthetic TEST catalog so the ladder/dose flow is demo-able (DebugSeed.kt).
+            kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO).launch {
+                seedDebugCatalog(lazyDb.get())
+            }
+        }
     }
 }
 
