@@ -27,11 +27,12 @@ import com.nirog.engine.RecommendationResult
 import com.nirog.model.Product
 import com.nirog.model.TreatmentRung
 import com.nirog.model.TreatmentTier
+import androidx.compose.ui.res.stringResource
 import com.nirog.ui.MicButton
 import com.nirog.ui.Palette
 import com.nirog.ui.PaperScreen
 import com.nirog.ui.PrimaryButton
-import androidx.compose.foundation.BorderStroke
+import com.nirog.ui.R as UiR
 
 /** Design artboard 08: free-to-chemical ladder, cost on every rung, locked rungs say why. */
 @Composable
@@ -47,9 +48,9 @@ fun TreatmentLadderScreen(
             Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            Text("इलाज की सीढ़ी", fontSize = 24.sp, fontWeight = FontWeight.ExtraBold, color = Palette.Ink)
+            Text(stringResource(UiR.string.ladder_title), fontSize = 24.sp, fontWeight = FontWeight.ExtraBold, color = Palette.Ink)
             Text(
-                "$pestNameHi · फैलाव ${severityPct.toInt()}% · सस्ते से शुरू करें",
+                stringResource(UiR.string.ladder_sub, pestNameHi, severityPct.toInt()),
                 fontSize = 16.sp, color = Palette.TextSecondary, fontWeight = FontWeight.SemiBold,
             )
             when (result) {
@@ -66,11 +67,11 @@ fun TreatmentLadderScreen(
                     ) {
                         Column {
                             Text(
-                                "इस रोग के लिए कोई स्वीकृत दवा नहीं मिली",
+                                stringResource(UiR.string.ladder_no_product_title),
                                 fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Palette.Ink,
                             )
                             Text(
-                                "NO APPROVED PRODUCT — बिना पंजीकृत दवा हम कभी नहीं बताते। फसल डॉक्टर से पूछें।",
+                                stringResource(UiR.string.ladder_no_product_body),
                                 fontSize = 16.sp, color = Palette.TextSecondary, lineHeight = 24.sp,
                                 modifier = Modifier.padding(top = 6.dp),
                             )
@@ -79,7 +80,7 @@ fun TreatmentLadderScreen(
                     RejectionsSection(result.rejections, products)
                 }
                 else -> Text(
-                    "इस नतीजे पर इलाज नहीं बनता — पहले पहचान पक्की करें",
+                    stringResource(UiR.string.ladder_no_treatment),
                     fontSize = 16.sp, color = Palette.TextSecondary,
                 )
             }
@@ -106,7 +107,7 @@ private fun RungCard(rung: TreatmentRung, product: Product?, onDose: (TreatmentR
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("🔒", fontSize = 18.sp)
                 Text(
-                    "$nameHi — बंद",
+                    stringResource(UiR.string.ladder_locked_suffix, nameHi),
                     fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Palette.Stone,
                     modifier = Modifier.padding(start = 8.dp).weight(1f),
                 )
@@ -125,7 +126,7 @@ private fun RungCard(rung: TreatmentRung, product: Product?, onDose: (TreatmentR
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    "⚠ रासायनिक — दस्ताने पहनें, हवा के रुख में न छिड़कें",
+                    stringResource(UiR.string.ladder_chemical_band),
                     fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Palette.OchreDark,
                 )
             }
@@ -139,7 +140,7 @@ private fun RungCard(rung: TreatmentRung, product: Product?, onDose: (TreatmentR
                 CostLabel(rung.costInr)
             }
             PrimaryButton(
-                hi = "मात्रा निकालें →",
+                hi = stringResource(UiR.string.ladder_dose_button),
                 color = Palette.Ochre,
                 pressedColor = Palette.OchreDark,
                 modifier = Modifier.fillMaxWidth().padding(start = 12.dp, end = 12.dp, bottom = 12.dp),
@@ -153,7 +154,7 @@ private fun RungCard(rung: TreatmentRung, product: Product?, onDose: (TreatmentR
                 Text(nameHi, fontSize = 17.sp, fontWeight = FontWeight.Bold, color = Palette.Ink)
                 if (product?.isBiopesticide == true) {
                     Text(
-                        "✓ जैविक-सुरक्षित",
+                        stringResource(UiR.string.ladder_bio_tag),
                         fontSize = 14.sp, color = Palette.GreenPressed, fontWeight = FontWeight.SemiBold,
                     )
                 }
@@ -177,7 +178,7 @@ private fun CostLabel(costInr: Double?, dim: Boolean = false) {
 private fun RejectionsSection(rejections: List<Rejection>, products: Map<String, Product>) {
     if (rejections.isEmpty()) return
     Text(
-        "जो नहीं दिखाए गए, और क्यों · NOT SHOWN",
+        stringResource(UiR.string.ladder_rejections_header),
         fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Palette.TextSecondary,
         letterSpacing = 1.5.sp, modifier = Modifier.padding(top = 10.dp),
     )
@@ -209,13 +210,14 @@ private fun Modifier.dashedBorder(): Modifier = this.drawBehind {
     )
 }
 
+@Composable
 private fun reasonHi(reason: RejectionReason): String = when (reason) {
-    is RejectionReason.NoLabelClaim -> "इस फसल-रोग के लिए पंजीकृत नहीं है"
-    is RejectionReason.ClaimNotEffective -> "पंजीकरण की अवधि लागू नहीं है"
-    is RejectionReason.Banned -> "भारत में प्रतिबंधित (${reason.notificationRef})"
+    is RejectionReason.NoLabelClaim -> stringResource(UiR.string.reject_no_label_claim)
+    is RejectionReason.ClaimNotEffective -> stringResource(UiR.string.reject_claim_not_effective)
+    is RejectionReason.Banned -> stringResource(UiR.string.reject_banned, reason.notificationRef)
     is RejectionReason.PhiTooLong ->
-        "कटाई तक ${reason.daysToHarvest} दिन बचे हैं, इस दवा को ${reason.phiDays} दिन चाहिए"
+        stringResource(UiR.string.reject_phi, reason.daysToHarvest, reason.phiDays)
     is RejectionReason.ResistanceRotation ->
-        "पिछले छिड़काव जैसा ही ${reason.groupCode} समूह (${reason.group}) — बदल-बदल कर दवा दें"
-    is RejectionReason.OrganicCertification -> "आपके जैविक प्रमाणपत्र के लिए सुरक्षित नहीं"
+        stringResource(UiR.string.reject_rotation, reason.groupCode, reason.group)
+    is RejectionReason.OrganicCertification -> stringResource(UiR.string.reject_organic)
 }

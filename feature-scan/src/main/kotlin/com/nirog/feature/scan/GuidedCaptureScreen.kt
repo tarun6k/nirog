@@ -49,8 +49,10 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.nirog.engine.QualityGate
 import com.nirog.engine.QualityVerdict
+import androidx.compose.ui.res.stringResource
 import com.nirog.ui.MicButton
 import com.nirog.ui.Palette
+import com.nirog.ui.R as UiR
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -60,17 +62,17 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 /** Three-shot guided flow: whole plant → leaf top → leaf underside (artboard 02). */
-enum class CaptureStep(val hi: String, val en: String) {
-    WHOLE_PLANT("पूरा पौधा दूर से", "WHOLE PLANT"),
-    LEAF_TOP("पत्ती ऊपर से", "LEAF TOP"),
-    LEAF_UNDERSIDE("अब पत्ती को पलटिए", "TURN THE LEAF OVER"),
+enum class CaptureStep(val titleRes: Int, val en: String) {
+    WHOLE_PLANT(UiR.string.step_whole_plant, "WHOLE PLANT"),
+    LEAF_TOP(UiR.string.step_leaf_top, "LEAF TOP"),
+    LEAF_UNDERSIDE(UiR.string.step_leaf_underside, "TURN THE LEAF OVER"),
 }
 
-private fun verdictText(v: QualityVerdict): String = when (v) {
-    is QualityVerdict.Pass -> "फ़ोटो साफ़ है — खींचें"
-    is QualityVerdict.TooBlurry -> "फ़ोन स्थिर रखें — धुंधला है"
-    is QualityVerdict.TooDark -> "रोशनी कम है — धूप में जाएं"
-    is QualityVerdict.TooBright -> "बहुत तेज़ रोशनी — छाया करें"
+private fun verdictRes(v: QualityVerdict): Int = when (v) {
+    is QualityVerdict.Pass -> UiR.string.gate_pass
+    is QualityVerdict.TooBlurry -> UiR.string.gate_blurry
+    is QualityVerdict.TooDark -> UiR.string.gate_dark
+    is QualityVerdict.TooBright -> UiR.string.gate_bright
 }
 
 @Composable
@@ -96,7 +98,7 @@ fun GuidedCaptureScreen(
 
     if (!hasPermission) {
         Box(Modifier.fillMaxSize().background(Palette.Paper), contentAlignment = Alignment.Center) {
-            Text("कैमरे की अनुमति चाहिए · Camera permission needed", fontSize = 16.sp, color = Palette.Ink)
+            Text(stringResource(UiR.string.camera_permission), fontSize = 16.sp, color = Palette.Ink)
         }
         return
     }
@@ -188,7 +190,7 @@ fun GuidedCaptureScreen(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Column(Modifier.weight(1f)) {
-                    Text(step.hi, fontSize = 24.sp, fontWeight = FontWeight.ExtraBold, color = Color.White)
+                    Text(stringResource(step.titleRes), fontSize = 24.sp, fontWeight = FontWeight.ExtraBold, color = Color.White)
                     Text(
                         step.en,
                         fontSize = 15.sp, letterSpacing = 1.5.sp,
@@ -196,7 +198,7 @@ fun GuidedCaptureScreen(
                     )
                 }
                 Text(
-                    "चरण ${stepIndex + 1}/3",
+                    stringResource(UiR.string.step_counter, stepIndex + 1),
                     fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.White,
                     modifier = Modifier.border(1.5.dp, Color.White.copy(alpha = 0.8f)).padding(horizontal = 10.dp, vertical = 8.dp),
                 )
@@ -204,7 +206,7 @@ fun GuidedCaptureScreen(
             // Live gate message pinned above the shutter area
             Box(Modifier.align(Alignment.BottomCenter).padding(bottom = 12.dp)) {
                 Text(
-                    verdictText(verdict),
+                    stringResource(verdictRes(verdict)),
                     fontSize = 16.sp, color = Color.White, fontWeight = FontWeight.SemiBold,
                     modifier = Modifier
                         .background(Palette.CameraDark.copy(alpha = 0.8f))
@@ -234,7 +236,7 @@ fun GuidedCaptureScreen(
                         else Text("${i + 1}", color = if (i == stepIndex) Palette.Green else Palette.Stone, fontWeight = FontWeight.Bold, fontSize = 14.sp)
                     }
                     Text(
-                        s.hi,
+                        stringResource(s.titleRes),
                         fontSize = if (i == stepIndex) 17.sp else 16.sp,
                         fontWeight = if (i == stepIndex) FontWeight.Bold else FontWeight.SemiBold,
                         color = if (i < stepIndex) Palette.TextSecondary else if (i == stepIndex) Palette.Ink else Palette.Stone,
@@ -242,7 +244,7 @@ fun GuidedCaptureScreen(
                     )
                     if (i == stepIndex) {
                         Text(
-                            "अभी",
+                            stringResource(UiR.string.step_now),
                             fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Color.White,
                             modifier = Modifier.background(Palette.Green).padding(horizontal = 8.dp, vertical = 4.dp),
                         )
@@ -280,29 +282,23 @@ fun RetakeScreen(
     onRetake: () -> Unit,
     onSendAnyway: () -> Unit,
 ) {
-    val (title, en, fix) = when (verdict) {
-        is QualityVerdict.TooBlurry -> Triple(
-            "फोटो धुंधली है", "TOO BLURRY — HOLD STEADY",
-            "कोई बात नहीं। फोन को दोनों हाथों से पकड़ें, पत्ती से एक बालिश्त दूर, और सांस रोक कर फोटो लें।",
-        )
-        is QualityVerdict.TooDark -> Triple(
-            "बहुत अंधेरा है", "TOO DARK — MOVE INTO THE LIGHT",
-            "कोई बात नहीं — छांव में ऐसा अक्सर होता है। पत्ती को छाया से निकालकर खुली रोशनी में रखें।",
-        )
-        is QualityVerdict.TooBright -> Triple(
-            "बहुत तेज़ रोशनी", "TOO BRIGHT — MAKE SOME SHADE",
-            "धूप सीधी पड़ रही है। अपने शरीर की छाया से पत्ती को ढकें और दोबारा लें।",
-        )
-        is QualityVerdict.Pass -> Triple("", "", "")
+    val (titleRes, en, fixRes) = when (verdict) {
+        is QualityVerdict.TooBlurry ->
+            Triple(UiR.string.retake_blurry_title, "TOO BLURRY — HOLD STEADY", UiR.string.retake_blurry_fix)
+        is QualityVerdict.TooDark ->
+            Triple(UiR.string.retake_dark_title, "TOO DARK — MOVE INTO THE LIGHT", UiR.string.retake_dark_fix)
+        is QualityVerdict.TooBright ->
+            Triple(UiR.string.retake_bright_title, "TOO BRIGHT — MAKE SOME SHADE", UiR.string.retake_bright_fix)
+        is QualityVerdict.Pass -> Triple(UiR.string.gate_pass, "", UiR.string.gate_pass)
     }
     Column(Modifier.fillMaxSize().background(Palette.Paper)) {
         Box(Modifier.fillMaxWidth().height(240.dp).background(Color(0xFF2A2820)), contentAlignment = Alignment.Center) {
-            Text("आपकी ली हुई फोटो", fontSize = 16.sp, color = Color.White.copy(alpha = 0.85f), fontWeight = FontWeight.SemiBold)
+            Text(stringResource(UiR.string.retake_your_photo), fontSize = 16.sp, color = Color.White.copy(alpha = 0.85f), fontWeight = FontWeight.SemiBold)
         }
         Column(Modifier.weight(1f).padding(20.dp)) {
-            Text(title, fontSize = 25.sp, fontWeight = FontWeight.ExtraBold, color = Palette.Ink)
+            Text(stringResource(titleRes), fontSize = 25.sp, fontWeight = FontWeight.ExtraBold, color = Palette.Ink)
             Text(en, fontSize = 15.sp, letterSpacing = 1.5.sp, color = Palette.TextSecondary, fontWeight = FontWeight.SemiBold)
-            Text(fix, fontSize = 18.sp, lineHeight = 30.sp, color = Palette.Ink, modifier = Modifier.padding(top = 14.dp))
+            Text(stringResource(fixRes), fontSize = 18.sp, lineHeight = 30.sp, color = Palette.Ink, modifier = Modifier.padding(top = 14.dp))
             if (othersOk > 0) {
                 Row(
                     Modifier.fillMaxWidth().padding(top = 16.dp).background(Palette.Card).border(1.dp, Palette.Hairline).padding(12.dp),
@@ -310,15 +306,15 @@ fun RetakeScreen(
                 ) {
                     Text("🕐", fontSize = 18.sp)
                     Text(
-                        "पहली $othersOk फोटो अच्छी हैं — बस यही एक फिर से",
+                        stringResource(UiR.string.retake_others_ok, othersOk),
                         fontSize = 16.sp, color = Palette.TextSecondary, fontWeight = FontWeight.SemiBold,
                     )
                 }
             }
         }
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            com.nirog.ui.PrimaryButton("फिर से फोटो लें", Modifier.fillMaxWidth().height(76.dp), en = "RETAKE", onClick = onRetake)
-            com.nirog.ui.SecondaryButton("ऐसे ही भेज दें", Modifier.fillMaxWidth(), onClick = onSendAnyway)
+            com.nirog.ui.PrimaryButton(stringResource(UiR.string.retake_button), Modifier.fillMaxWidth().height(76.dp), en = "RETAKE", onClick = onRetake)
+            com.nirog.ui.SecondaryButton(stringResource(UiR.string.retake_send_anyway), Modifier.fillMaxWidth(), onClick = onSendAnyway)
         }
     }
 }

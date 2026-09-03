@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="speak">Speak</string>
+    <string name="listen">Listen</string>
+    <string name="chip_confident">CONFIDENT</string>
+    <string name="chip_ambiguous">TWO POSSIBILITIES</string>
+    <string name="chip_escalated">SENT TO A CROP DOCTOR</string>
+
+    <string name="home_greeting">Namaste</string>
+    <string name="home_plot_line">%1$s · %2$s · %3$s %4$s · day %5$d since sowing</string>
+    <string name="home_alert_kicker">OUTBREAK ALERT</string>
+    <string name="home_alert_body">Disease confirmed nearby — check your crop</string>
+    <string name="home_scan">Scan my crop</string>
+    <string name="home_scan_sub">3 PHOTOS · 1 MINUTE</string>
+    <string name="home_ask">Ask a question</string>
+    <string name="home_ask_sub">VOICE</string>
+    <string name="home_offline_footer">Works without signal · diary and dose calculator</string>
+
+    <string name="consent_title">Your data, your choice</string>
+    <string name="consent_sub">DPDP CONSENT</string>
+    <string name="consent_intro">Nirog uses this, and nothing else:</string>
+    <string name="consent_item_photos">Plant photos — checked on your phone to identify disease</string>
+    <string name="consent_item_location">Rough area of your field (~5 km) for nearby alerts. Exact location never leaves the phone</string>
+    <string name="consent_item_weather">Weather data — from your area\'s coordinates only</string>
+    <string name="consent_item_escalation">Photos go to a crop doctor only when you say yes each time</string>
+    <string name="consent_footer">No ads · no tracking · "delete everything about me" any time</string>
+    <string name="consent_accept">I agree — get started</string>
+    <string name="consent_accept_sub">START</string>
+
+    <string name="camera_permission">Camera permission needed</string>
+    <string name="step_whole_plant">Whole plant from a distance</string>
+    <string name="step_leaf_top">Leaf from the top</string>
+    <string name="step_leaf_underside">Now turn the leaf over</string>
+    <string name="step_counter">Step %1$d/3</string>
+    <string name="step_now">Now</string>
+    <string name="gate_pass">Photo is clear — capture</string>
+    <string name="gate_blurry">Hold the phone steady — blurry</string>
+    <string name="gate_dark">Too dark — move into the light</string>
+    <string name="gate_bright">Too bright — make some shade</string>
+    <string name="retake_your_photo">The photo you took</string>
+    <string name="retake_blurry_title">Photo is blurry</string>
+    <string name="retake_blurry_fix">No problem. Hold the phone with both hands, a hand-span from the leaf, and hold your breath while shooting.</string>
+    <string name="retake_dark_title">Too dark</string>
+    <string name="retake_dark_fix">No problem — this often happens in shade. Bring the leaf into open light.</string>
+    <string name="retake_bright_title">Too bright</string>
+    <string name="retake_bright_fix">Direct sun is glaring. Shade the leaf with your body and retake.</string>
+    <string name="retake_others_ok">The first %1$d photos are fine — just this one again</string>
+    <string name="retake_button">Retake photo</string>
+    <string name="retake_send_anyway">Send as it is</string>
+
+    <string name="analysing_title">Checking your crop</string>
+    <string name="analysing_sub">CHECKING · ~20 SECONDS</string>
+    <string name="analysing_photos">Looked at all three photos</string>
+    <string name="analysing_photos_sub">Reading the leaf symptoms</string>
+    <string name="analysing_weather">Checking the weather</string>
+    <string name="analysing_weather_sub">Last 14 days of humidity and rain</string>
+    <string name="analysing_nearby">Matching nearby reports</string>
+    <string name="analysing_nearby_sub">Fields within 5 km</string>
+    <string name="analysing_footer">Not just the photo — weather and neighbourhood reports are checked too</string>
+
+    <string name="result_spread_now">spread now</string>
+    <string name="result_what_now">What do I do now?</string>
+    <string name="result_more_likely">More likely</string>
+    <string name="rub_test_title">A 10-second test — find out yourself</string>
+    <string name="rub_test_body">Rub a finger on the leaf stripe. Yellow powder on your finger means yellow rust; nothing means brown rust.</string>
+    <string name="rub_test_yellow">Yellow powder</string>
+    <string name="rub_test_nothing">Nothing rubbed off</string>
+    <string name="escalate_unsure">Not sure — send to a doctor</string>
+    <string name="escalated_title">We are not fully sure</string>
+    <string name="escalated_body">This picture is difficult, and recommending the wrong medicine is not right. A crop doctor will look at your photos.</string>
+    <string name="escalated_promise">The answer will be sent when signal returns</string>
+    <string name="escalated_promise_sub">Your phone will ring — photos are safely queued</string>
+    <string name="escalated_sent_header">WHAT WAS SENT</string>
+    <string name="escalated_sent_body">3 photos · crop and area · weather record\nExact location is never sent</string>
+    <string name="escalated_send_photos">Yes — send my photos to the doctor</string>
+    <string name="escalated_send_photos_sub">SEND MY PHOTOS</string>
+    <string name="back_home">Back home</string>
+    <string name="note_no_weather">Could not check the weather — result from photos only</string>
+    <string name="note_model_unavailable">Diagnosis model unavailable — sent to a crop doctor</string>
+
+    <string name="ladder_title">Treatment ladder</string>
+    <string name="ladder_sub">%1$s · %2$d%% spread · start cheap</string>
+    <string name="ladder_no_product_title">No approved product found for this disease</string>
+    <string name="ladder_no_product_body">We never recommend an unregistered product. Ask a crop doctor.</string>
+    <string name="ladder_no_treatment">No treatment for this result — confirm the diagnosis first</string>
+    <string name="ladder_chemical_band">⚠ Chemical — wear gloves, never spray into the wind</string>
+    <string name="ladder_dose_button">Calculate dose →</string>
+    <string name="ladder_bio_tag">✓ Organic-safe</string>
+    <string name="ladder_locked_suffix">%1$s — locked</string>
+    <string name="ladder_rejections_header">NOT SHOWN, AND WHY</string>
+    <string name="reject_no_label_claim">Not registered for this crop and pest</string>
+    <string name="reject_claim_not_effective">Registration period not in effect</string>
+    <string name="reject_banned">Banned in India (%1$s)</string>
+    <string name="reject_phi">%1$d days left to harvest; this product needs %2$d</string>
+    <string name="reject_rotation">Same %1$s group (%2$s) as a recent spray — rotate chemistries</string>
+    <string name="reject_organic">Not safe for your organic certification</string>
+
+    <string name="dose_kicker">CHEMICAL</string>
+    <string name="dose_for_line">For %1$s · %2$s</string>
+    <string name="dose_per_tank">Per tank (15L knapsack)</string>
+    <string name="dose_tanks">Total tanks</string>
+    <string name="dose_total">Total product</string>
+    <string name="dose_cost">Cost</string>
+    <string name="dose_harvest_safe">Safe to harvest</string>
+    <string name="dose_after_date">after %1$s</string>
+    <string name="dose_error_title">Could not calculate the dose</string>
+    <string name="dose_error_bigha">Your state\'s bigha size is not on file — pick a state in plot details</string>
+    <string name="dose_save">Save to diary</string>
+
+    <string name="diary_title">Fasal diary</string>
+    <string name="diary_season_cost">This season\'s spend</string>
+    <string name="diary_empty">No sprays recorded yet — added automatically after a scan</string>
+    <string name="diary_phi_line">Safe to harvest after %1$s</string>
+    <string name="diary_residue">Record complete — show this residue record to a buyer at harvest</string>
+</resources>

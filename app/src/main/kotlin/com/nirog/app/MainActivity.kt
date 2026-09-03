@@ -66,10 +66,17 @@ class MainActivity : ComponentActivity() {
     @Inject lateinit var db: NirogDb
     @Inject lateinit var scanStore: ScanStore
     @Inject lateinit var pipeline: DiagnosisPipeline
+    private lateinit var voice: VoiceProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        voice = createVoice(this)
         setContent { NirogTheme { Root() } }
+    }
+
+    override fun onDestroy() {
+        voice.shutdown()
+        super.onDestroy()
     }
 
     @Composable
@@ -228,6 +235,11 @@ class MainActivity : ComponentActivity() {
                 pestId = topPest(s.diagnosis),
                 severityPct = s.diagnosis.severityPct,
                 noteKeys = s.notes,
+                onListen = {
+                    voice.speak(
+                        "${pestNameHi(topPest(s.diagnosis))}। फैलाव ${s.diagnosis.severityPct.toInt()} प्रतिशत। इलाज की सीढ़ी देखें।",
+                    )
+                },
                 onTreatment = { pending = s.diagnosis },
             )
             Verdict.AMBIGUOUS -> ResultAmbiguousScreen(

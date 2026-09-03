@@ -17,18 +17,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
 import com.nirog.ui.Palette
 import com.nirog.ui.PaperScreen
 import com.nirog.ui.PrimaryButton
+import com.nirog.ui.R as UiR
 
 /** DPDP Rules 2025: itemised consent in the farmer's language before any capture. */
 const val CONSENT_VERSION = 1
 
 private val ITEMS = listOf(
-    "📷" to "पौधों की फोटो — रोग पहचानने के लिए, फोन में ही जांची जाती हैं",
-    "📍" to "खेत का मोटा इलाका (~5 किमी) — आस-पास की चेतावनी के लिए। सटीक जगह कभी नहीं भेजी जाती",
-    "🌦" to "मौसम की जानकारी — सिर्फ आपके इलाके के निर्देशांक से",
-    "👤" to "फोटो फसल डॉक्टर को तभी जाती है जब आप हर बार खुद हां कहें",
+    "📷" to UiR.string.consent_item_photos,
+    "📍" to UiR.string.consent_item_location,
+    "🌦" to UiR.string.consent_item_weather,
+    "👤" to UiR.string.consent_item_escalation,
 )
 
 @Composable
@@ -36,36 +38,36 @@ fun ConsentScreen(onAccept: () -> Unit) {
     PaperScreen {
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(20.dp)) {
             Spacer(Modifier.height(20.dp))
-            Text("आपकी जानकारी, आपकी मर्ज़ी", fontSize = 28.sp, fontWeight = FontWeight.ExtraBold, color = Palette.Ink, lineHeight = 40.sp)
+            Text(stringResource(UiR.string.consent_title), fontSize = 28.sp, fontWeight = FontWeight.ExtraBold, color = Palette.Ink, lineHeight = 40.sp)
             Text(
-                "YOUR DATA, YOUR CHOICE",
+                stringResource(UiR.string.consent_sub),
                 fontSize = 14.sp, letterSpacing = 1.5.sp, color = Palette.TextSecondary, fontWeight = FontWeight.SemiBold,
             )
             Text(
-                "निरोग यह इस्तेमाल करता है, और कुछ नहीं:",
+                stringResource(UiR.string.consent_intro),
                 fontSize = 18.sp, color = Palette.Ink, modifier = Modifier.padding(top = 16.dp),
             )
             Column(Modifier.padding(top = 10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                ITEMS.forEach { (icon, text) ->
+                ITEMS.forEach { (icon, textRes) ->
                     Row(
                         Modifier.fillMaxWidth().background(Palette.Card).border(1.dp, Palette.Hairline).padding(12.dp),
                         horizontalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
                         Text(icon, fontSize = 22.sp)
-                        Text(text, fontSize = 16.sp, lineHeight = 25.sp, color = Palette.Ink, fontWeight = FontWeight.SemiBold)
+                        Text(stringResource(textRes), fontSize = 16.sp, lineHeight = 25.sp, color = Palette.Ink, fontWeight = FontWeight.SemiBold)
                     }
                 }
             }
             Text(
-                "कोई विज्ञापन नहीं · कोई ट्रैकिंग नहीं · \"मेरा सब कुछ मिटाओ\" कभी भी",
+                stringResource(UiR.string.consent_footer),
                 fontSize = 15.sp, color = Palette.TextSecondary, fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(top = 14.dp), lineHeight = 24.sp,
             )
         }
         PrimaryButton(
-            "मंज़ूर है — शुरू करें",
+            stringResource(UiR.string.consent_accept),
             Modifier.fillMaxWidth().padding(16.dp).height(72.dp),
-            en = "I AGREE",
+            en = stringResource(UiR.string.consent_accept_sub),
             onClick = onAccept,
         )
     }

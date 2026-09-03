@@ -18,8 +18,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
 import com.nirog.data.SprayLogEntity
 import com.nirog.ui.MicButton
+import com.nirog.ui.R as UiR
 import com.nirog.ui.Palette
 import com.nirog.ui.PaperScreen
 import com.nirog.ui.blueprintCorners
@@ -43,7 +45,7 @@ fun DiaryScreen(
 
     PaperScreen {
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(16.dp)) {
-            Text("फसल डायरी", fontSize = 26.sp, fontWeight = FontWeight.ExtraBold, color = Palette.Ink)
+            Text(stringResource(UiR.string.diary_title), fontSize = 26.sp, fontWeight = FontWeight.ExtraBold, color = Palette.Ink)
             Text(plotLine, fontSize = 16.sp, color = Palette.TextSecondary, fontWeight = FontWeight.SemiBold)
 
             Column(
@@ -55,14 +57,14 @@ fun DiaryScreen(
                     .blueprintCorners(Palette.Stone),
             ) {
                 Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Text("इस सीज़न का खर्च", fontSize = 17.sp, fontWeight = FontWeight.SemiBold, color = Palette.Ink)
+                    Text(stringResource(UiR.string.diary_season_cost), fontSize = 17.sp, fontWeight = FontWeight.SemiBold, color = Palette.Ink)
                     Spacer(Modifier.weight(1f))
                     Text("₹${totalCost.toInt()}", fontSize = 30.sp, fontWeight = FontWeight.ExtraBold, color = Palette.Ink)
                 }
                 HorizontalDivider(color = Palette.Hairline)
                 if (logs.isEmpty()) {
                     Text(
-                        "अभी कोई छिड़काव दर्ज नहीं — जांच के बाद यहां अपने-आप जुड़ेगा",
+                        stringResource(UiR.string.diary_empty),
                         fontSize = 16.sp, color = Palette.Stone, lineHeight = 24.sp,
                         modifier = Modifier.padding(14.dp),
                     )
@@ -104,7 +106,7 @@ fun DiaryScreen(
                 ) {
                     Text("⏳", fontSize = 20.sp)
                     Text(
-                        "कटाई सुरक्षित: ${phiActive.format(DateTimeFormatter.ofPattern("d MMMM"))} के बाद",
+                        stringResource(UiR.string.diary_phi_line, phiActive.format(DateTimeFormatter.ofPattern("d MMMM"))),
                         fontSize = 17.sp, fontWeight = FontWeight.Bold, color = Palette.OchreDeep,
                     )
                 }
@@ -122,7 +124,7 @@ fun DiaryScreen(
             ) {
                 Text("🛡", fontSize = 20.sp)
                 Text(
-                    "रिकॉर्ड पूरा है — कटाई पर यह अवशेष रिकॉर्ड खरीदार को दिखा सकते हैं",
+                    stringResource(UiR.string.diary_residue),
                     fontSize = 16.sp, lineHeight = 25.sp, fontWeight = FontWeight.SemiBold, color = Palette.GreenPressed,
                 )
             }

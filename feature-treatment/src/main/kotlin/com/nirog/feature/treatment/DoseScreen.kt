@@ -18,10 +18,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nirog.engine.DoseResult
 import com.nirog.model.Product
+import androidx.compose.ui.res.stringResource
 import com.nirog.ui.MicButton
 import com.nirog.ui.Palette
 import com.nirog.ui.PaperScreen
 import com.nirog.ui.PrimaryButton
+import com.nirog.ui.R as UiR
 import java.time.format.DateTimeFormatter
 
 /** Artboard 09: doses in tank-fuls, not per-hectare maths. Big tabular figures. */
@@ -36,7 +38,7 @@ fun DoseScreen(
     PaperScreen {
         Column(Modifier.weight(1f).padding(16.dp)) {
             Text(
-                "रासायनिक · CHEMICAL",
+                stringResource(UiR.string.dose_kicker),
                 fontSize = 14.sp, letterSpacing = 1.5.sp, fontWeight = FontWeight.Bold, color = Palette.OchreDark,
             )
             Text(
@@ -45,20 +47,20 @@ fun DoseScreen(
                 modifier = Modifier.padding(top = 2.dp),
             )
             Text(
-                "$pestNameHi के लिए · $plotLine",
+                stringResource(UiR.string.dose_for_line, pestNameHi, plotLine),
                 fontSize = 16.sp, color = Palette.TextSecondary, fontWeight = FontWeight.SemiBold,
             )
             when (plan) {
                 is DoseResult.Plan -> Column(
                     Modifier.fillMaxWidth().padding(top = 14.dp).background(Palette.Card).border(1.5.dp, Palette.Ink),
                 ) {
-                    DoseRow("प्रति टंकी (15L नैपसैक)", "${plan.productPerTank.toInt()} ${plan.productUnit}", big = true)
-                    DoseRow("कुल टंकियां", "${plan.tanksRequired}")
-                    DoseRow("कुल दवा", "${plan.totalProduct.toInt()} ${plan.productUnit}", big = true, accent = true)
-                    DoseRow("कीमत", "₹${plan.totalCostInr.toInt()}", big = true)
+                    DoseRow(stringResource(UiR.string.dose_per_tank), "${plan.productPerTank.toInt()} ${plan.productUnit}", big = true)
+                    DoseRow(stringResource(UiR.string.dose_tanks), "${plan.tanksRequired}")
+                    DoseRow(stringResource(UiR.string.dose_total), "${plan.totalProduct.toInt()} ${plan.productUnit}", big = true, accent = true)
+                    DoseRow(stringResource(UiR.string.dose_cost), "₹${plan.totalCostInr.toInt()}", big = true)
                     DoseRow(
-                        "कटाई सुरक्षित",
-                        plan.phiExpiry.format(DateTimeFormatter.ofPattern("d MMM")) + " के बाद",
+                        stringResource(UiR.string.dose_harvest_safe),
+                        stringResource(UiR.string.dose_after_date, plan.phiExpiry.format(DateTimeFormatter.ofPattern("d MMM"))),
                         last = true,
                     )
                 }
@@ -66,12 +68,12 @@ fun DoseScreen(
                     Modifier.fillMaxWidth().padding(top = 14.dp).background(Palette.TintOchre).border(1.5.dp, Palette.Ochre).padding(14.dp),
                 ) {
                     Text(
-                        "मात्रा नहीं निकल पाई",
+                        stringResource(UiR.string.dose_error_title),
                         fontSize = 18.sp, fontWeight = FontWeight.ExtraBold, color = Palette.OchreDeep,
                     )
                     Text(
                         when (plan.messageKey) {
-                            "dose_unknown_bigha_state" -> "आपके राज्य का बीघा माप दर्ज नहीं है — खेत की जानकारी में राज्य चुनें"
+                            "dose_unknown_bigha_state" -> stringResource(UiR.string.dose_error_bigha)
                             else -> plan.detail
                         },
                         fontSize = 16.sp, lineHeight = 26.sp, color = Palette.OchreDeep,
@@ -82,7 +84,7 @@ fun DoseScreen(
         }
         Row(Modifier.padding(16.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             PrimaryButton(
-                "डायरी में सहेजें",
+                stringResource(UiR.string.dose_save),
                 Modifier.weight(1f).height(72.dp),
                 enabled = plan is DoseResult.Plan,
                 onClick = onSave,

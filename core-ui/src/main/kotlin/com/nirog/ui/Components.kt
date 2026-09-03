@@ -142,7 +142,7 @@ fun MicButton(modifier: Modifier = Modifier, dark: Boolean = false, onClick: (()
     ) {
         MicGlyph(color = if (dark) Palette.TintGreen else Palette.Green, size = 22.dp)
         Text(
-            "बोलें",
+            androidx.compose.ui.res.stringResource(R.string.speak),
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             color = if (dark) Palette.Card else Palette.Ink,
@@ -156,14 +156,15 @@ enum class ConfidenceKind { CONFIDENT, AMBIGUOUS, ESCALATED }
 /** The three confidence chips — shape+icon+label, never color alone. */
 @Composable
 fun ConfidenceChip(kind: ConfidenceKind, modifier: Modifier = Modifier) {
-    val (bg, border, fg, glyph, label) = when (kind) {
+    val (bg, border, fg, glyph, labelRes) = when (kind) {
         ConfidenceKind.CONFIDENT ->
-            ChipSpec(Palette.TintGreen, Palette.Green, Palette.GreenPressed, "✓", "पक्की पहचान · CONFIDENT")
+            ChipSpec(Palette.TintGreen, Palette.Green, Palette.GreenPressed, "✓", R.string.chip_confident)
         ConfidenceKind.AMBIGUOUS ->
-            ChipSpec(Palette.TintOchre, Palette.Ochre, Palette.OchreDark, "▲", "दो संभावनाएं · TWO POSSIBILITIES")
+            ChipSpec(Palette.TintOchre, Palette.Ochre, Palette.OchreDark, "▲", R.string.chip_ambiguous)
         ConfidenceKind.ESCALATED ->
-            ChipSpec(Color(0xFFE7E2D3), Palette.Stone, Palette.TextSecondary, "👤", "जांच जारी · SENT TO A CROP DOCTOR")
+            ChipSpec(Color(0xFFE7E2D3), Palette.Stone, Palette.TextSecondary, "👤", R.string.chip_escalated)
     }
+    val label = androidx.compose.ui.res.stringResource(labelRes)
     Row(
         modifier.background(bg).border(1.5.dp, border).padding(horizontal = 12.dp, vertical = 8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -179,7 +180,7 @@ private data class ChipSpec(
     val border: Color,
     val fg: Color,
     val glyph: String,
-    val label: String,
+    val labelRes: Int,
 )
 
 /** Ochre caution band ("don't spray tomorrow — 80% rain"). */

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hindi is the default locale (Hindi-first product); English lives in values-en.
+     Crop and chemical names deliberately stay Latin/English inside Hindi strings. -->
+<resources>
+    <!-- shared -->
+    <string name="speak">बोलें</string>
+    <string name="listen">सुनें</string>
+    <string name="chip_confident">पक्की पहचान · CONFIDENT</string>
+    <string name="chip_ambiguous">दो संभावनाएं · TWO POSSIBILITIES</string>
+    <string name="chip_escalated">जांच जारी · SENT TO A CROP DOCTOR</string>
+
+    <!-- home -->
+    <string name="home_greeting">नमस्ते</string>
+    <string name="home_plot_line">%1$s · %2$s · %3$s %4$s · बुआई का %5$dवां दिन</string>
+    <string name="home_alert_kicker">चेतावनी · OUTBREAK ALERT</string>
+    <string name="home_alert_body">आस-पास रोग पुष्ट हुआ — अपनी फसल जांचें</string>
+    <string name="home_scan">फसल की जांच करें</string>
+    <string name="home_scan_sub">SCAN MY CROP · 3 फोटो · 1 मिनट</string>
+    <string name="home_ask">सवाल पूछें</string>
+    <string name="home_ask_sub">ASK A QUESTION</string>
+    <string name="home_offline_footer">बिना सिग्नल भी काम करता है · डायरी और दवा की मात्रा</string>
+
+    <!-- consent -->
+    <string name="consent_title">आपकी जानकारी, आपकी मर्ज़ी</string>
+    <string name="consent_sub">YOUR DATA, YOUR CHOICE</string>
+    <string name="consent_intro">निरोग यह इस्तेमाल करता है, और कुछ नहीं:</string>
+    <string name="consent_item_photos">पौधों की फोटो — रोग पहचानने के लिए, फोन में ही जांची जाती हैं</string>
+    <string name="consent_item_location">खेत का मोटा इलाका (~5 किमी) — आस-पास की चेतावनी के लिए। सटीक जगह कभी नहीं भेजी जाती</string>
+    <string name="consent_item_weather">मौसम की जानकारी — सिर्फ आपके इलाके के निर्देशांक से</string>
+    <string name="consent_item_escalation">फोटो फसल डॉक्टर को तभी जाती है जब आप हर बार खुद हां कहें</string>
+    <string name="consent_footer">कोई विज्ञापन नहीं · कोई ट्रैकिंग नहीं · "मेरा सब कुछ मिटाओ" कभी भी</string>
+    <string name="consent_accept">मंज़ूर है — शुरू करें</string>
+    <string name="consent_accept_sub">I AGREE</string>
+
+    <!-- capture -->
+    <string name="camera_permission">कैमरे की अनुमति चाहिए</string>
+    <string name="step_whole_plant">पूरा पौधा दूर से</string>
+    <string name="step_leaf_top">पत्ती ऊपर से</string>
+    <string name="step_leaf_underside">अब पत्ती को पलटिए</string>
+    <string name="step_counter">चरण %1$d/3</string>
+    <string name="step_now">अभी</string>
+    <string name="gate_pass">फ़ोटो साफ़ है — खींचें</string>
+    <string name="gate_blurry">फ़ोन स्थिर रखें — धुंधला है</string>
+    <string name="gate_dark">रोशनी कम है — धूप में जाएं</string>
+    <string name="gate_bright">बहुत तेज़ रोशनी — छाया करें</string>
+    <string name="retake_your_photo">आपकी ली हुई फोटो</string>
+    <string name="retake_blurry_title">फोटो धुंधली है</string>
+    <string name="retake_blurry_fix">कोई बात नहीं। फोन को दोनों हाथों से पकड़ें, पत्ती से एक बालिश्त दूर, और सांस रोक कर फोटो लें।</string>
+    <string name="retake_dark_title">बहुत अंधेरा है</string>
+    <string name="retake_dark_fix">कोई बात नहीं — छांव में ऐसा अक्सर होता है। पत्ती को छाया से निकालकर खुली रोशनी में रखें।</string>
+    <string name="retake_bright_title">बहुत तेज़ रोशनी</string>
+    <string name="retake_bright_fix">धूप सीधी पड़ रही है। अपने शरीर की छाया से पत्ती को ढकें और दोबारा लें।</string>
+    <string name="retake_others_ok">पहली %1$d फोटो अच्छी हैं — बस यही एक फिर से</string>
+    <string name="retake_button">फिर से फोटो लें</string>
+    <string name="retake_send_anyway">ऐसे ही भेज दें</string>
+
+    <!-- analysing -->
+    <string name="analysing_title">आपकी फसल की जांच हो रही है</string>
+    <string name="analysing_sub">CHECKING · ~20 SECONDS</string>
+    <string name="analysing_photos">आपकी तीनों फोटो देख लीं</string>
+    <string name="analysing_photos_sub">पत्ती के लक्षण पहचाने जा रहे हैं</string>
+    <string name="analysing_weather">मौसम जांच रहे हैं</string>
+    <string name="analysing_weather_sub">पिछले 14 दिन की नमी और बारिश</string>
+    <string name="analysing_nearby">आस-पास की रिपोर्ट मिला रहे हैं</string>
+    <string name="analysing_nearby_sub">5 किमी के अंदर के खेत</string>
+    <string name="analysing_footer">सिर्फ फोटो नहीं — मौसम और पड़ोस की रिपोर्ट भी देखी जाती है</string>
+
+    <!-- results -->
+    <string name="result_spread_now">फैलाव अभी</string>
+    <string name="result_what_now">अब क्या करूं?</string>
+    <string name="result_more_likely">अधिक संभावना</string>
+    <string name="rub_test_title">10 सेकंड की जांच — खुद पता करें</string>
+    <string name="rub_test_body">पत्ती की धारी पर उंगली रगड़ें। उंगली पर पीला पाउडर लगे तो पीला रतुआ है; कुछ न लगे तो भूरा रतुआ।</string>
+    <string name="rub_test_yellow">पीला पाउडर लगा</string>
+    <string name="rub_test_nothing">कुछ नहीं लगा</string>
+    <string name="escalate_unsure">पक्का नहीं — डॉक्टर को भेजें</string>
+    <string name="escalated_title">हमें पूरा भरोसा नहीं हुआ</string>
+    <string name="escalated_body">यह तस्वीर मुश्किल है, और गलत दवा बताना ठीक नहीं। इसलिए आपकी फोटो फसल डॉक्टर देखेंगे।</string>
+    <string name="escalated_promise">जवाब सिग्नल आने पर भेजा जाएगा</string>
+    <string name="escalated_promise_sub">फोन पर घंटी बजेगी — फोटो कतार में सुरक्षित है</string>
+    <string name="escalated_sent_header">जो भेजा गया · WHAT WAS SENT</string>
+    <string name="escalated_sent_body">3 फोटो · फसल और इलाका · मौसम रिकॉर्ड\nसटीक जगह कभी नहीं भेजी जाती</string>
+    <string name="escalated_send_photos">हां — फोटो डॉक्टर को भेजें</string>
+    <string name="escalated_send_photos_sub">SEND MY PHOTOS</string>
+    <string name="back_home">घर वापस</string>
+    <string name="note_no_weather">मौसम जांच नहीं हो पाई — सिर्फ फोटो से नतीजा</string>
+    <string name="note_model_unavailable">जांच का मॉडल उपलब्ध नहीं — फसल डॉक्टर को भेजा गया</string>
+
+    <!-- treatment ladder -->
+    <string name="ladder_title">इलाज की सीढ़ी</string>
+    <string name="ladder_sub">%1$s · फैलाव %2$d%% · सस्ते से शुरू करें</string>
+    <string name="ladder_no_product_title">इस रोग के लिए कोई स्वीकृत दवा नहीं मिली</string>
+    <string name="ladder_no_product_body">NO APPROVED PRODUCT — बिना पंजीकृत दवा हम कभी नहीं बताते। फसल डॉक्टर से पूछें।</string>
+    <string name="ladder_no_treatment">इस नतीजे पर इलाज नहीं बनता — पहले पहचान पक्की करें</string>
+    <string name="ladder_chemical_band">⚠ रासायनिक — दस्ताने पहनें, हवा के रुख में न छिड़कें</string>
+    <string name="ladder_dose_button">मात्रा निकालें →</string>
+    <string name="ladder_bio_tag">✓ जैविक-सुरक्षित</string>
+    <string name="ladder_locked_suffix">%1$s — बंद</string>
+    <string name="ladder_rejections_header">जो नहीं दिखाए गए, और क्यों · NOT SHOWN</string>
+    <string name="reject_no_label_claim">इस फसल-रोग के लिए पंजीकृत नहीं है</string>
+    <string name="reject_claim_not_effective">पंजीकरण की अवधि लागू नहीं है</string>
+    <string name="reject_banned">भारत में प्रतिबंधित (%1$s)</string>
+    <string name="reject_phi">कटाई तक %1$d दिन बचे हैं, इस दवा को %2$d दिन चाहिए</string>
+    <string name="reject_rotation">पिछले छिड़काव जैसा ही %1$s समूह (%2$s) — बदल-बदल कर दवा दें</string>
+    <string name="reject_organic">आपके जैविक प्रमाणपत्र के लिए सुरक्षित नहीं</string>
+
+    <!-- dose -->
+    <string name="dose_kicker">रासायनिक · CHEMICAL</string>
+    <string name="dose_for_line">%1$s के लिए · %2$s</string>
+    <string name="dose_per_tank">प्रति टंकी (15L नैपसैक)</string>
+    <string name="dose_tanks">कुल टंकियां</string>
+    <string name="dose_total">कुल दवा</string>
+    <string name="dose_cost">कीमत</string>
+    <string name="dose_harvest_safe">कटाई सुरक्षित</string>
+    <string name="dose_after_date">%1$s के बाद</string>
+    <string name="dose_error_title">मात्रा नहीं निकल पाई</string>
+    <string name="dose_error_bigha">आपके राज्य का बीघा माप दर्ज नहीं है — खेत की जानकारी में राज्य चुनें</string>
+    <string name="dose_save">डायरी में सहेजें</string>
+
+    <!-- diary -->
+    <string name="diary_title">फसल डायरी</string>
+    <string name="diary_season_cost">इस सीज़न का खर्च</string>
+    <string name="diary_empty">अभी कोई छिड़काव दर्ज नहीं — जांच के बाद यहां अपने-आप जुड़ेगा</string>
+    <string name="diary_phi_line">कटाई सुरक्षित: %1$s के बाद</string>
+    <string name="diary_residue">रिकॉर्ड पूरा है — कटाई पर यह अवशेष रिकॉर्ड खरीदार को दिखा सकते हैं</string>
+</resources>

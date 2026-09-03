@@ -22,8 +22,10 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
 import com.nirog.model.DiseaseCandidate
 import com.nirog.ui.ConfidenceChip
+import com.nirog.ui.R as UiR
 import com.nirog.ui.ConfidenceKind
 import com.nirog.ui.MicButton
 import com.nirog.ui.Palette
@@ -48,16 +50,16 @@ fun AnalysingScreen(currentStep: AnalysisStep) {
     PaperScreen {
         Column(Modifier.padding(24.dp)) {
             Spacer(Modifier.height(32.dp))
-            Text("आपकी फसल की जांच हो रही है", fontSize = 26.sp, fontWeight = FontWeight.ExtraBold, color = Palette.Ink)
+            Text(stringResource(UiR.string.analysing_title), fontSize = 26.sp, fontWeight = FontWeight.ExtraBold, color = Palette.Ink)
             Text(
-                "CHECKING · ~20 SECONDS",
+                stringResource(UiR.string.analysing_sub),
                 fontSize = 15.sp, letterSpacing = 1.5.sp, color = Palette.TextSecondary,
                 fontWeight = FontWeight.SemiBold,
             )
             Spacer(Modifier.height(30.dp))
-            LedgerStep("आपकी तीनों फोटो देख लीं", "पत्ती के लक्षण पहचाने जा रहे हैं", currentStep.ordinal > 0, currentStep == AnalysisStep.PHOTOS)
-            LedgerStep("मौसम जांच रहे हैं", "पिछले 14 दिन की नमी और बारिश", currentStep.ordinal > 1, currentStep == AnalysisStep.WEATHER)
-            LedgerStep("आस-पास की रिपोर्ट मिला रहे हैं", "5 किमी के अंदर के खेत", false, currentStep == AnalysisStep.NEARBY)
+            LedgerStep(stringResource(UiR.string.analysing_photos), stringResource(UiR.string.analysing_photos_sub), currentStep.ordinal > 0, currentStep == AnalysisStep.PHOTOS)
+            LedgerStep(stringResource(UiR.string.analysing_weather), stringResource(UiR.string.analysing_weather_sub), currentStep.ordinal > 1, currentStep == AnalysisStep.WEATHER)
+            LedgerStep(stringResource(UiR.string.analysing_nearby), stringResource(UiR.string.analysing_nearby_sub), false, currentStep == AnalysisStep.NEARBY)
         }
         Spacer(Modifier.weight(1f))
         Row(
@@ -67,7 +69,7 @@ fun AnalysingScreen(currentStep: AnalysisStep) {
         ) {
             Text("🌿", fontSize = 20.sp)
             Text(
-                "सिर्फ फोटो नहीं — मौसम और पड़ोस की रिपोर्ट भी देखी जाती है",
+                stringResource(UiR.string.analysing_footer),
                 fontSize = 16.sp, color = Palette.TextSecondary, lineHeight = 24.sp, fontWeight = FontWeight.SemiBold,
             )
         }
@@ -105,6 +107,7 @@ fun ResultConfidentScreen(
     pestId: String,
     severityPct: Double,
     noteKeys: List<String>,
+    onListen: (() -> Unit)? = null,
     onTreatment: () -> Unit,
 ) {
     PaperScreen {
@@ -122,13 +125,13 @@ fun ResultConfidentScreen(
             )
             HorizontalDivider(Modifier.padding(vertical = 16.dp), color = Palette.Hairline)
             Row(horizontalArrangement = Arrangement.spacedBy(20.dp)) {
-                Stat("${severityPct.toInt()}%", "फैलाव अभी")
+                Stat("${severityPct.toInt()}%", stringResource(UiR.string.result_spread_now))
             }
             ContextNotes(noteKeys)
         }
         Row(Modifier.padding(16.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            PrimaryButton("अब क्या करूं?", Modifier.weight(1f).height(76.dp), onClick = onTreatment)
-            MicButton()
+            PrimaryButton(stringResource(UiR.string.result_what_now), Modifier.weight(1f).height(76.dp), onClick = onTreatment)
+            MicButton(onClick = onListen)
         }
     }
 }
@@ -176,7 +179,7 @@ fun ResultAmbiguousScreen(
                     }
                     if (i == 0) {
                         Text(
-                            "अधिक संभावना",
+                            stringResource(UiR.string.result_more_likely),
                             fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Palette.GreenPressed,
                             modifier = Modifier.background(Palette.TintGreen).border(1.dp, Palette.Green).padding(horizontal = 8.dp, vertical = 4.dp),
                         )
@@ -189,23 +192,23 @@ fun ResultAmbiguousScreen(
                     verticalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
                     Text(
-                        "10 सेकंड की जांच — खुद पता करें",
+                        stringResource(UiR.string.rub_test_title),
                         fontSize = 20.sp, fontWeight = FontWeight.ExtraBold, color = Palette.OchreDeep,
                     )
                     Text(
-                        "पत्ती की धारी पर उंगली रगड़ें। उंगली पर पीला पाउडर लगे तो पीला रतुआ है; कुछ न लगे तो भूरा रतुआ।",
+                        stringResource(UiR.string.rub_test_body),
                         fontSize = 18.sp, lineHeight = 30.sp, color = Palette.Ink, fontWeight = FontWeight.SemiBold,
                     )
                     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        PrimaryButton("पीला पाउडर लगा", Modifier.weight(1f).height(60.dp)) { onPick(candidates[0].pestId) }
-                        SecondaryButton("कुछ नहीं लगा", Modifier.weight(1f).height(60.dp)) { onPick(candidates[1].pestId) }
+                        PrimaryButton(stringResource(UiR.string.rub_test_yellow), Modifier.weight(1f).height(60.dp)) { onPick(candidates[0].pestId) }
+                        SecondaryButton(stringResource(UiR.string.rub_test_nothing), Modifier.weight(1f).height(60.dp)) { onPick(candidates[1].pestId) }
                     }
                 }
             }
             ContextNotes(noteKeys)
         }
         Row(Modifier.padding(16.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            SecondaryButton("पक्का नहीं — डॉक्टर को भेजें", Modifier.weight(1f).height(60.dp), onClick = onEscalate)
+            SecondaryButton(stringResource(UiR.string.escalate_unsure), Modifier.weight(1f).height(60.dp), onClick = onEscalate)
             MicButton()
         }
     }
@@ -223,12 +226,12 @@ fun EscalatedScreen(
             Spacer(Modifier.height(16.dp))
             ConfidenceChip(ConfidenceKind.ESCALATED)
             Text(
-                "हमें पूरा भरोसा नहीं हुआ",
+                stringResource(UiR.string.escalated_title),
                 fontSize = 30.sp, fontWeight = FontWeight.ExtraBold, color = Palette.Ink,
                 modifier = Modifier.padding(top = 14.dp), lineHeight = 42.sp,
             )
             Text(
-                "यह तस्वीर मुश्किल है, और गलत दवा बताना ठीक नहीं। इसलिए आपकी फोटो फसल डॉक्टर देखेंगे।",
+                stringResource(UiR.string.escalated_body),
                 fontSize = 18.sp, lineHeight = 30.sp, color = Palette.TextSecondary,
                 modifier = Modifier.padding(top = 8.dp),
             )
@@ -240,19 +243,19 @@ fun EscalatedScreen(
                     .border(1.5.dp, Palette.Green)
                     .padding(16.dp),
             ) {
-                Text("जवाब सिग्नल आने पर भेजा जाएगा", fontSize = 22.sp, fontWeight = FontWeight.ExtraBold, color = Palette.GreenPressed)
+                Text(stringResource(UiR.string.escalated_promise), fontSize = 22.sp, fontWeight = FontWeight.ExtraBold, color = Palette.GreenPressed)
                 Text(
-                    "फोन पर घंटी बजेगी — फोटो कतार में सुरक्षित है",
+                    stringResource(UiR.string.escalated_promise_sub),
                     fontSize = 15.sp, color = Palette.Green, fontWeight = FontWeight.SemiBold, letterSpacing = 0.5.sp,
                 )
             }
             Text(
-                "जो भेजा गया · WHAT WAS SENT",
+                stringResource(UiR.string.escalated_sent_header),
                 fontSize = 14.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.5.sp,
                 color = Palette.TextSecondary, modifier = Modifier.padding(top = 18.dp),
             )
             Text(
-                "3 फोटो · फसल और इलाका · मौसम रिकॉर्ड\nसटीक जगह कभी नहीं भेजी जाती",
+                stringResource(UiR.string.escalated_sent_body),
                 fontSize = 15.sp, lineHeight = 24.sp, color = Palette.TextSecondary,
                 modifier = Modifier.padding(top = 6.dp),
             )
@@ -262,14 +265,14 @@ fun EscalatedScreen(
             // DPDP: images travel only on this explicit per-scan yes.
             if (onSendPhotos != null) {
                 PrimaryButton(
-                    "हां — फोटो डॉक्टर को भेजें",
+                    stringResource(UiR.string.escalated_send_photos),
                     Modifier.fillMaxWidth().height(72.dp),
-                    en = "SEND MY PHOTOS",
+                    en = stringResource(UiR.string.escalated_send_photos_sub),
                     onClick = onSendPhotos,
                 )
             }
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                SecondaryButton("घर वापस", Modifier.weight(1f).height(64.dp), onClick = onHome)
+                SecondaryButton(stringResource(UiR.string.back_home), Modifier.weight(1f).height(64.dp), onClick = onHome)
                 MicButton()
             }
         }
@@ -281,8 +284,8 @@ fun EscalatedScreen(
 private fun ContextNotes(noteKeys: List<String>) {
     noteKeys.forEach { key ->
         val text = when (key) {
-            "context_no_weather" -> "मौसम जांच नहीं हो पाई — सिर्फ फोटो से नतीजा"
-            "diagnosis_model_unavailable" -> "जांच का मॉडल उपलब्ध नहीं — फसल डॉक्टर को भेजा गया"
+            "context_no_weather" -> stringResource(UiR.string.note_no_weather)
+            "diagnosis_model_unavailable" -> stringResource(UiR.string.note_model_unavailable)
             else -> key
         }
         Row(

@@ -20,8 +20,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
 import com.nirog.data.PlotEntity
 import com.nirog.ui.MicGlyph
+import com.nirog.ui.R as UiR
 import com.nirog.ui.Palette
 import com.nirog.ui.PaperScreen
 import com.nirog.ui.PrimaryButton
@@ -50,10 +52,13 @@ fun HomeScreen(
         }
         if (plot != null) {
             Column(Modifier.padding(horizontal = 20.dp)) {
-                Text("नमस्ते", fontSize = 26.sp, fontWeight = FontWeight.Bold, color = Palette.Ink)
+                Text(stringResource(UiR.string.home_greeting), fontSize = 26.sp, fontWeight = FontWeight.Bold, color = Palette.Ink)
                 val days = LocalDate.now().toEpochDay() - plot.sowingDate
                 Text(
-                    "${plot.label} · ${plot.cropId.uppercase()} · ${plot.areaValue} ${areaUnitHi(plot.areaUnit)} · बुआई का ${days}वां दिन",
+                    stringResource(
+                        UiR.string.home_plot_line,
+                        plot.label, plot.cropId.uppercase(), plot.areaValue.toString(), areaUnitHi(plot.areaUnit), days,
+                    ),
                     fontSize = 16.sp, color = Palette.TextSecondary, fontWeight = FontWeight.SemiBold, lineHeight = 26.sp,
                 )
             }
@@ -73,11 +78,11 @@ fun HomeScreen(
                 Text("🍂", fontSize = 26.sp)
                 Column {
                     Text(
-                        "चेतावनी · OUTBREAK ALERT",
+                        stringResource(UiR.string.home_alert_kicker),
                         fontSize = 14.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.5.sp, color = Palette.Clay,
                     )
                     Text(
-                        "आस-पास रोग पुष्ट हुआ — अपनी फसल जांचें",
+                        stringResource(UiR.string.home_alert_body),
                         fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Palette.Ink, lineHeight = 26.sp,
                     )
                 }
@@ -85,8 +90,8 @@ fun HomeScreen(
         }
         Box(Modifier.padding(16.dp).padding(top = 4.dp)) {
             PrimaryButton(
-                hi = "फसल की जांच करें",
-                en = "SCAN MY CROP · 3 फोटो · 1 मिनट",
+                hi = stringResource(UiR.string.home_scan),
+                en = stringResource(UiR.string.home_scan_sub),
                 modifier = Modifier.fillMaxWidth().height(216.dp),
                 onClick = onScan,
             )
@@ -103,9 +108,9 @@ fun HomeScreen(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             MicGlyph(size = 28.dp)
-            Text("सवाल पूछें", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Palette.Ink)
+            Text(stringResource(UiR.string.home_ask), fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Palette.Ink)
             Text(
-                "ASK A QUESTION",
+                stringResource(UiR.string.home_ask_sub),
                 fontSize = 14.sp, letterSpacing = 1.5.sp, color = Palette.TextSecondary, fontWeight = FontWeight.SemiBold,
             )
         }
@@ -118,7 +123,7 @@ fun HomeScreen(
         ) {
             Text("📶", fontSize = 16.sp, color = Palette.Green)
             Text(
-                "बिना सिग्नल भी काम करता है · डायरी और दवा की मात्रा",
+                stringResource(UiR.string.home_offline_footer),
                 fontSize = 14.sp, color = Palette.TextSecondary, fontWeight = FontWeight.SemiBold,
             )
         }
