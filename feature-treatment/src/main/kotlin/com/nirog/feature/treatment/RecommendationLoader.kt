@@ -6,7 +6,11 @@ import com.nirog.data.toDomain
 import com.nirog.engine.Catalog
 import com.nirog.engine.RecommendationEngine
 import com.nirog.engine.RecommendationResult
+import com.nirog.engine.DoseCalculator
+import com.nirog.engine.DoseResult
 import com.nirog.model.ContextSnapshot
+import com.nirog.model.LabelClaim
+import com.nirog.model.Product
 import java.time.Instant
 import java.time.LocalDate
 
@@ -37,5 +41,19 @@ class RecommendationLoader(private val db: NirogDb) {
             catalog = catalog,
             today = LocalDate.now(),
         )
+    }
+
+    data class DosePrep(val product: Product, val claim: LabelClaim, val plan: DoseResult)
+
+    /** Resolve the rung's product + its I1 claim and compute the I10 tank plan. */
+    suspend fun prepareDose(productId: String, pestId: String, plotId: String): DosePrep? {
+        val plot = db.plotDao().plot(plotId)?.toDomain() ?: return null
+        val product = db.catalogDao().product(productId)?.toDomain() ?: return null
+        val today = LocalDate.now()
+        val claim = db.catalogDao().labelClaims().map { it.toDomain() }.firstOrNull {
+            it.productId == productId && it.cropId == plot.cropId && it.pestId == pestId &&
+                !today.isBefore(it.effectiveFrom) && (it.effectiveTo == null || !today.isAfter(it.effectiveTo))
+        } ?: return null
+        return DosePrep(product, claim, DoseCalculator.plan(claim, product, plot, today))
     }
 }

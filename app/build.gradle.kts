@@ -37,6 +37,7 @@ dependencies {
     implementation(project(":feature-diagnosis"))
     implementation(project(":feature-treatment"))
     implementation(project(":feature-diary"))
+    implementation(libs.lifecycle.runtime.compose)
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.material3)
     implementation(libs.activity.compose)

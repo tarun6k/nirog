@@ -33,6 +33,7 @@ import java.time.LocalDate
 fun HomeScreen(
     plot: PlotEntity?,
     outbreakCount: Int,
+    onDiary: () -> Unit = {},
     onScan: () -> Unit,
 ) {
     PaperScreen {
@@ -111,7 +112,7 @@ fun HomeScreen(
         Spacer(Modifier.weight(1f))
         HorizontalDivider(color = Palette.Hairline)
         Row(
-            Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 12.dp),
+            Modifier.fillMaxWidth().clickable(onClick = onDiary).padding(horizontal = 20.dp, vertical = 12.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {

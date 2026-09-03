@@ -10,10 +10,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.lifecycleScope
 import com.nirog.data.DiagnosisEntity
 import com.nirog.data.NirogDb
 import com.nirog.data.PlotEntity
+import com.nirog.data.SprayLogEntity
 import com.nirog.data.toDomain
+import com.nirog.engine.DoseResult
+import com.nirog.feature.diary.DiaryScreen
+import com.nirog.feature.treatment.DoseScreen
+import kotlinx.coroutines.launch
 import com.nirog.engine.Geohash
 import com.nirog.engine.RecommendationResult
 import com.nirog.feature.diagnosis.AnalysingScreen
@@ -49,6 +56,8 @@ private sealed interface Screen {
         val severityPct: Double,
         val products: Map<String, Product>,
     ) : Screen
+    data class Dose(val prep: RecommendationLoader.DosePrep, val pestId: String) : Screen
+    data object Diary : Screen
 }
 
 @AndroidEntryPoint
@@ -94,8 +103,22 @@ class MainActivity : ComponentActivity() {
 
         BackHandler(enabled = screen != Screen.Home) { screen = Screen.Home }
 
+        val loader = remember { RecommendationLoader(db) }
+        var dosePending by remember { mutableStateOf<Pair<String, String>?>(null) } // productId to pestId
+        LaunchedEffect(dosePending) {
+            dosePending?.let { (productId, pestId) ->
+                val p = plot ?: return@let
+                loader.prepareDose(productId, pestId, p.id)?.let { screen = Screen.Dose(it, pestId) }
+                dosePending = null
+            }
+        }
+
         when (val s = screen) {
-            Screen.Home -> HomeScreen(plot, outbreaks) { screen = Screen.Capture }
+            Screen.Home -> HomeScreen(
+                plot,
+                outbreaks,
+                onDiary = { screen = Screen.Diary },
+            ) { screen = Screen.Capture }
 
             Screen.Capture -> GuidedCaptureScreen(
                 plotId = plot?.id ?: return,
@@ -119,8 +142,53 @@ class MainActivity : ComponentActivity() {
                 pestNameHi = pestNameHi(s.pestId),
                 severityPct = s.severityPct,
                 products = s.products,
-                onDose = { /* dose calculator lands in Phase 5 */ },
+                onDose = { rung -> rung.productId?.let { dosePending = it to s.pestId } },
             )
+
+            is Screen.Dose -> {
+                val p = plot ?: return
+                DoseScreen(
+                    product = s.prep.product,
+                    pestNameHi = pestNameHi(s.pestId),
+                    plotLine = "आपका खेत: ${p.cropId.uppercase()}, ${p.areaValue} ${p.areaUnit}",
+                    plan = s.prep.plan,
+                ) {
+                    val plan = s.prep.plan as? DoseResult.Plan ?: return@DoseScreen
+                    lifecycleScope.launch {
+                        db.diaryDao().insertSprayLog(
+                            SprayLogEntity(
+                                id = UUID.randomUUID().toString(),
+                                plotId = p.id,
+                                date = LocalDate.now().toEpochDay(),
+                                productId = s.prep.product.id,
+                                activeIngredient = s.prep.product.activeIngredient,
+                                doseActual = "${plan.productPerTank.toInt()}${plan.productUnit}/टंकी",
+                                tanks = plan.tanksRequired,
+                                costInr = plan.totalCostInr,
+                                phiExpiryDate = plan.phiExpiry.toEpochDay(),
+                                recommendationId = null,
+                                farmerConfirmed = true,
+                            ),
+                        )
+                        screen = Screen.Diary
+                    }
+                }
+            }
+
+            Screen.Diary -> {
+                val p = plot ?: return
+                val logs by db.diaryDao().sprayLogsForPlot(p.id)
+                    .collectAsState(initial = emptyList())
+                var names by remember { mutableStateOf(emptyMap<String, String>()) }
+                LaunchedEffect(Unit) {
+                    names = db.catalogDao().products().associate { it.id to it.tradeNames.split(';').first() }
+                }
+                DiaryScreen(
+                    plotLine = "${p.cropId.uppercase()} · ${p.label}",
+                    logs = logs,
+                    productNames = names,
+                )
+            }
         }
     }
 
