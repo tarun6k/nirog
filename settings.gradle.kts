@@ -16,6 +16,7 @@ rootProject.name = "nirog"
 include(
     ":core-model",
     ":core-data",
+    ":core-ui",
     ":engine",
     ":ml",
     ":feature-scan",

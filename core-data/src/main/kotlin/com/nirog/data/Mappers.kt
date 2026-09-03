@@ -1,7 +1,14 @@
 package com.nirog.data
 
+import com.nirog.model.AreaUnit
 import com.nirog.model.BannedActive
+import com.nirog.model.Diagnosis
+import com.nirog.model.DiagnosisSource
+import com.nirog.model.DiseaseCandidate
 import com.nirog.model.DoseUnit
+import com.nirog.model.OrganicStatus
+import com.nirog.model.Plot
+import com.nirog.model.Verdict
 import com.nirog.model.EtlThreshold
 import com.nirog.model.LabelClaim
 import com.nirog.model.Product
@@ -49,6 +56,25 @@ fun BannedActiveEntity.toDomain() = BannedActive(
 fun EtlThresholdEntity.toDomain() = EtlThreshold(
     cropId = cropId, pestId = pestId, metric = metric,
     thresholdValue = thresholdValue, unit = unit, source = source,
+)
+
+fun PlotEntity.toDomain() = Plot(
+    id = id, farmerId = farmerId, label = label, cropId = cropId, variety = variety,
+    areaValue = areaValue, areaUnit = AreaUnit.valueOf(areaUnit),
+    sowingDate = LocalDate.ofEpochDay(sowingDate), lat = lat, lon = lon, pincode = pincode,
+    plannedHarvestDate = LocalDate.ofEpochDay(plannedHarvestDate),
+    organicStatus = OrganicStatus.valueOf(organicStatus), state = state,
+)
+
+fun DiagnosisEntity.toDomain() = Diagnosis(
+    id = id, scanId = scanId,
+    candidates = candidates.split(';').filter { it.isNotEmpty() }.map {
+        val (pest, prob) = it.split(':', limit = 2)
+        DiseaseCandidate(pest, prob.toDouble())
+    },
+    calibratedConfidence = calibratedConfidence, oodScore = oodScore, severityPct = severityPct,
+    verdict = Verdict.valueOf(verdict), modelVersion = modelVersion,
+    source = DiagnosisSource.valueOf(source),
 )
 
 fun SprayLogEntity.toDomain() = SprayLog(

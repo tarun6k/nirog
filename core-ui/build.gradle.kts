@@ -5,23 +5,19 @@ plugins {
 }
 
 android {
-    namespace = "com.nirog.feature.diagnosis"
+    namespace = "com.nirog.ui"
     compileSdk = 35
     defaultConfig { minSdk = 24 }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions { jvmTarget = "17" }
     buildFeatures { compose = true }
 }
 
 dependencies {
-    api(project(":core-data"))
-    api(project(":ml"))
-    implementation(project(":engine"))
-    implementation(project(":core-ui"))
-    implementation(libs.kotlinx.coroutines.core)
-    coreLibraryDesugaring(libs.desugar.jdk)
+    api(platform(libs.compose.bom))
+    api(libs.compose.material3)
+    api(libs.compose.foundation)
 }

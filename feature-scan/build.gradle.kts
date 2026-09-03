@@ -19,6 +19,7 @@ android {
 dependencies {
     api(project(":core-data"))
     implementation(project(":engine"))
+    implementation(project(":core-ui"))
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.material3)
     implementation(libs.activity.compose)

@@ -30,6 +30,7 @@ android {
 
 dependencies {
     implementation(project(":core-data"))
+    implementation(project(":core-ui"))
     implementation(project(":engine"))
     implementation(project(":ml"))
     implementation(project(":feature-scan"))

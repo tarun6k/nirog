@@ -1,7 +1,7 @@
-// Scaffolded in Phase 0; filled in later phases per the build order.
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -11,10 +11,15 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions { jvmTarget = "17" }
+    buildFeatures { compose = true }
 }
 
 dependencies {
-    api(project(":core-model"))
+    api(project(":core-data"))
+    implementation(project(":core-ui"))
+    implementation(project(":engine"))
+    coreLibraryDesugaring(libs.desugar.jdk)
 }
