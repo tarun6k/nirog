@@ -9,6 +9,7 @@ import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
@@ -64,7 +65,45 @@ class SyncWorker(context: Context, params: WorkerParameters) : CoroutineWorker(c
             if (ok) pending.forEach { db.outbreakDao().markSynced(it.geohash5, it.createdAt) } else allOk = false
         }
 
+        if (!runCatching { pullLabelClaims(base, db) }.getOrDefault(false)) allOk = false
+
         return if (allOk) Result.success() else Result.retry()
+    }
+
+    /**
+     * Delta-sync the label-claim registry: new gazette notifications appear,
+     * revoked ones arrive as tombstones and are deleted locally (I1 keeps
+     * relying on Room only — the UI never reads the network).
+     */
+    private suspend fun pullLabelClaims(base: String, db: NirogDb): Boolean {
+        val prefs = applicationContext.getSharedPreferences("nirog-sync", Context.MODE_PRIVATE)
+        val since = prefs.getString(KEY_CLAIMS_SINCE, null) ?: "1970-01-01T00:00:00+00:00"
+        val url = "$base/v1/label-claims".toHttpUrl().newBuilder()
+            .addQueryParameter("since", since)
+            .build()
+        val body = client.newCall(Request.Builder().url(url).build()).execute().use { resp ->
+            if (!resp.isSuccessful) return false
+            resp.body?.string() ?: return false
+        }
+        val deltas = LabelClaimDelta.parse(body)
+        for (d in deltas) {
+            if (d.deleted) {
+                db.catalogDao().deleteLabelClaim(
+                    d.entity.productId, d.entity.cropId, d.entity.pestId, d.entity.effectiveFrom,
+                )
+            } else {
+                db.catalogDao().insertLabelClaims(listOf(d.entity))
+            }
+        }
+        // High-water mark: server isoformat timestamps share one format, so the
+        // lexicographic max is the latest.
+        deltas.maxOfOrNull { it.updatedAt }
+            ?.let { prefs.edit().putString(KEY_CLAIMS_SINCE, it).apply() }
+        return true
+    }
+
+    private companion object {
+        const val KEY_CLAIMS_SINCE = "labelClaimsSince"
     }
 
     private fun uploadEscalation(base: String, ticket: EscalationTicketEntity, session: ScanSessionEntity): Boolean {

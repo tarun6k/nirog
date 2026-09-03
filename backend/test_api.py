@@ -50,6 +50,29 @@ def test_label_claim_delta_and_manifest():
     assert client.get("/v1/label-claims").json() == []
     assert client.get("/v1/models/manifest").json() == []
 
+    from app.db import SessionLocal
+    from app.models import LabelClaimRow
+
+    with SessionLocal() as s:
+        s.add(LabelClaimRow(
+            product_id="P1", crop_id="wheat", pest_id="yellow_rust",
+            dose_value=2.0, dose_unit="ML_PER_L", dilution_l_per_ha=500.0, phi_days=7,
+            source_notification_ref="SO 1(E)", effective_from="2025-01-01",
+        ))
+        s.add(LabelClaimRow(
+            product_id="P2", crop_id="wheat", pest_id="yellow_rust",
+            dose_value=1.0, dose_unit="ML_PER_L", dilution_l_per_ha=500.0, phi_days=14,
+            source_notification_ref="SO 2(E)", effective_from="2024-01-01", deleted=True,
+        ))
+        s.commit()
+
+    rows = client.get("/v1/label-claims").json()
+    assert {r["productId"]: r["deleted"] for r in rows} == {"P1": False, "P2": True}
+
+    # a `since` after every updatedAt returns nothing
+    latest = max(r["updatedAt"] for r in rows)
+    assert client.get("/v1/label-claims", params={"since": latest}).json() == []
+
 
 def test_review_queue_renders():
     assert "Nirog expert queue" in client.get("/review").text

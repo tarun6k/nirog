@@ -23,6 +23,12 @@ interface CatalogDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE) suspend fun insertEtlThresholds(rows: List<EtlThresholdEntity>)
 
     @Query("SELECT * FROM product WHERE id = :id") suspend fun product(id: String): ProductEntity?
+
+    @Query(
+        "DELETE FROM label_claim WHERE productId = :productId AND cropId = :cropId " +
+            "AND pestId = :pestId AND effectiveFrom = :effectiveFrom",
+    )
+    suspend fun deleteLabelClaim(productId: String, cropId: String, pestId: String, effectiveFrom: Long)
 }
 
 @Dao

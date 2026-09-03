@@ -37,4 +37,6 @@ dependencies {
     ksp(libs.room.compiler)
     coreLibraryDesugaring(libs.desugar.jdk)
     testImplementation(libs.kotlin.test)
+    // Android ships org.json at runtime; unit tests only see stubs. Test-classpath only.
+    testImplementation("org.json:json:20240303")
 }
