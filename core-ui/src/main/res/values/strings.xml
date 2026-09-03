@@ -137,6 +137,22 @@
     <string name="unit_bigha">बीघा</string>
     <string name="unit_guntha">गुंठा</string>
 
+    <!-- offline -->
+    <string name="offline_title">अभी सिग्नल नहीं है</string>
+    <string name="offline_sub">कोई बात नहीं — ज़रूरी काम चलते रहेंगे</string>
+    <string name="offline_banner">अभी सिग्नल नहीं है — ज़रूरी काम चलते रहेंगे ›</string>
+    <string name="offline_still_works">अभी भी चलता है · STILL WORKS</string>
+    <string name="offline_capture">फोटो लेना और जांच</string>
+    <string name="offline_capture_sub">जांच फोन में ही होती है — बिना सिग्नल भी</string>
+    <string name="offline_diary">डायरी और दवा की मात्रा</string>
+    <string name="offline_diary_sub">सब फोन में सहेजा हुआ है</string>
+    <string name="offline_recognition">आम रोगों की पहचान</string>
+    <string name="offline_recognition_sub">मॉडल फोन में ही है — बिना इंटरनेट</string>
+    <string name="offline_when_signal">सिग्नल आने पर · WHEN SIGNAL RETURNS</string>
+    <string name="offline_queued">%1$d फोटो कतार में हैं — अपने-आप भेज दी जाएंगी। पड़ोस की रिपोर्ट भी तभी आएगी।</string>
+    <string name="offline_queued_none">पड़ोस की रिपोर्ट और मौसम सिग्नल आते ही अपने-आप आ जाएंगे।</string>
+    <string name="offline_scan_now">फोटो अभी लें</string>
+
     <!-- voice Q&A -->
     <string name="qa_brand">NIROG · आवाज़</string>
     <string name="qa_listening">सुन रहे हैं…</string>

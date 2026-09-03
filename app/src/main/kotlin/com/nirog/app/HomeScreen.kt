@@ -40,9 +40,29 @@ fun HomeScreen(
     onSettings: () -> Unit = {},
     onNearby: () -> Unit = {},
     onAsk: () -> Unit = {},
+    offline: Boolean = false,
+    onOffline: () -> Unit = {},
     onScan: () -> Unit,
 ) {
     PaperScreen {
+        if (offline) {
+            // Artboard 13's header, compressed to a tappable banner
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .background(Palette.Ink)
+                    .clickable(onClick = onOffline)
+                    .padding(horizontal = 20.dp, vertical = 10.dp),
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text("📵", fontSize = 16.sp)
+                Text(
+                    stringResource(UiR.string.offline_banner),
+                    fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Palette.Paper,
+                )
+            }
+        }
         Row(
             Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 14.dp),
             verticalAlignment = Alignment.CenterVertically,

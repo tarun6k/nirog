@@ -58,6 +58,7 @@ private sealed interface Screen {
     data object Settings : Screen
     data object Radar : Screen
     data object VoiceQa : Screen
+    data object Offline : Screen
 }
 
 @AndroidEntryPoint
@@ -129,6 +130,8 @@ class MainActivity : ComponentActivity() {
 
         BackHandler(enabled = screen != Screen.Home) { screen = Screen.Home }
 
+        val online = rememberIsOnline()
+
         val loader = remember { RecommendationLoader(db) }
         var dosePending by remember { mutableStateOf<Pair<String, String>?>(null) } // productId to pestId
         LaunchedEffect(dosePending) {
@@ -147,7 +150,15 @@ class MainActivity : ComponentActivity() {
                 onSettings = { screen = Screen.Settings },
                 onNearby = { screen = Screen.Radar },
                 onAsk = { screen = Screen.VoiceQa },
+                offline = !online,
+                onOffline = { screen = Screen.Offline },
             ) { screen = Screen.Capture }
+
+            Screen.Offline -> {
+                var queued by remember { mutableStateOf(0) }
+                LaunchedEffect(Unit) { queued = db.escalationDao().pendingUploadCount() }
+                OfflineScreen(queuedPhotos = queued) { screen = Screen.Capture }
+            }
 
             Screen.VoiceQa -> {
                 val p = plot ?: return

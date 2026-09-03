@@ -62,6 +62,9 @@ interface EscalationDao {
     @Query("SELECT * FROM escalation_ticket WHERE uploadConsent = 1 AND synced = 0")
     suspend fun pendingUploads(): List<EscalationTicketEntity>
 
+    @Query("SELECT COUNT(*) FROM escalation_ticket WHERE uploadConsent = 1 AND synced = 0")
+    suspend fun pendingUploadCount(): Int
+
     @Query("UPDATE escalation_ticket SET uploadConsent = 1 WHERE scanId = :scanId")
     suspend fun grantConsent(scanId: String)
 

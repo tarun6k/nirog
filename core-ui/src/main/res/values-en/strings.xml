@@ -126,6 +126,21 @@
     <string name="unit_bigha">bigha</string>
     <string name="unit_guntha">guntha</string>
 
+    <string name="offline_title">No signal right now</string>
+    <string name="offline_sub">No problem — the important things keep working</string>
+    <string name="offline_banner">No signal — everything important still works ›</string>
+    <string name="offline_still_works">STILL WORKS</string>
+    <string name="offline_capture">Taking photos and checking</string>
+    <string name="offline_capture_sub">Diagnosis happens on the phone — no signal needed</string>
+    <string name="offline_diary">Diary and dose calculator</string>
+    <string name="offline_diary_sub">All saved on the phone</string>
+    <string name="offline_recognition">Common disease recognition</string>
+    <string name="offline_recognition_sub">The model lives on the phone — no internet</string>
+    <string name="offline_when_signal">WHEN SIGNAL RETURNS</string>
+    <string name="offline_queued">%1$d photos queued — they\'ll be sent automatically. Neighbourhood reports arrive then too.</string>
+    <string name="offline_queued_none">Neighbourhood reports and weather will arrive automatically when signal returns.</string>
+    <string name="offline_scan_now">Take photos now</string>
+
     <string name="qa_brand">NIROG · VOICE</string>
     <string name="qa_listening">Listening…</string>
     <string name="qa_hint">Ask in your own words — Hindi</string>
