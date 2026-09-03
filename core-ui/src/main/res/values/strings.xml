@@ -117,6 +117,21 @@
     <string name="dose_error_bigha">आपके राज्य का बीघा माप दर्ज नहीं है — खेत की जानकारी में राज्य चुनें</string>
     <string name="dose_save">डायरी में सहेजें</string>
 
+    <!-- onboarding -->
+    <string name="onboarding_kicker">1/1 · ADD MY PLOT</string>
+    <string name="onboarding_title">अपना खेत जोड़ें</string>
+    <string name="onboarding_which_crop">फसल कौन-सी है?</string>
+    <string name="onboarding_how_much_land">कितनी ज़मीन?</string>
+    <string name="onboarding_which_state">कौन-सा राज्य? (बीघा का माप राज्य पर निर्भर है)</string>
+    <string name="onboarding_when_sown">बुआई कब की थी?</string>
+    <string name="sown_this_week">इस हफ्ते</string>
+    <string name="sown_last_month">करीब एक महीना</string>
+    <string name="sown_dont_remember">याद नहीं</string>
+    <string name="onboarding_add">खेत जोड़ें →</string>
+    <string name="unit_acre">एकड़</string>
+    <string name="unit_bigha">बीघा</string>
+    <string name="unit_guntha">गुंठा</string>
+
     <!-- diary -->
     <string name="diary_title">फसल डायरी</string>
     <string name="diary_season_cost">इस सीज़न का खर्च</string>

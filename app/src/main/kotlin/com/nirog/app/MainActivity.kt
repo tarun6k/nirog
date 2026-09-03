@@ -85,28 +85,47 @@ class MainActivity : ComponentActivity() {
         var plot by remember { mutableStateOf<PlotEntity?>(null) }
         var outbreaks by remember { mutableStateOf(0) }
         var consented by remember { mutableStateOf<Boolean?>(null) }
+        var plotLoaded by remember { mutableStateOf(false) }
 
         LaunchedEffect(Unit) {
             consented = db.farmerDao().current()?.let { it.consentVersion >= CONSENT_VERSION } ?: false
-            var p = db.plotDao().plots("demo-farmer").firstOrNull()?.firstOrNull()
-            if (p == null && BuildConfig.DEBUG) {
-                // Debug-only sample plot so screens work before onboarding exists (artboard 12).
-                p = PlotEntity(
-                    id = UUID.randomUUID().toString(), farmerId = "demo-farmer", label = "रोहतक",
-                    cropId = "wheat", variety = null, areaValue = 2.5, areaUnit = "ACRE",
-                    sowingDate = LocalDate.now().minusDays(62).toEpochDay(),
-                    lat = 28.8955, lon = 76.6066, pincode = "124001",
-                    plannedHarvestDate = LocalDate.now().plusDays(60).toEpochDay(),
-                    organicStatus = "NONE", state = "HARYANA",
-                )
-                db.plotDao().upsert(p)
-            }
+            val p = db.plotDao().plots("demo-farmer").firstOrNull()?.firstOrNull()
             plot = p
+            plotLoaded = true
             if (p?.lat != null && p.lon != null) {
                 outbreaks = db.outbreakDao().countSince(
                     Geohash.encode(p.lat!!, p.lon!!, 5), p.cropId,
                     Instant.now().minus(14, ChronoUnit.DAYS).toEpochMilli(),
                 )
+            }
+        }
+
+        // First launch: consent before any data, then the plot (artboard 12).
+        when {
+            consented == null || !plotLoaded -> return
+            consented == false -> {
+                ConsentScreen {
+                    lifecycleScope.launch {
+                        db.farmerDao().upsert(
+                            com.nirog.data.FarmerEntity(
+                                id = "demo-farmer", phoneHash = "", preferredLanguage = "hi",
+                                consentVersion = CONSENT_VERSION,
+                                consentGrantedAt = System.currentTimeMillis(),
+                            ),
+                        )
+                        consented = true
+                    }
+                }
+                return
+            }
+            plot == null -> {
+                OnboardingScreen { p ->
+                    lifecycleScope.launch {
+                        db.plotDao().upsert(p)
+                        plot = p
+                    }
+                }
+                return
             }
         }
 
@@ -129,26 +148,10 @@ class MainActivity : ComponentActivity() {
                 onDiary = { screen = Screen.Diary },
             ) { screen = Screen.Capture }
 
-            Screen.Capture -> when (consented) {
-                true -> GuidedCaptureScreen(
-                    plotId = plot?.id ?: return,
-                    store = scanStore,
-                ) { sessionId -> screen = Screen.Analysing(sessionId) }
-                // DPDP: itemised consent (re-)prompted before any capture.
-                false -> ConsentScreen {
-                    lifecycleScope.launch {
-                        db.farmerDao().upsert(
-                            com.nirog.data.FarmerEntity(
-                                id = "demo-farmer", phoneHash = "", preferredLanguage = "hi",
-                                consentVersion = CONSENT_VERSION,
-                                consentGrantedAt = System.currentTimeMillis(),
-                            ),
-                        )
-                        consented = true
-                    }
-                }
-                null -> Unit // still loading consent state
-            }
+            Screen.Capture -> GuidedCaptureScreen(
+                plotId = plot?.id ?: return,
+                store = scanStore,
+            ) { sessionId -> screen = Screen.Analysing(sessionId) }
 
             is Screen.Analysing -> {
                 AnalysingScreen(AnalysisStep.WEATHER)

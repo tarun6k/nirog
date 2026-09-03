@@ -107,6 +107,20 @@
     <string name="dose_error_bigha">Your state\'s bigha size is not on file — pick a state in plot details</string>
     <string name="dose_save">Save to diary</string>
 
+    <string name="onboarding_kicker">1/1 · ADD MY PLOT</string>
+    <string name="onboarding_title">Add my plot</string>
+    <string name="onboarding_which_crop">Which crop?</string>
+    <string name="onboarding_how_much_land">How much land?</string>
+    <string name="onboarding_which_state">Which state? (bigha size depends on it)</string>
+    <string name="onboarding_when_sown">When did you sow?</string>
+    <string name="sown_this_week">This week</string>
+    <string name="sown_last_month">About a month ago</string>
+    <string name="sown_dont_remember">Don\'t remember</string>
+    <string name="onboarding_add">Add plot →</string>
+    <string name="unit_acre">acre</string>
+    <string name="unit_bigha">bigha</string>
+    <string name="unit_guntha">guntha</string>
+
     <string name="diary_title">Fasal diary</string>
     <string name="diary_season_cost">This season\'s spend</string>
     <string name="diary_empty">No sprays recorded yet — added automatically after a scan</string>
