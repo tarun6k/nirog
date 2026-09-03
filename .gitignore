@@ -4,3 +4,9 @@ local.properties
 .DS_Store
 .idea/
 *.iml
+backend/.venv/
+backend/uploads/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/.pytest_cache/
+*.pyc
