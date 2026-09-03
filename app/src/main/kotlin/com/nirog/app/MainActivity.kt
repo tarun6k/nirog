@@ -77,8 +77,10 @@ class MainActivity : ComponentActivity() {
         var screen by remember { mutableStateOf<Screen>(Screen.Home) }
         var plot by remember { mutableStateOf<PlotEntity?>(null) }
         var outbreaks by remember { mutableStateOf(0) }
+        var consented by remember { mutableStateOf<Boolean?>(null) }
 
         LaunchedEffect(Unit) {
+            consented = db.farmerDao().current()?.let { it.consentVersion >= CONSENT_VERSION } ?: false
             var p = db.plotDao().plots("demo-farmer").firstOrNull()?.firstOrNull()
             if (p == null && BuildConfig.DEBUG) {
                 // Debug-only sample plot so screens work before onboarding exists (artboard 12).
@@ -120,10 +122,26 @@ class MainActivity : ComponentActivity() {
                 onDiary = { screen = Screen.Diary },
             ) { screen = Screen.Capture }
 
-            Screen.Capture -> GuidedCaptureScreen(
-                plotId = plot?.id ?: return,
-                store = scanStore,
-            ) { sessionId -> screen = Screen.Analysing(sessionId) }
+            Screen.Capture -> when (consented) {
+                true -> GuidedCaptureScreen(
+                    plotId = plot?.id ?: return,
+                    store = scanStore,
+                ) { sessionId -> screen = Screen.Analysing(sessionId) }
+                // DPDP: itemised consent (re-)prompted before any capture.
+                false -> ConsentScreen {
+                    lifecycleScope.launch {
+                        db.farmerDao().upsert(
+                            com.nirog.data.FarmerEntity(
+                                id = "demo-farmer", phoneHash = "", preferredLanguage = "hi",
+                                consentVersion = CONSENT_VERSION,
+                                consentGrantedAt = System.currentTimeMillis(),
+                            ),
+                        )
+                        consented = true
+                    }
+                }
+                null -> Unit // still loading consent state
+            }
 
             is Screen.Analysing -> {
                 AnalysingScreen(AnalysisStep.WEATHER)
@@ -131,6 +149,7 @@ class MainActivity : ComponentActivity() {
                     val session = db.scanDao().sessionsForPlot(plot!!.id).firstOrNull()
                         ?.firstOrNull { it.id == s.sessionId } ?: return@LaunchedEffect
                     val result = pipeline.run(session)
+                    com.nirog.data.Sync.enqueue(applicationContext)
                     screen = Screen.Result(result.diagnosis, result.noteKeys)
                 }
             }
@@ -224,7 +243,21 @@ class MainActivity : ComponentActivity() {
                 },
                 onEscalate = { navigate(Screen.Result(s.diagnosis.copy(verdict = Verdict.ABSTAIN.name), s.notes)) },
             )
-            Verdict.ABSTAIN -> EscalatedScreen(s.notes) { navigate(Screen.Home) }
+            Verdict.ABSTAIN -> {
+                var sent by remember { mutableStateOf(false) }
+                EscalatedScreen(
+                    noteKeys = s.notes,
+                    onSendPhotos = if (sent) null else {
+                        {
+                            sent = true
+                            lifecycleScope.launch {
+                                db.escalationDao().grantConsent(s.diagnosis.scanId)
+                                com.nirog.data.Sync.enqueue(applicationContext)
+                            }
+                        }
+                    },
+                ) { navigate(Screen.Home) }
+            }
         }
     }
 

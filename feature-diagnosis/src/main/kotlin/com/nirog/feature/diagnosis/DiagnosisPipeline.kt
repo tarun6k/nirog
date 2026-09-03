@@ -75,6 +75,29 @@ class DiagnosisPipeline(
         )
         db.scanDao().insertDiagnosis(entity)
         db.scanDao().insertContext(ctx.entity)
+
+        if (verdict == Verdict.ABSTAIN) {
+            // I8: abstain produces an escalation. Images upload only after per-scan consent.
+            db.escalationDao().insert(
+                com.nirog.data.EscalationTicketEntity(
+                    id = UUID.randomUUID().toString(), scanId = session.id, status = "PENDING",
+                    expertAnswer = null, answeredAt = null, uploadConsent = false, synced = false,
+                ),
+            )
+        }
+        if (verdict == Verdict.CONFIDENT && plot.lat != null && plot.lon != null) {
+            // Community signal at geohash-5 (~5 km) only — never exact coordinates.
+            db.outbreakDao().insert(
+                com.nirog.data.OutbreakReportEntity(
+                    geohash5 = com.nirog.engine.Geohash.encode(plot.lat!!, plot.lon!!, 5),
+                    cropId = plot.cropId,
+                    diseaseId = candidates.first().pestId,
+                    confirmedBy = DiagnosisSource.ON_DEVICE.name,
+                    createdAt = System.currentTimeMillis(),
+                    synced = false,
+                ),
+            )
+        }
         return Result(entity, notes)
     }
 }

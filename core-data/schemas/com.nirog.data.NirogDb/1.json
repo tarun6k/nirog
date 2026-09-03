@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "23843323e8c10df3f8e36889000ae4df",
+    "identityHash": "6444328832029b884c44d3dce10104a9",
     "entities": [
       {
         "tableName": "farmer",
@@ -673,7 +673,7 @@
       },
       {
         "tableName": "escalation_ticket",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `scanId` TEXT NOT NULL, `status` TEXT NOT NULL, `expertAnswer` TEXT, `answeredAt` INTEGER, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `scanId` TEXT NOT NULL, `status` TEXT NOT NULL, `expertAnswer` TEXT, `answeredAt` INTEGER, `uploadConsent` INTEGER NOT NULL, `synced` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -704,6 +704,18 @@
             "columnName": "answeredAt",
             "affinity": "INTEGER",
             "notNull": false
+          },
+          {
+            "fieldPath": "uploadConsent",
+            "columnName": "uploadConsent",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "synced",
+            "columnName": "synced",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -717,7 +729,7 @@
       },
       {
         "tableName": "outbreak_report",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`geohash5` TEXT NOT NULL, `cropId` TEXT NOT NULL, `diseaseId` TEXT NOT NULL, `confirmedBy` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, PRIMARY KEY(`geohash5`, `cropId`, `diseaseId`, `createdAt`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`geohash5` TEXT NOT NULL, `cropId` TEXT NOT NULL, `diseaseId` TEXT NOT NULL, `confirmedBy` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, `synced` INTEGER NOT NULL, PRIMARY KEY(`geohash5`, `cropId`, `diseaseId`, `createdAt`))",
         "fields": [
           {
             "fieldPath": "geohash5",
@@ -748,6 +760,12 @@
             "columnName": "createdAt",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "synced",
+            "columnName": "synced",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -766,7 +784,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '23843323e8c10df3f8e36889000ae4df')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6444328832029b884c44d3dce10104a9')"
     ]
   }
 }

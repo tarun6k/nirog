@@ -22,7 +22,13 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @HiltAndroidApp
-class NirogApplication : Application()
+class NirogApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        // Drain any queued escalations/outbreak reports from previous runs.
+        com.nirog.data.Sync.enqueue(this)
+    }
+}
 
 @Module
 @InstallIn(SingletonComponent::class)

@@ -213,7 +213,11 @@ fun ResultAmbiguousScreen(
 
 /** Artboard 07: honesty as a feature — abstain means a human, a deadline, and what was sent. */
 @Composable
-fun EscalatedScreen(noteKeys: List<String>, onHome: () -> Unit) {
+fun EscalatedScreen(
+    noteKeys: List<String>,
+    onSendPhotos: (() -> Unit)? = null,
+    onHome: () -> Unit,
+) {
     PaperScreen {
         Column(Modifier.weight(1f).padding(20.dp)) {
             Spacer(Modifier.height(16.dp))
@@ -254,9 +258,20 @@ fun EscalatedScreen(noteKeys: List<String>, onHome: () -> Unit) {
             )
             ContextNotes(noteKeys)
         }
-        Row(Modifier.padding(16.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            SecondaryButton("घर वापस", Modifier.weight(1f).height(64.dp), onClick = onHome)
-            MicButton()
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            // DPDP: images travel only on this explicit per-scan yes.
+            if (onSendPhotos != null) {
+                PrimaryButton(
+                    "हां — फोटो डॉक्टर को भेजें",
+                    Modifier.fillMaxWidth().height(72.dp),
+                    en = "SEND MY PHOTOS",
+                    onClick = onSendPhotos,
+                )
+            }
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                SecondaryButton("घर वापस", Modifier.weight(1f).height(64.dp), onClick = onHome)
+                MicButton()
+            }
         }
     }
 }

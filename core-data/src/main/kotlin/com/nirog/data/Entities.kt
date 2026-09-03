@@ -143,13 +143,18 @@ data class EscalationTicketEntity(
     val status: String,
     val expertAnswer: String?,
     val answeredAt: Long?,
+    /** DPDP: raw images upload only on explicit per-scan consent. */
+    val uploadConsent: Boolean,
+    val synced: Boolean,
 )
 
 @Entity(tableName = "outbreak_report", primaryKeys = ["geohash5", "cropId", "diseaseId", "createdAt"])
 data class OutbreakReportEntity(
+    /** ~5 km cell. The ONLY location precision that ever leaves the device. */
     val geohash5: String,
     val cropId: String,
     val diseaseId: String,
     val confirmedBy: String,
     val createdAt: Long,
+    val synced: Boolean,
 )

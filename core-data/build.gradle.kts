@@ -14,6 +14,12 @@ android {
         isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions { jvmTarget = "17" }
+    buildFeatures { buildConfig = true }
+    defaultConfig {
+        // Backend base URL; empty until Phase 7's API is deployed. Empty = sync
+        // workers keep rows queued locally and do nothing over the network.
+        buildConfigField("String", "NIROG_API_BASE", "\"\"")
+    }
 }
 
 ksp {
@@ -27,6 +33,7 @@ dependencies {
     api(libs.room.runtime) // NirogDb extends RoomDatabase, so the type is part of this module's API
     implementation(libs.room.ktx)
     implementation(libs.okhttp)
+    implementation(libs.work.runtime)
     ksp(libs.room.compiler)
     coreLibraryDesugaring(libs.desugar.jdk)
     testImplementation(libs.kotlin.test)
