@@ -44,6 +44,15 @@ interface OutbreakDao {
 
     @Query("UPDATE outbreak_report SET synced = 1 WHERE geohash5 = :geohash5 AND createdAt = :createdAt")
     suspend fun markSynced(geohash5: String, createdAt: Long)
+
+    @Query("SELECT * FROM nearby_outbreak WHERE cropId = :cropId")
+    suspend fun nearby(cropId: String): List<NearbyOutbreakEntity>
+
+    @Query("DELETE FROM nearby_outbreak WHERE cropId = :cropId")
+    suspend fun clearNearby(cropId: String)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertNearby(rows: List<NearbyOutbreakEntity>)
 }
 
 @Dao
@@ -81,6 +90,7 @@ interface DiaryDao {
 interface PlotDao {
     @Query("SELECT * FROM plot WHERE farmerId = :farmerId") fun plots(farmerId: String): Flow<List<PlotEntity>>
     @Query("SELECT * FROM plot WHERE id = :id") suspend fun plot(id: String): PlotEntity?
+    @Query("SELECT * FROM plot") suspend fun allPlots(): List<PlotEntity>
     @Insert(onConflict = OnConflictStrategy.REPLACE) suspend fun upsert(row: PlotEntity)
 }
 
@@ -99,7 +109,7 @@ interface ScanDao {
     version = 1,
     exportSchema = true,
     entities = [
-        FarmerEntity::class, PlotEntity::class, ScanSessionEntity::class,
+        FarmerEntity::class, PlotEntity::class, ScanSessionEntity::class, NearbyOutbreakEntity::class,
         ContextSnapshotEntity::class, DiagnosisEntity::class, ProductEntity::class,
         LabelClaimEntity::class, BannedActiveEntity::class, EtlThresholdEntity::class,
         SprayLogEntity::class, EscalationTicketEntity::class, OutbreakReportEntity::class,

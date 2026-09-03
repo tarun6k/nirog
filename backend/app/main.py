@@ -121,14 +121,18 @@ def outbreak_intake(reports: list[dict], session: Session = Depends(get_session)
 
 @app.get("/v1/outbreaks/aggregate")
 def outbreak_aggregate(cropId: str, days: int = 14, session: Session = Depends(get_session)):
-    """Counts per geohash-5 cell. District-polygon joins come with district data."""
+    """Counts per geohash-5 cell, split confirmed (expert-verified) vs reported
+    (on-device only). District-polygon joins come with district data."""
     since = datetime.now(timezone.utc) - timedelta(days=days)
     rows = session.execute(
-        select(Outbreak.geohash5, Outbreak.disease_id, func.count())
+        select(Outbreak.geohash5, Outbreak.disease_id, Outbreak.confirmed_by, func.count())
         .where(Outbreak.crop_id == cropId, Outbreak.received_at >= since)
-        .group_by(Outbreak.geohash5, Outbreak.disease_id),
+        .group_by(Outbreak.geohash5, Outbreak.disease_id, Outbreak.confirmed_by),
     ).all()
-    return [{"geohash5": g, "diseaseId": d, "count": c} for g, d, c in rows]
+    return [
+        {"geohash5": g, "diseaseId": d, "confirmed": cb == "HUMAN", "count": c}
+        for g, d, cb, c in rows
+    ]
 
 
 # ── OTA model manifest + label-claim delta sync ─────────────────────────────

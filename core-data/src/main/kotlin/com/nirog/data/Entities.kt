@@ -148,6 +148,17 @@ data class EscalationTicketEntity(
     val synced: Boolean,
 )
 
+/** Server aggregate of the neighbourhood, replaced wholesale on each sync (artboard 11). */
+@Entity(tableName = "nearby_outbreak", primaryKeys = ["geohash5", "cropId", "diseaseId", "confirmed"])
+data class NearbyOutbreakEntity(
+    val geohash5: String,
+    val cropId: String,
+    val diseaseId: String,
+    val confirmed: Boolean,
+    val count: Int,
+    val fetchedAt: Long,
+)
+
 @Entity(tableName = "outbreak_report", primaryKeys = ["geohash5", "cropId", "diseaseId", "createdAt"])
 data class OutbreakReportEntity(
     /** ~5 km cell. The ONLY location precision that ever leaves the device. */

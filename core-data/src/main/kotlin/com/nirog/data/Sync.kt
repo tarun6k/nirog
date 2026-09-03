@@ -66,8 +66,26 @@ class SyncWorker(context: Context, params: WorkerParameters) : CoroutineWorker(c
         }
 
         if (!runCatching { pullLabelClaims(base, db) }.getOrDefault(false)) allOk = false
+        if (!runCatching { pullNearbyOutbreaks(base, db) }.getOrDefault(false)) allOk = false
 
         return if (allOk) Result.success() else Result.retry()
+    }
+
+    /** Neighbourhood aggregate for the outbreak radar, replaced wholesale per crop. */
+    private suspend fun pullNearbyOutbreaks(base: String, db: NirogDb): Boolean {
+        val now = System.currentTimeMillis()
+        for (crop in db.plotDao().allPlots().map { it.cropId }.distinct()) {
+            val url = "$base/v1/outbreaks/aggregate".toHttpUrl().newBuilder()
+                .addQueryParameter("cropId", crop)
+                .build()
+            val body = client.newCall(Request.Builder().url(url).build()).execute().use { resp ->
+                if (!resp.isSuccessful) return false
+                resp.body?.string() ?: return false
+            }
+            db.outbreakDao().clearNearby(crop)
+            db.outbreakDao().insertNearby(parseNearbyOutbreaks(body, crop, now))
+        }
+        return true
     }
 
     /**
@@ -136,5 +154,21 @@ class SyncWorker(context: Context, params: WorkerParameters) : CoroutineWorker(c
             Request.Builder().url("$base/v1/outbreaks")
                 .post(payload.toRequestBody("application/json".toMediaType())).build(),
         ).execute().use { it.isSuccessful }
+    }
+}
+
+/** Pure parse of /v1/outbreaks/aggregate for one crop. */
+internal fun parseNearbyOutbreaks(json: String, cropId: String, fetchedAt: Long): List<NearbyOutbreakEntity> {
+    val arr = JSONArray(json)
+    return (0 until arr.length()).map { i ->
+        val o = arr.getJSONObject(i)
+        NearbyOutbreakEntity(
+            geohash5 = o.getString("geohash5"),
+            cropId = cropId,
+            diseaseId = o.getString("diseaseId"),
+            confirmed = o.getBoolean("confirmed"),
+            count = o.getInt("count"),
+            fetchedAt = fetchedAt,
+        )
     }
 }

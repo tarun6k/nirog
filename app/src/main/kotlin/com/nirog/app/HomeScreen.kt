@@ -38,6 +38,7 @@ fun HomeScreen(
     outbreakCount: Int,
     onDiary: () -> Unit = {},
     onSettings: () -> Unit = {},
+    onNearby: () -> Unit = {},
     onScan: () -> Unit,
 ) {
     PaperScreen {
@@ -54,6 +55,20 @@ fun HomeScreen(
             Spacer(Modifier.weight(1f))
             Box(
                 Modifier
+                    .heightIn(min = 44.dp)
+                    .border(1.dp, Palette.Hairline)
+                    .clickable(onClick = onNearby)
+                    .padding(horizontal = 12.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text(
+                    stringResource(UiR.string.home_nearby),
+                    fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Palette.TextSecondary,
+                )
+            }
+            Box(
+                Modifier
+                    .padding(start = 8.dp)
                     .heightIn(min = 44.dp)
                     .border(1.dp, Palette.Hairline)
                     .clickable(onClick = onSettings)
@@ -85,6 +100,7 @@ fun HomeScreen(
                     .background(Palette.TintClay)
                     .border(1.5.dp, Palette.Clay)
                     .blueprintCorners(Palette.Clay)
+                    .clickable(onClick = onNearby)
                     .padding(14.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {

@@ -137,6 +137,17 @@
     <string name="unit_bigha">बीघा</string>
     <string name="unit_guntha">गुंठा</string>
 
+    <!-- outbreak radar -->
+    <string name="radar_title">आस-पास का हाल</string>
+    <string name="radar_sub">10 किमी के अंदर · %1$s</string>
+    <string name="radar_your_plot">आपका खेत</string>
+    <string name="radar_confirmed">पुष्ट · CONFIRMED ×%1$d</string>
+    <string name="radar_reported">सूचना · REPORTED ×%1$d</string>
+    <string name="radar_distance">नज़दीकी: %1$d किमी</string>
+    <string name="radar_empty">10 किमी में कोई रिपोर्ट नहीं — अच्छी खबर</string>
+    <string name="radar_no_location">खेत की जगह दर्ज नहीं है — ⚙ खेत की जानकारी में जोड़ें, तभी आस-पास दिखेगा</string>
+    <string name="home_nearby">आस-पास</string>
+
     <!-- plot settings -->
     <string name="settings_title">खेत की जानकारी</string>
     <string name="settings_sowing">बुआई की तारीख</string>

@@ -36,14 +36,16 @@ def test_escalation_roundtrip():
 def test_outbreak_aggregate():
     reports = [
         {"geohash5": "ttnfv", "cropId": "wheat", "diseaseId": "yellow_rust", "createdAt": 1},
-        {"geohash5": "ttnfv", "cropId": "wheat", "diseaseId": "yellow_rust", "createdAt": 2},
+        {"geohash5": "ttnfv", "cropId": "wheat", "diseaseId": "yellow_rust", "createdAt": 2,
+         "confirmedBy": "HUMAN"},
         {"geohash5": "u4pru", "cropId": "wheat", "diseaseId": "aphid", "createdAt": 3},
     ]
     assert client.post("/v1/outbreaks", json=reports).json()["accepted"] == 3
     agg = client.get("/v1/outbreaks/aggregate", params={"cropId": "wheat"}).json()
-    counts = {(a["geohash5"], a["diseaseId"]): a["count"] for a in agg}
-    assert counts[("ttnfv", "yellow_rust")] == 2
-    assert counts[("u4pru", "aphid")] == 1
+    counts = {(a["geohash5"], a["diseaseId"], a["confirmed"]): a["count"] for a in agg}
+    assert counts[("ttnfv", "yellow_rust", False)] == 1
+    assert counts[("ttnfv", "yellow_rust", True)] == 1
+    assert counts[("u4pru", "aphid", False)] == 1
 
 
 def test_label_claim_delta_and_manifest():

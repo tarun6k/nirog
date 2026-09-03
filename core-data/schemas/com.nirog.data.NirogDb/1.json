@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "6444328832029b884c44d3dce10104a9",
+    "identityHash": "a286d973044d65495f64da700f888433",
     "entities": [
       {
         "tableName": "farmer",
@@ -203,6 +203,59 @@
           "autoGenerate": false,
           "columnNames": [
             "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "nearby_outbreak",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`geohash5` TEXT NOT NULL, `cropId` TEXT NOT NULL, `diseaseId` TEXT NOT NULL, `confirmed` INTEGER NOT NULL, `count` INTEGER NOT NULL, `fetchedAt` INTEGER NOT NULL, PRIMARY KEY(`geohash5`, `cropId`, `diseaseId`, `confirmed`))",
+        "fields": [
+          {
+            "fieldPath": "geohash5",
+            "columnName": "geohash5",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cropId",
+            "columnName": "cropId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "diseaseId",
+            "columnName": "diseaseId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "confirmed",
+            "columnName": "confirmed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "count",
+            "columnName": "count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fetchedAt",
+            "columnName": "fetchedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "geohash5",
+            "cropId",
+            "diseaseId",
+            "confirmed"
           ]
         },
         "indices": [],
@@ -784,7 +837,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6444328832029b884c44d3dce10104a9')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a286d973044d65495f64da700f888433')"
     ]
   }
 }

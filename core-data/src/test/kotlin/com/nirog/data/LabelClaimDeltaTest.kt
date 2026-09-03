@@ -51,3 +51,18 @@ class LabelClaimDeltaTest {
         assertEquals(emptyList(), LabelClaimDelta.parse("[]"))
     }
 }
+
+class NearbyOutbreakParseTest {
+
+    @Test
+    fun `parses aggregate rows with confirmed flag`() {
+        val json = """[
+            {"geohash5":"ttnfv","diseaseId":"yellow_rust","confirmed":true,"count":2},
+            {"geohash5":"ttnfw","diseaseId":"aphid","confirmed":false,"count":1}
+        ]"""
+        val rows = parseNearbyOutbreaks(json, "wheat", fetchedAt = 42L)
+        assertEquals(2, rows.size)
+        assertEquals(NearbyOutbreakEntity("ttnfv", "wheat", "yellow_rust", true, 2, 42L), rows[0])
+        assertTrue(!rows[1].confirmed)
+    }
+}

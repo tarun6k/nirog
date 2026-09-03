@@ -21,7 +21,6 @@ import com.nirog.engine.DoseResult
 import com.nirog.feature.diary.DiaryScreen
 import com.nirog.feature.treatment.DoseScreen
 import kotlinx.coroutines.launch
-import com.nirog.engine.Geohash
 import com.nirog.engine.RecommendationResult
 import com.nirog.feature.diagnosis.AnalysingScreen
 import com.nirog.feature.diagnosis.AnalysisStep
@@ -39,9 +38,7 @@ import com.nirog.model.Verdict
 import com.nirog.ui.NirogTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.firstOrNull
-import java.time.Instant
 import java.time.LocalDate
-import java.time.temporal.ChronoUnit
 import java.util.UUID
 import javax.inject.Inject
 
@@ -59,6 +56,7 @@ private sealed interface Screen {
     data class Dose(val prep: RecommendationLoader.DosePrep, val pestId: String) : Screen
     data object Diary : Screen
     data object Settings : Screen
+    data object Radar : Screen
 }
 
 @AndroidEntryPoint
@@ -93,11 +91,9 @@ class MainActivity : ComponentActivity() {
             val p = db.plotDao().plots("demo-farmer").firstOrNull()?.firstOrNull()
             plot = p
             plotLoaded = true
-            if (p?.lat != null && p.lon != null) {
-                outbreaks = db.outbreakDao().countSince(
-                    Geohash.encode(p.lat!!, p.lon!!, 5), p.cropId,
-                    Instant.now().minus(14, ChronoUnit.DAYS).toEpochMilli(),
-                )
+            if (p != null) {
+                // Home alert = synced neighbourhood cells within radar range.
+                outbreaks = radarMarks(p, db.outbreakDao().nearby(p.cropId)).size
             }
         }
 
@@ -148,7 +144,15 @@ class MainActivity : ComponentActivity() {
                 outbreaks,
                 onDiary = { screen = Screen.Diary },
                 onSettings = { screen = Screen.Settings },
+                onNearby = { screen = Screen.Radar },
             ) { screen = Screen.Capture }
+
+            Screen.Radar -> {
+                val p = plot ?: return
+                var rows by remember { mutableStateOf(emptyList<com.nirog.data.NearbyOutbreakEntity>()) }
+                LaunchedEffect(Unit) { rows = db.outbreakDao().nearby(p.cropId) }
+                OutbreakRadarScreen(p, rows)
+            }
 
             Screen.Settings -> PlotSettingsScreen(
                 plot = plot ?: return,

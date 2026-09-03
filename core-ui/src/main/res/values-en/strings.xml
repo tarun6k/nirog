@@ -126,6 +126,16 @@
     <string name="unit_bigha">bigha</string>
     <string name="unit_guntha">guntha</string>
 
+    <string name="radar_title">What\'s nearby</string>
+    <string name="radar_sub">Within 10 km · %1$s</string>
+    <string name="radar_your_plot">Your plot</string>
+    <string name="radar_confirmed">CONFIRMED ×%1$d</string>
+    <string name="radar_reported">REPORTED ×%1$d</string>
+    <string name="radar_distance">Nearest: %1$d km</string>
+    <string name="radar_empty">No reports within 10 km — good news</string>
+    <string name="radar_no_location">No plot location on file — add it in ⚙ plot details to see nearby reports</string>
+    <string name="home_nearby">Nearby</string>
+
     <string name="settings_title">Plot details</string>
     <string name="settings_sowing">Sowing date</string>
     <string name="settings_harvest">Expected harvest date</string>

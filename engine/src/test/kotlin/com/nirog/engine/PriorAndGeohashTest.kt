@@ -19,6 +19,41 @@ class GeohashTest {
         assertEquals("u4pru", Geohash.encode(57.64911, 10.40744, 5))
         assertEquals(5, Geohash.encode(28.6139, 77.2090, 5).length)
     }
+
+    @Test
+    fun `decode returns the cell centroid near the encoded point`() {
+        val (lat, lon) = Geohash.decodeCentroid("u4pru")
+        // precision-5 cell is ~4.9 x 4.9 km; centroid must be within that
+        assertTrue(kotlin.math.abs(lat - 57.64911) < 0.05, "lat $lat")
+        assertTrue(kotlin.math.abs(lon - 10.40744) < 0.05, "lon $lon")
+    }
+
+    @Test
+    fun `encode then decode round-trips into the same cell`() {
+        val (lat, lon) = Geohash.decodeCentroid(Geohash.encode(28.8955, 76.6066, 5))
+        assertEquals("t", Geohash.encode(lat, lon, 5).take(1))
+        assertEquals(Geohash.encode(28.8955, 76.6066, 5), Geohash.encode(lat, lon, 5))
+    }
+}
+
+class GeoTest {
+
+    @Test
+    fun `haversine of the same point is zero`() {
+        assertTrue(Geo.haversineKm(28.0, 77.0, 28.0, 77.0) < 1e-9)
+    }
+
+    @Test
+    fun `one degree of latitude is about 111 km`() {
+        val d = Geo.haversineKm(28.0, 77.0, 29.0, 77.0)
+        assertTrue(d > 110 && d < 112, "got $d")
+    }
+
+    @Test
+    fun `bearing due east is 90 degrees`() {
+        val b = Geo.bearingDeg(0.0, 0.0, 0.0, 1.0)
+        assertTrue(kotlin.math.abs(b - 90.0) < 0.5, "got $b")
+    }
 }
 
 class PriorAdjusterTest {
