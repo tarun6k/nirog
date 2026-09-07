@@ -4,7 +4,6 @@
 <resources>
     <!-- shared -->
     <string name="speak">बोलें</string>
-    <string name="listen">सुनें</string>
     <string name="chip_confident">पक्की पहचान · CONFIDENT</string>
     <string name="chip_ambiguous">दो संभावनाएं · TWO POSSIBILITIES</string>
     <string name="chip_escalated">जांच जारी · SENT TO A CROP DOCTOR</string>

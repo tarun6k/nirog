@@ -51,11 +51,4 @@ class OpenMeteoWeatherProvider : WeatherProvider {
     }
 }
 
-/**
- * IMD (India Meteorological Department) requires IP whitelisting we don't have
- * yet. Wire the real endpoint here when access is granted; the interface is the
- * contract, callers never know which provider answered.
- */
-class ImdWeatherProvider : WeatherProvider {
-    override suspend fun last14d(lat: Double, lon: Double): Weather14d? = null
-}
+// IMD provider goes here once IP whitelisting is granted; callers only see WeatherProvider.

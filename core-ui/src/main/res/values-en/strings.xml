@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="speak">Speak</string>
-    <string name="listen">Listen</string>
     <string name="chip_confident">CONFIDENT</string>
     <string name="chip_ambiguous">TWO POSSIBILITIES</string>
     <string name="chip_escalated">SENT TO A CROP DOCTOR</string>

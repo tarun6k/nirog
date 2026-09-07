@@ -40,7 +40,6 @@ import com.nirog.ui.Palette
 import com.nirog.ui.PaperScreen
 import com.nirog.ui.blueprintCorners
 import kotlin.math.cos
-import kotlin.math.min
 import kotlin.math.sin
 
 private const val RADAR_RANGE_KM = 10.0

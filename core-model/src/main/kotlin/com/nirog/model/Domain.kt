@@ -14,14 +14,6 @@ enum class SyncState { PENDING, SYNCED, FAILED }
 /** How a label-claim dose is expressed. Per litre of spray water, or per hectare of land. */
 enum class DoseUnit { ML_PER_L, G_PER_L, ML_PER_HA, G_PER_HA }
 
-data class Farmer(
-    val id: String,
-    val phoneHash: String,
-    val preferredLanguage: String,
-    val consentVersion: Int,
-    val consentGrantedAt: Instant,
-)
-
 data class Plot(
     val id: String,
     val farmerId: String,
@@ -39,17 +31,6 @@ data class Plot(
     // Not in the original spec: bigha size is a per-state lookup, so the plot must know
     // its state. Deriving it from pincode is a data problem deferred to onboarding.
     val state: String?,
-)
-
-data class ScanSession(
-    val id: String,
-    val plotId: String,
-    val createdAt: Instant,
-    val imagePaths: List<String>,
-    val qualityScores: List<Double>,
-    val deviceModel: String,
-    val appVersion: String,
-    val syncState: SyncState,
 )
 
 data class ContextSnapshot(
@@ -145,14 +126,6 @@ data class SprayLog(
     val farmerConfirmed: Boolean,
 )
 
-data class EscalationTicket(
-    val id: String,
-    val scanId: String,
-    val status: String,
-    val expertAnswer: String?,
-    val answeredAt: Instant?,
-)
-
 /** 14-day weather aggregate used for context fusion; serialized into ContextSnapshot.weather14d. */
 data class Weather14d(
     val rainMmTotal: Double,
@@ -162,11 +135,3 @@ data class Weather14d(
 ) {
     fun serialize() = "rain=$rainMmTotal;rh=$avgRhPct;tmax=$avgTMaxC;tmin=$avgTMinC"
 }
-
-data class OutbreakReport(
-    val geohash5: String,
-    val cropId: String,
-    val diseaseId: String,
-    val confirmedBy: DiagnosisSource,
-    val createdAt: Instant,
-)

@@ -183,22 +183,6 @@ private data class ChipSpec(
     val labelRes: Int,
 )
 
-/** Ochre caution band ("don't spray tomorrow — 80% rain"). */
-@Composable
-fun WarningBand(text: String, modifier: Modifier = Modifier) {
-    Row(
-        modifier
-            .background(Palette.TintOchre)
-            .border(1.5.dp, Palette.Ochre)
-            .padding(horizontal = 13.dp, vertical = 11.dp),
-        horizontalArrangement = Arrangement.spacedBy(11.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Text("⚠", color = Palette.OchreDark, fontSize = 20.sp)
-        Text(text, color = Palette.OchreDeep, fontSize = 16.sp, fontWeight = FontWeight.Bold, lineHeight = 22.sp)
-    }
-}
-
 /** Full-screen paper background column. */
 @Composable
 fun PaperScreen(modifier: Modifier = Modifier, content: @Composable androidx.compose.foundation.layout.ColumnScope.() -> Unit) {
